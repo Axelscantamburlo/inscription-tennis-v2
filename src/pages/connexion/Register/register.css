@@ -1,0 +1,191 @@
+.register-container {
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--background-color);
+}
+/* header */
+
+.register-container h1 {
+    margin: 75px 0px 0 20px;
+    color: var(--grey-color);
+}
+
+/* container form */
+.register-container .form-container {
+    color: var(--grey-color);
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    height: 50vh;
+}
+
+/* form */
+
+.register-container form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+
+.register-container form .input {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5px;
+    height: 100%;
+}
+
+.register-container .input label
+ {
+    font-weight: bold;
+    color: var(--grey-color);
+}
+
+
+.register-container form .input input {
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    border: none;
+    padding: 12px 0 12px 12.5px;
+    background-color: var(--grey-color);
+    border-radius: 8px;
+    color: var(--background-color);
+    outline: none;
+}
+
+
+
+.register-container form .name-container .input-text input:focus,
+.register-container form .input input:focus {
+    outline: 3px solid var(--blue-color);
+}
+
+
+
+
+/* submit button */
+
+.register-container form .submit-btn {
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+    background: var(--linear-gradient);
+    border: none;
+    padding: 9px 0;
+    border-radius: 10px;
+    margin-top: 27px;
+    font-size: 1.1rem;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+}
+
+.register-container form .submit-btn:hover {
+    cursor: pointer;
+    width: 90%;
+    animation: scale 0.15s;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1) translateX(-50%);
+    }
+
+    50% {
+        transform: scale(0.95) translateX(-50%);
+    }
+
+    100% {
+        transform: scale(1) translateX(-50%);
+    }
+}
+
+
+
+
+
+/* Responsive */
+
+@media screen and (min-width: 630px) {
+    .register-container h1 {
+        margin: 50px 97px;
+        color: var(--background-color);
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+
+    }
+
+    .register-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .register-container .reponsive-container {
+        position: relative;
+        height: 650px;
+        background-color: var(--grey-color);
+        box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+        width: 600px;
+        border-radius: 20px;
+    }
+    
+    .register-container .reponsive-container .form-container {
+        width: 100%;
+        transform: translateY(-10px);
+    }
+
+
+    .register-container .reponsive-container .form-container .inputs {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .register-container form .inputs .input input {
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+        width: 400px;
+        border: none;
+        padding: 15px 0px 15px 12.5px;
+        background-color: #eaeaea;
+        border-radius: 8px;
+        outline: none;
+        margin-bottom: 20px;
+
+    }
+
+
+    .register-container form .inputs .input label {
+        color: var(--background-color);
+
+    }
+
+    .register-container form .input input:focus {
+        outline: 2px solid var(--blue-color);
+    }
+
+    .register-container form .submit-btn {
+        position: absolute;
+        bottom: 30px;
+        max-width: 400px;
+    }
+
+    .register-container form .submit-btn:hover {
+
+        animation: none;
+        opacity: 0.9;
+    }
+
+    .register-container form span {
+        margin: 10px 0 0 70px;
+        color: red;
+        height: 10px;
+        line-height: 16px;
+    transform: translateY(-20px);
+
+    }
+}

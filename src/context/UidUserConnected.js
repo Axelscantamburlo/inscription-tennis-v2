@@ -21,7 +21,6 @@ export const UidUserConnectedProvider = ({ children }) => {
   };
   useEffect(() => {
     getUid();
-    console.log('jouée');
   }, [auth]);
 
   return (

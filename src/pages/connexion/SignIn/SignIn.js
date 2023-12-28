@@ -10,7 +10,7 @@ import { doc, setDoc } from 'firebase/firestore';
 
 
 
-export default function Register() {
+export default function SignIn() {
 
     const navigate = useNavigate()
 
@@ -31,7 +31,8 @@ export default function Register() {
         const res = await createUserWithEmailAndPassword(auth, email, password)
          await setDoc(doc(db, "users", res.user.uid), {
             email,
-            playeurInfo: []
+            playeurInfo: [],
+            playeurNames: []
         })
         
 

@@ -8,22 +8,21 @@ import ConfirmationModal from "../Schedules/confirmationModal/ConfirmationModal"
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
 
 // REDUX
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { selectSchedule } from "../../../redux/actions";
 // FUNCTIONS
 import { handleButtonClick } from "../../../functions/handleButtonClick";
 
-export default function SecondHour({ route }) {
-  const location = useLocation();
+export default function SecondHour() {
 
-  // Accédez à la customData depuis props.location.state
-  const formule = location.state.formule;
-  console.log(formule);
+ 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   // récupérer les tableaux à mapper à l'utilisateur
   const { loadedData } = useContext(AllDataSchedules);
 
   // récucpérer les infos de l'utilisateur (son niveau)
-  const { level } = useSelector((state) => state.user);
+  const { level, formule } = useSelector((state) => state.user);
 
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const {
@@ -32,6 +31,14 @@ export default function SecondHour({ route }) {
   } = useSelector((state) => state.schedule);
 
   const [showModal, setShowModal] = useState(false);
+
+  // naviguer à l'heure précédente: supprimer le schedule séléctionné dans redux
+
+  const navigatePreviusHour = () => {
+    dispatch(selectSchedule(null, 'Second'));  
+    navigate('/inscrire-un-joueur/inscription')
+
+  }
 
   return (
     <div className="second-hour-container">
@@ -71,6 +78,7 @@ export default function SecondHour({ route }) {
           Suivant
         </button>
       )}
+      <button onClick={() => navigatePreviusHour()}>Précédent </button>
 
       {showModal && <ConfirmationModal />}
     </div>

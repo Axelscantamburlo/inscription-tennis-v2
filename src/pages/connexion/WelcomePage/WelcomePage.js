@@ -12,7 +12,11 @@ const WelcomePage = () => {
                 <NavLink to='/creer-un-compte'>
                     <button>Créer un Compte</button>
                 </NavLink>
+  
             </div>
+            <NavLink to='/connexion-admin' style={{color: 'white'}}>
+                <h5>Administrateur</h5>
+            </NavLink>
         </div>
     );
 };

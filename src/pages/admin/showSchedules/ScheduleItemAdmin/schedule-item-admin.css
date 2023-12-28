@@ -1,0 +1,29 @@
+.one-schedule table {
+    width: 200px;
+    height: 300px;
+    border-collapse: collapse;
+    margin-bottom: 5px;
+    margin-top: 30px;
+  }
+  
+  .one-schedule table tbody {
+    border: 1px solid red;
+  }
+  
+  .one-schedule:first-child {
+    margin-top: 125px;
+  }
+  
+  .one-schedule:last-child {
+    margin-bottom: 20px;
+  }
+  
+  
+  .one-schedule table thead tr th {
+    color: white
+  }
+  
+  tr {
+    border: 1px solid #b3adad;
+    color: #000000;
+  }

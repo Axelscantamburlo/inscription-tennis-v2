@@ -8,18 +8,20 @@ import ScheduleItem from "../ScheduleItem/ScheduleItem";
 import ConfirmationModal from "./confirmationModal/ConfirmationModal";
 
 // REDUX
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // FUNCTIONS
 import { handleButtonClick } from "../../../functions/handleButtonClick";
 
 // DATA
 
-import { FORMULES } from "../../../data/formule";
+import { FORMULES } from "../../../data/formules";
+import { setPlayeurInfo } from "../../../redux/actions";
 
 // ///////////////////////
 export default function InscriptionSchedules() {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   // récupérer les tableaux à mapper à l'utilisateur
   const { loadedData } = useContext(AllDataSchedules);
@@ -42,11 +44,15 @@ export default function InscriptionSchedules() {
     }
   }, []);
 
-  const [chooseFormule, setChooseFormule] = useState("1h par semaine");
+  const [chooseFormule, setChooseFormule] = useState(level === 0 ? "50min par semaine" : "1h par semaine");
   const handleChangeFormule = (e) => {
     setChooseFormule(e.target.value);
   };
+  
+  useEffect(() => {
+    dispatch(setPlayeurInfo({ formule: chooseFormule }));  
 
+  }, [chooseFormule])
   return (
     <div className="inscription-schedules-container">
       <div className="schedules">

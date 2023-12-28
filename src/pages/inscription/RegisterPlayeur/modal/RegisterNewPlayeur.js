@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { UidUserConnected } from "../../../../context/UidUserConnected";
 import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 
-export default function RegiserPlayeurModal() {
+export default function RegisterNewPlayer({playeursNames}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -55,29 +55,34 @@ export default function RegiserPlayeurModal() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const playeur = loadedExcelData.filter((data) => data.name === name);
-    const isBirthDayMatch = playeur.some((item) => item.birthDay === birthDay);
-
-    const isPlayeurAlreadyRegisted = loadedData.some((data) =>
-      data.usersRegisted.includes(name)
-    );
-
-    if (playeur.length === 0) {
-      setErrorMessage("Le joueur n'est pas dans excel db");
-      return;
-    } else if (isPlayeurAlreadyRegisted) {
-      setErrorMessage("LE joueur est déjà inscrit");
-      return;
-    } else if (!isBirthDayMatch) {
-      setErrorMessage("La date de naissance est mauvaise");
+    const playeur = loadedExcelData.find((data) => data.name === name);
+    if (!playeur) {
+      setErrorMessage("Le joueur n'est pas dans la base de données Excel");
       return;
     }
+    const isPlayeurAlreadyRegisted = loadedData.some((data) =>
+      data.usersRegisted.includes(name)
+    ) || playeursNames?.includes(name);
+  
+    if (isPlayeurAlreadyRegisted) {
+      setErrorMessage("Le joueur est déjà inscrit");
+      return;
+    }
+  
+    const isBirthDayMatch = playeur.birthDay === birthDay;
+    if (!isBirthDayMatch) {
+      setErrorMessage("La date de naissance est incorrecte");
+      return;
+    }
+  
+  
     const updatedRegisterPlayeurInfo = {
       ...registerPlayeurInfo,
-      level: playeur[0].level,
+      level: playeur.level,
+      sexe: playeur.sexe
     };
     dispatch(setPlayeurInfo(updatedRegisterPlayeurInfo));
-
+  
     navigate("inscription");
   };
 
@@ -121,10 +126,10 @@ export default function RegiserPlayeurModal() {
           />
           <button type="submit">Valider</button>
           <span style={{ color: "red" }}>{errorMessage}</span>
+          
         </form>
       </div>
     </div>
   );
 }
 
-// Pour vérifier si l'utilisateur n'est pas déjà inscrit, mettre dans la db excel-users, un champ nommé IsInscrit et passer à true quand il est inscrit, comme ca on peut vérifier ici si c pas déjà true

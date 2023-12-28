@@ -6,7 +6,7 @@ const initialState = {
     phone: '',
     level: 0,
     birthDay: '',
-    inscriptions: []
+    sexe: '',
 }
 
 const playeurInfoReducer = (state = initialState, action) => {

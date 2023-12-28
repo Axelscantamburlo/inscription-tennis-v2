@@ -6,14 +6,22 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WelcomePage from "./pages/connexion/WelcomePage/WelcomePage";
 //LOGIN
 import Login from "./pages/connexion/Login/Login";
-//REGISTER
-import Register from "./pages/connexion/Register/Register";
+//SIGN IN
+import SignIn from "./pages/connexion/SignIn/SignIn";
 
 // INSCRIPTION
 import RegisterPlayeur from "./pages/inscription/RegisterPlayeur/RegisterPlayeur";
 import InscriptionSchedules from "./pages/inscription/Schedules/InscriptionSchedules";
 import SecondHour from "./pages/inscription/SecondHour/SecondHour";
 import ThirdHour from './pages/inscription/ThirdHour/ThirdHour'
+// THANK YOU PAGE
+import ThankYouPage from "./pages/inscription/ThankYouPage/ThankYouPage";
+
+// ADMIN
+import AdminLogin from "./pages/admin/connexion/AdminLogin";
+import ShowAllSchedules from "./pages/admin/showSchedules/ShowAllSchedules";
+import CreateSchedules from "./pages/admin/createSchedules/CreateSchedules";
+import ShowAllUsers from "./pages/admin/showAllUsers/ShowAllUsers";
 
 
 
@@ -26,7 +34,7 @@ export default function App() {
           {/* CONNEXION */}
           <Route exact path="/" element={<WelcomePage />} />
           <Route exact path="/se-connecter" element={<Login />} />
-          <Route exact path="/creer-un-compte" element={<Register />} />
+          <Route exact path="/creer-un-compte" element={<SignIn />} />
           {/* INSCRIPTION */}
           <Route path="/inscrire-un-joueur">
             <Route exact index element={<RegisterPlayeur />} />
@@ -40,10 +48,18 @@ export default function App() {
               </Route>
             </Route>
           </Route>
+          <Route exact path="informations-inscription" element={<ThankYouPage />}/>
+          {/* ADMIN */}
+          <Route exact path="/connexion-admin" element={<AdminLogin />}/>
+          <Route path='/admin'>
+            <Route path="tableaux-joueurs" element={<ShowAllSchedules />} />
+            <Route path='ajouter-un-creneau' element={<CreateSchedules />} />
+            <Route path='renseignements-joueurs' element={<ShowAllUsers />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
 
-// Préciser que si tu inscrits une personne qui n'est pas à ta charg, tu seras obliger d payer l'iscription
+// Préciser que si tu inscrits une personne qui n'est pas à ta charge, tu seras obliger d payer l'iscription

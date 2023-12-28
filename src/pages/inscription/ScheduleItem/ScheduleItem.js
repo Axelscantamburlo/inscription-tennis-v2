@@ -9,7 +9,8 @@ export default function ScheduleItem({schedule, path}) {
   const dispatch = useDispatch()
 
   const {day, startHour, endHour, numberOfPlaces, usersRegisted, uid} = schedule
-
+  
+  
   const handleChooseSchedule = () => {
     dispatch(selectSchedule(schedule, path));
   };

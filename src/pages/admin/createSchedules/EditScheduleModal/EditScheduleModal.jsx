@@ -7,6 +7,9 @@ import { db } from "../../../../config/firebase-config";
 // FUNCTIONS
 import { firebaseUpdateSchedulesDb } from '../../../../functions/firebaseUpdateSchedulesdb';
 
+// CONTEXT
+import { useModal } from "../../../../context/ModalContext";
+
 export default function EditScheduleModal({ scheduleClick }) {
     const [scheduleEdit, setScheduleEdit] = useState(scheduleClick)
     const {day, startHour, endHour, numberOfPlaces, level, playedForm, educator, uid} = scheduleEdit
@@ -18,6 +21,7 @@ export default function EditScheduleModal({ scheduleClick }) {
     }
     
     const handleSubmit = async  e => {
+        closeModal1()
         e.preventDefault()
         const userRef = doc(db, 'schedules', uid)
         await updateDoc(userRef, {
@@ -26,6 +30,8 @@ export default function EditScheduleModal({ scheduleClick }) {
         await firebaseUpdateSchedulesDb(uid, scheduleEdit);
 
     }
+
+    const {closeModal1} = useModal()
   return (
     <div>
       <form onSubmit={handleSubmit} style={{display: 'flex'}}>
@@ -60,6 +66,7 @@ export default function EditScheduleModal({ scheduleClick }) {
         <button type="submit">Valider</button>
 
         </form>
+        <button onClick={closeModal1}>Annuler</button>
     </div>
   );
 }

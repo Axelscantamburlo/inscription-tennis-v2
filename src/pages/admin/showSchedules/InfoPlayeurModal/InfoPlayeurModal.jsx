@@ -1,57 +1,47 @@
-import React, { useState, useEffect } from "react";
-
-// COMPONENT
+import React, { useState, useEffect, useContext } from "react";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
+import { db } from "../../../../config/firebase-config";
 import InfoUserTab1 from "./InfoUserTab1/InfoUserTab1";
 import InfoUserTab2 from "./InfoUserTab2/InfoUserTab2";
 import InfoUserTab3 from "./InfoUserTab3/InfoUserTab3";
+// import { closeModal } from "../../../../functions/closeModal";
+import { useModal } from "../../../../context/ModalContext";
+import { AllDataUsers } from "../../../../context/AllDataUsers";
 
-// FIREBASE
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../../../../config/firebase-config";
-
-export default function InfoPlayeurModal({ playeurClick }) {
+export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
+  const [activeTab, setActiveTab] = useState(1);
 
 
-  const [activeTab, setActiveTab] = useState(1)
-
-  // Mettre dans le state infoUserCLick les info de l'user cliqué par l'admin qui sont recup de firebase
-  const [infoUserClick, setInfoUserClick] = useState([]);
-  const { level } = infoUserClick;
+  const { usersData } = useContext(AllDataUsers);
+  const [infoPlayeurClick, setInfoPlayeurClick] = useState([]);
 
   useEffect(() => {
-    const findInfoPlayeurClick = async () => {
-      const q = query(
-        collection(db, "users"),
-        where("playeurNames", "array-contains", playeurClick)
-      );
+    const info = usersData.filter((user) => user.name == playeurClick);
 
-      const querySnapshot = await getDocs(q);
-      const playeurInfoArr = [];
-      querySnapshot.forEach((doc) => {
-        const playeurInfo = doc.data().playeurInfo;
-        const index = playeurInfo.findIndex(
-          (info) => info.name === playeurClick
-        );
-        if (index !== -1) {
-          playeurInfoArr.push(playeurInfo[index]);
-        }
-      });
-      setInfoUserClick(playeurInfoArr);
-    };
-    findInfoPlayeurClick();
-  }, [playeurClick]);
-
+    if(info) {
+      setInfoPlayeurClick(info)
+    }
+  }, []);
 
   return (
     <div className="info-playeur-modal-container">
+      <button onClick={() => setShowModal2(false)}>x</button>
       <div className="tab-buttons">
-        <button onClick={() => setActiveTab(1)}>Onglet 1</button>
-        <button onClick={() => setActiveTab(2)}>Onglet 2</button>
-        <button onClick={() => setActiveTab(3)}>Onglet 3</button>
+        {[1, 2, 3].map((tab) => (
+          <button key={tab} onClick={() => setActiveTab(tab)}>
+            Onglet {tab}
+          </button>
+        ))}
       </div>
-      {activeTab === 1 && <InfoUserTab1 infoUserClick={infoUserClick} />}
+      {activeTab === 1 && <InfoUserTab1 infoPlayeurClick={infoPlayeurClick} />}
       {activeTab === 2 && <InfoUserTab2 playeurClick={playeurClick} />}
-      {activeTab === 3 && <InfoUserTab3 level={level} playeurClick={playeurClick} />}
+      {activeTab === 3 && <InfoUserTab3 infoPlayeurClick={infoPlayeurClick} setShowModal2={setShowModal2} />}
     </div>
   );
 }

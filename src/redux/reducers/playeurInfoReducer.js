@@ -1,4 +1,4 @@
-import { SET_PLAYEUR_INFO } from "./actions";
+import { SET_PLAYEUR_INFO } from "../actions";
 
 const initialState = {
     name: '',

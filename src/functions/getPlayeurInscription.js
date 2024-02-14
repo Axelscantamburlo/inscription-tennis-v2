@@ -1,6 +1,6 @@
-export  const getPlayeurInscription = async (loadedData, playeurClick) =>  {
+export  const getPlayeurInscription = (loadedData, playeur) =>  {
 const playeurInscriptions = loadedData.filter((data) =>
-    data.usersRegisted.includes(playeurClick)
+    data.usersRegisted.includes(playeur)
   );
   return playeurInscriptions
 }

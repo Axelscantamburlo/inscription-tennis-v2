@@ -10,7 +10,7 @@ import { doc, setDoc } from 'firebase/firestore';
 
 
 
-export default function SignIn() {
+export default function CreateAccount() {
 
     const navigate = useNavigate()
 

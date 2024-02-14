@@ -6,8 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WelcomePage from "./pages/connexion/WelcomePage/WelcomePage";
 //LOGIN
 import Login from "./pages/connexion/Login/Login";
-//SIGN IN
-import SignIn from "./pages/connexion/SignIn/SignIn";
+//SIGN UP
+import CreateAccount from "./pages/connexion/SignUp/CreateAccount";
 
 // INSCRIPTION
 import RegisterPlayeur from "./pages/inscription/RegisterPlayeur/RegisterPlayeur";
@@ -34,7 +34,7 @@ export default function App() {
           {/* CONNEXION */}
           <Route exact path="/" element={<WelcomePage />} />
           <Route exact path="/se-connecter" element={<Login />} />
-          <Route exact path="/creer-un-compte" element={<SignIn />} />
+          <Route exact path="/creer-un-compte" element={<CreateAccount />} />
           {/* INSCRIPTION */}
           <Route path="/inscrire-un-joueur">
             <Route exact index element={<RegisterPlayeur />} />

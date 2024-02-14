@@ -1,3 +1,9 @@
 .register-playeur-modal-container {
-    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: green/* Fond semi-transparent pour l'effet de superposition */
+
 }

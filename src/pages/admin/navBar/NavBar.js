@@ -17,7 +17,7 @@ export default function NavBar({toggleClassName}) {
         {
             link: '/admin/renseignements-joueurs',
             style: 3,
-            text: 'Renseigements-joueurs'
+            text: 'Renseigements joueurs'
         }
     ]
 

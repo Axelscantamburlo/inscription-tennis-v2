@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 // FIREBASE
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
@@ -10,10 +11,13 @@ import { setPlayeurInfo } from "../../../../redux/actions";
 import { useDispatch } from "react-redux";
 
 // CONTEXT
-import { UidUserConnected } from "../../../../context/UidUserConnected";
 import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 
-export default function RegisterNewPlayer({playeursNames}) {
+// DATA
+import { NEW_PLAYEUR_INPUTS } from "../../../../data/inputsData";
+import { useModal } from "../../../../context/ModalContext";
+
+export default function RegisterNewPlayer({ playeursNames }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,7 +43,7 @@ export default function RegisterNewPlayer({playeursNames}) {
     level: null,
   });
 
-  const { name, phone, email, birthDay, level } = registerPlayeurInfo;
+  const { name, phone, email, birthDay } = registerPlayeurInfo;
 
   const handleInputChange = (e) => {
     const { value, name } = e.target;
@@ -54,15 +58,23 @@ export default function RegisterNewPlayer({playeursNames}) {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
-    const playeur = loadedExcelData.find((data) => data.name === name);
+  
+    const cleanName = name.trim().replace(/\s+/g, ' ').toLowerCase();
+  
+    if (!cleanName || !phone || !email || !birthDay) {
+      setErrorMessage('Merci de remplir toutes les infos');
+      return;
+    }
+  
+    const playeur = loadedExcelData.find((data) => data.name.toLowerCase() === cleanName);
     if (!playeur) {
       setErrorMessage("Le joueur n'est pas dans la base de données Excel");
       return;
     }
-    const isPlayeurAlreadyRegisted = loadedData.some((data) =>
-      data.usersRegisted.includes(name)
-    ) || playeursNames?.includes(name);
+  
+    const isPlayeurAlreadyRegisted =
+      loadedData.some((data) => data.usersRegisted.map((user) => user.toLowerCase()).includes(cleanName)) ||
+      playeursNames?.map((playeur) => playeur.toLowerCase()).includes(cleanName);
   
     if (isPlayeurAlreadyRegisted) {
       setErrorMessage("Le joueur est déjà inscrit");
@@ -75,19 +87,22 @@ export default function RegisterNewPlayer({playeursNames}) {
       return;
     }
   
-  
     const updatedRegisterPlayeurInfo = {
       ...registerPlayeurInfo,
+      name: cleanName,
       level: playeur.level,
-      sexe: playeur.sexe
+      sexe: playeur.sexe,
     };
     dispatch(setPlayeurInfo(updatedRegisterPlayeurInfo));
   
     navigate("inscription");
   };
 
+  const {closeModal1} = useModal()
+
   return (
     <div className="register-playeur-modal-container">
+      <p onClick={() => closeModal1()}>dldl</p>
       <div className="responsive-container">
         <ul>
           <li>Ré-inscription</li>
@@ -95,41 +110,28 @@ export default function RegisterNewPlayer({playeursNames}) {
         </ul>
         <h2>Info du Joueur !!</h2>
         <form
-          onSubmit={
-            name && email && phone && birthDay ? handleFormSubmit : null
-          }
+            onSubmit={handleFormSubmit}
         >
-          <input
-            type="text"
-            name="name"
-            placeholder="Nom"
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="phone"
-            placeholder="Numéro de Téléphone"
-            maxLength="10"
-            onChange={handleInputChange}
-          />
-          <input
-            type="mail"
-            name="email"
-            placeholder="email"
-            onChange={handleInputChange}
-          />
-          <input
-            type="-text"
-            name="birthDay"
-            placeholder="Date de naiss."
-            onChange={handleInputChange}
-          />
+          {NEW_PLAYEUR_INPUTS.map((input) => {
+            const { id, label, type, maxLength } = input;
+            return (
+              <div className="input" key={id}>
+                <label>{label}</label>
+                <input
+                  type={type}
+                  name={id}
+                  id={id}
+                  maxLength={maxLength}
+                  autoComplete="off"
+                  onChange={handleInputChange}
+                />
+              </div>
+            );
+          })}
           <button type="submit">Valider</button>
           <span style={{ color: "red" }}>{errorMessage}</span>
-          
         </form>
       </div>
     </div>
   );
 }
-

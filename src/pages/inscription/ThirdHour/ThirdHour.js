@@ -7,6 +7,7 @@ import ConfirmationModal from "../Schedules/confirmationModal/ConfirmationModal"
 
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
+import { useModal } from '../../../context/ModalContext';
 // REDUX
 import {useSelector} from 'react-redux'
 
@@ -26,6 +27,7 @@ export default function ThirdHour() {
 
     const [showModal, setShowModal] = useState(false);
 
+    const {openModal1, modal1} = useModal()
 
     return (
     <div className='third-hour-container'>
@@ -43,8 +45,8 @@ export default function ThirdHour() {
           );
         })}
 
-      <button onClick={() => handleButtonClick(2, selectedScheduleThird, setShowModal)}>Valider</button>
-    {showModal && <ConfirmationModal />}
+      <button onClick={() => handleButtonClick(2, selectedScheduleThird, openModal1)}>Valider</button>
+    {modal1 && <ConfirmationModal />}
     </div>
   )
 }

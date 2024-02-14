@@ -6,9 +6,8 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 // REDUCERS
-import schedulesReducer from './schedulesReducer';
-import playeurInfoReducer from './playeurInfoReducer';
-
+import schedulesReducer from './reducers/schedulesReducer';
+import playeurInfoReducer from './reducers/playeurInfoReducer';
 const persistConfig = {
   key: 'root',
   storage,

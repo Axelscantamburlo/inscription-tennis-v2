@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 // COMPONENT
 import RegisterNewPlayer from "./modal/RegisterNewPlayeur";
-import RegisterPlayeurModal from "./RegisterPlayeurModal";
+import PlayeurRegistedInfo from "./PlayeurRegistedInfo";
 // FIREBASE
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../config/firebase-config";
 // CONTEXT
 import { UidUserConnected } from "../../../context/UidUserConnected";
-import { AllDataSchedules } from "../../../context/AllDataSchedules";
-
+import {useSelector} from 'react-redux'
 
 
 export default function RegisterPlayeur() {
@@ -17,6 +16,8 @@ export default function RegisterPlayeur() {
   const [playeurInfoToMap, setPlayeurInfoToMap] = useState([]);
 
   const [propsToPass, setPropsToPass] = useState([])
+
+
   
   useEffect(() => {
     const loadDataUsers = async () => {
@@ -50,16 +51,16 @@ export default function RegisterPlayeur() {
   return (
     <div className="register-playeur-container">
       <h1>Inscrire un joueur</h1>
-      <div className="add-playeur-button" onClick={handleOpenModal}>
-        <button>+</button>
-      </div>
-      <div style={{ color: "white", display: "flex" }}>
+      <div className="card-container">
         {playeurInfoToMap?.length > 0 &&
           playeurInfoToMap.map((playeur, index) => {
             return (
-              <RegisterPlayeurModal key={index} playeurInfo={playeur}/>
+              <PlayeurRegistedInfo key={index} playeurInfo={playeur}/>
             );
           })}
+      </div>
+      <div className="add-playeur-button" onClick={handleOpenModal}>
+        <button>Ajouter</button>
       </div>
       {openModal && (
         <div className="modal">
@@ -69,6 +70,3 @@ export default function RegisterPlayeur() {
     </div>
   );
 }
-
-
-// TODO: creer un onClick pour afficher le prix et les horaires d'inscriptions dans RegisterPlayeur.js 

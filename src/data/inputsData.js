@@ -15,3 +15,30 @@ export const INPUTS_DATA = [
     },
 ]
 
+export const NEW_PLAYEUR_INPUTS = [
+    {
+        id:'name',
+        label: 'Nom',
+        type: 'text',
+        maxLength: 40,
+    },
+    {
+        id:'phone',
+        label: 'Numéro de téléphone',
+        type: 'text',
+        maxLength: 10,
+    },
+    {
+        id:'email',
+        label: 'Email',
+        type: 'mail',
+        maxLength: 100,
+    },
+    {
+        id:'birthDay',
+        label: 'Date de naissance',
+        type: 'date',
+        maxLength: 100,
+    },
+
+]

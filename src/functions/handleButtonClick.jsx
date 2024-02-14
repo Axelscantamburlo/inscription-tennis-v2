@@ -7,7 +7,7 @@ export const handleButtonClick = (buttonClicked, selectedSchedule, setShowModal,
         navigate(path);
       } else if (buttonClicked === 2) {
         // lorsque le bouton Valider est cliqué
-        setShowModal(true);
+        setShowModal();
       }
     } else {
       console.log("Choisissez un créneau / plus de places");

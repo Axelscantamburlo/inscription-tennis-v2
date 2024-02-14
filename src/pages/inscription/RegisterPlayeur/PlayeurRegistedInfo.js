@@ -1,18 +1,17 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useEffect, useContext, useMemo} from "react";
 
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
 // FUNCTION
 import { getPlayeurInscription, findPriceToPay } from "../../../functions/getPlayeurInscription";
+import { useSelector } from "react-redux";
 
 
-export default function RegisterPlayeurModal({ playeurInfo }) {
-  const { name, birthDay, level, phone } = playeurInfo;
+export default function PlayeurRegistedInfo({ playeurInfo }) {
+  const { name, birthDay, level, isPayed } = playeurInfo;
 
-
-  
-  // Appel d'une fonction externe pour récupérer les horaires d'inscriptions du joueur et les affichées
   const {loadedData} = useContext(AllDataSchedules)
+  // Appel d'une fonction externe pour récupérer les horaires d'inscriptions du joueur et les affichées
   const [playeurInscription, setPlayeurInscription] = useState([]);
   const [priceToPay, setPriceToPay] = useState('')
   useEffect(() => {
@@ -21,24 +20,21 @@ export default function RegisterPlayeurModal({ playeurInfo }) {
       const price = findPriceToPay(inscriptions, level)
       setPlayeurInscription(inscriptions)
       setPriceToPay(price)
-      
     }
     playExternFunction()
-  }, [loadedData]);
+  }, []);
+
   return (
-    <div>
-      <h2>{name}</h2>
-      <h2>{birthDay}</h2>
-      <h2>{level}</h2>
-      <h2>{phone}</h2>
+    <div className="playeur-card">
+      <h2>{name.toUpperCase()}</h2>
       {playeurInscription.map((inscription, index) => {
         return(
             <div key={index}>
-                <h2>{inscription.day} et {inscription.startHour} à {inscription.endHour}</h2>
+                <p>Inscription: {inscription.day} de {inscription.startHour} à {inscription.endHour}</p>
             </div>
         )
       })}
-      {priceToPay}
+      {isPayed ? <p>Payé</p> : <p>Prix à payer: {priceToPay}</p>}
     </div>
   );
 }

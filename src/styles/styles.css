@@ -4,11 +4,12 @@
 /* connexion */
 @import "../pages/connexion/WelcomePage/welcome-page.css";
 @import '../pages/connexion/Login/login.css';
-@import '../pages/connexion/SignIn/sign-in.css';
+@import '../pages/connexion/SignUp/sign-up.css';
 
 /* INSCRIPTION */
 
 @import '../pages/inscription/RegisterPlayeur/register-playeur.css';
+@import '../pages/inscription/RegisterPlayeur/playeur-registed-info.css';
 @import '../pages/inscription/RegisterPlayeur/modal/register-playeur-modal.css';
 @import '../pages/inscription/Schedules/inscription-schedules.css';
 @import '../pages/inscription/ScheduleItem/schedule-item.css';

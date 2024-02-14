@@ -17,11 +17,11 @@ import { handleButtonClick } from "../../../functions/handleButtonClick";
 
 import { FORMULES } from "../../../data/formules";
 import { setPlayeurInfo } from "../../../redux/actions";
+import { useModal } from "../../../context/ModalContext";
 
 // ///////////////////////
 export default function InscriptionSchedules() {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
 
   // récupérer les tableaux à mapper à l'utilisateur
   const { loadedData } = useContext(AllDataSchedules);
@@ -31,7 +31,8 @@ export default function InscriptionSchedules() {
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const { selectedScheduleFirst } = useSelector((state) => state.schedule);
 
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  const {openModal1, modal1} = useModal()
 
   // GESTION FORMULES
   const [formules, setFormules] = useState([]);
@@ -49,10 +50,6 @@ export default function InscriptionSchedules() {
     setChooseFormule(e.target.value);
   };
   
-  useEffect(() => {
-    dispatch(setPlayeurInfo({ formule: chooseFormule }));  
-
-  }, [chooseFormule])
   return (
     <div className="inscription-schedules-container">
       <div className="schedules">
@@ -88,7 +85,7 @@ export default function InscriptionSchedules() {
             handleButtonClick(
               2,
               selectedScheduleFirst,
-              setShowModal,
+              openModal1,
               navigate,
               null
             )
@@ -102,7 +99,7 @@ export default function InscriptionSchedules() {
             handleButtonClick(
               1,
               selectedScheduleFirst,
-              setShowModal,
+              openModal1,
               navigate,
               "deuxieme-heure",
               chooseFormule
@@ -113,7 +110,7 @@ export default function InscriptionSchedules() {
         </button>
       )}
 
-      {showModal && <ConfirmationModal />}
+      {modal1 && <ConfirmationModal />}
     </div>
   );
 }

@@ -5,6 +5,9 @@ import AddPlayeurModal from "../addPlayeurModal/AddPlayeurModal";
 import InfoPlayeurModal from "../InfoPlayeurModal/InfoPlayeurModal";
 import DeletePlayeurModal from "../deletePlayeurModal/DeletePlayeurModal";
 
+// CONTEXT
+import { useModal } from "../../../../context/ModalContext";
+
 export default function ScheduleItemAdmin({ schedule }) {
   const {
     day,
@@ -27,10 +30,11 @@ export default function ScheduleItemAdmin({ schedule }) {
   );
 
   // state pour les modal
-  const [showAddPlayeurModal, setShowAddPlayeurModal] = useState(false);
-  const [showInfoPlayeurModal, setShowInfoPlayeurModal] = useState(false);
-  const [showDeletePlayeurModal, setDeletePlayeurModal] = useState(false);
-
+  const [modal1, setShowModal1] = useState(false);
+  const [modal2, setShowModal2] = useState(false);
+  const [modal3, setShowModal3] = useState(false);
+  // const {modal1, modal2, modal3, openModal1, openModal2, openModal3} = useModal()
+  // console.log(showInfoPlayeurModal);
   const [playeurClick, setPlayeurClick] = useState("");
   return (
     <>
@@ -49,8 +53,8 @@ export default function ScheduleItemAdmin({ schedule }) {
                   style={{ background: "pink", height: "20px" }}
                   onClick={() =>
                     item
-                      ? (setShowInfoPlayeurModal(true), setPlayeurClick(item))
-                      : setShowAddPlayeurModal(true)
+                      ? (setShowModal2(true), setPlayeurClick(item))
+                      : setShowModal1(true)
                   }
                 >
                   {item}
@@ -58,7 +62,7 @@ export default function ScheduleItemAdmin({ schedule }) {
                 {item && (
                   <h6
                     onClick={() => {
-                      setDeletePlayeurModal(true);
+                      setShowModal3(true);
                       setPlayeurClick(item);
                     }}
                   >
@@ -70,16 +74,26 @@ export default function ScheduleItemAdmin({ schedule }) {
           </tbody>
         </table>
       </div>
-      {showAddPlayeurModal && (
+      {modal1 && (
         <AddPlayeurModal
           uid={uid}
           usersRegisted={usersRegisted}
           numberOfPlaces={numberOfPlaces}
+          setShowModal1={setShowModal1}
         />
       )}
-      {showInfoPlayeurModal && <InfoPlayeurModal playeurClick={playeurClick} />}
-      {showDeletePlayeurModal && (
-        <DeletePlayeurModal playeurToDelete={playeurClick} uid={uid} />
+      {modal2 && (
+        <InfoPlayeurModal
+          playeurClick={playeurClick}
+          setShowModal2={setShowModal2}
+        />
+      )}
+      {modal3 && (
+        <DeletePlayeurModal
+          playeurToDelete={playeurClick}
+          uid={uid}
+          setShowModal3={setShowModal3}
+        />
       )}
     </>
   );

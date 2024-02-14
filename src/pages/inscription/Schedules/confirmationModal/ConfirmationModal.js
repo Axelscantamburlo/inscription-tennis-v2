@@ -9,6 +9,7 @@ import { db } from '../../../../config/firebase-config';
 
 //CONTEXT
 import { UidUserConnected } from '../../../../context/UidUserConnected';
+import { useModal } from '../../../../context/ModalContext';
 
 // FUNCTIONS
 import { firebaseUpdateSchedulesDb } from '../../../../functions/firebaseUpdateSchedulesdb';
@@ -24,7 +25,7 @@ export default function ConfirmationModal() {
  const playeurInfo = useSelector((state) => state.user);
 
 //  const [playeurInfoState, setPlayeurInfoState] = useState({...playeurInfo, inscriptions: [], priceToPay: '', isStillRegisted: true})
- const [playeurInfoState, setPlayeurInfoState] = useState({...playeurInfo})
+ const [playeurInfoState, setPlayeurInfoState] = useState({...playeurInfo, isPayed: false})
  const {name, level} = playeurInfoState
      // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const inscriptions = useSelector((state) => state.schedule);
@@ -61,7 +62,7 @@ useEffect(() => {
     setSchedulesChoose(selectedSchedules);
   }, [])
 
-
+const {closeModal1} = useModal()
  return (
     <div className='confirmation-modal-container'>
         <h1>Confirmer Inscription</h1>
@@ -69,7 +70,7 @@ useEffect(() => {
         {schedulesChoose.map((schedule, index) => (
             <h2 key={index}>{schedule}</h2>
         ))}
-        <button>Annuler</button>
+        <button onClick={closeModal1}>Annuler</button>
     </div>
   )
 }

@@ -1,14 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-
-
-export default function InfoUserTab1({infoUserClick}) {
-  
-
-
+export default function InfoUserTab1({ infoPlayeurClick }) {
   return (
     <div>
-      {infoUserClick.map((user, index) => {
+      {infoPlayeurClick.map((user, index) => {
         const {
           name,
           email,

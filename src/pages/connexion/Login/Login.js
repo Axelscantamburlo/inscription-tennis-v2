@@ -44,9 +44,8 @@ export default function Login() {
     return (
         <>
             <div className='login-container'>
-              <div className="responsive-container">
-                <h1>Se connecter</h1>
-                <div className="form-container">
+                <div className="box">
+                <h1>Se connecter</h1>  
     
                   <form onSubmit={handleSubmit}>
     
@@ -65,7 +64,6 @@ export default function Login() {
                     <button type="submit" className="submit-btn">Valider</button>
                   </form>
     
-                </div>
               </div>
             </div>
         </>

@@ -15,7 +15,6 @@ export default function CreateScheduleModal() {
         playedForm: '0',
         educator: ''
     })
-    console.log(scheduleCreate);
     const {day, startHour, endHour, numberOfPlaces, level, playedForm, educator} = scheduleCreate
 
     const handleInputChange = (e) => {
@@ -31,7 +30,7 @@ export default function CreateScheduleModal() {
                 usersRegisted: []
               });
         } else {
-            console.log('oue il manque des infos');
+            console.log('il manque des infos');
         }
 
     }

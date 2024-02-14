@@ -1,4 +1,4 @@
-import { SET_SELECT_SCHEDULE } from "./actions";
+import { SET_SELECT_SCHEDULE } from "../actions";
 const initialStatee = {
     selectedScheduleFirst: null,
     selectedScheduleSecond: null,

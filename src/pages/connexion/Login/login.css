@@ -1,53 +1,55 @@
 .login-container {
     height: 100vh;
     background-color: var(--background-color);
-
+    overflow: hidden;
 }
 
-.login-container h1 {
-    margin: 50px 30px;
+
+.login-container .box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login-container .box h1 {
     color: var(--grey-color);
     text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
 
 }
 
-.login-container .form-container {
-    color: var(--grey-color);
-    display: flex;
-    justify-content: center;
-}
-
-.login-container form {
+.login-container .box form {
     height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    width: 100%;
 }
 
 
-.login-container .responsive-container .form-container .inputs {
+.login-container .box form .inputs {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 400px;
+    width: 70%;
 }
 
-.login-container form .row {
+.login-container .box form .row {
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
+    width: 100%;
 }
 
-.login-container form .row label {
+.login-container .box form .row label {
     margin-bottom: 10px;
     color: var(--grey-color);
 
 }
 
-.login-container form .inputs input {
+.login-container .box form .inputs input {
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
-    width: 70vw;
     border: none;
     padding: 15px 0px 15px 12.5px;
     background-color: #eaeaea;
@@ -57,7 +59,7 @@
     color: var(--background-color)
 }
 
-.login-container form .submit-btn {
+.login-container .box form .submit-btn {
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
     color: white;
     background: var(--linear-gradient);
@@ -74,7 +76,7 @@
 }
 
 
-.login-container form .submit-btn:hover {
+.login-container .box form .submit-btn:hover {
     cursor: pointer;
     width: 90%;
     animation: scale 0.15s;
@@ -97,21 +99,28 @@
 
 @media screen and (min-width: 630px) {
 
-    .login-container h1 {
-        margin: 50px 60px;
-        color: var(--background-color);
-        text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
-
-    }
-
     .login-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
+    }
+    .login-container .box {
+        width: 600px;
+        height: 70vh;
+        background-color: var(--grey-color);
+        border-radius: 20px;
+        position: relative;
+    }
+    .login-container .box h1 {
+        color: var(--background-color);
+        position: absolute;
+        top: 50px;
+        left: 75px;
+
     }
 
 
+/* 
     .login-container .responsive-container {
         position: relative;
         height: 650px;
@@ -119,11 +128,8 @@
         box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
         width: 600px;
         border-radius: 20px;
-    }
+    } */
 
-    .login-container .responsive-container .form-container input {
-        width: 400px;
-    }
 
     .login-container form .row label {
         margin-bottom: 10px;

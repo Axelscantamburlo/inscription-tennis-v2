@@ -1,0 +1,13 @@
+.playeur-card {
+    background-color: var(--grey-color);
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 10px;
+    padding: 10px;
+    color: black;
+}
+
+.playeur-card > * {
+    padding: 5px;
+    font-size: 2vh;
+}

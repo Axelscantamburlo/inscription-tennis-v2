@@ -6,6 +6,7 @@ import ScheduleItem from "../ScheduleItem/ScheduleItem";
 import ConfirmationModal from "../Schedules/confirmationModal/ConfirmationModal";
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
+import { useModal } from "../../../context/ModalContext";
 
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -34,11 +35,13 @@ export default function SecondHour() {
 
   // naviguer à l'heure précédente: supprimer le schedule séléctionné dans redux
 
-  const navigatePreviusHour = () => {
+  const navigatePreviousHour = () => {
     dispatch(selectSchedule(null, 'Second'));  
     navigate('/inscrire-un-joueur/inscription')
 
   }
+
+  const {openModal1, modal1} = useModal()
 
   return (
     <div className="second-hour-container">
@@ -58,7 +61,7 @@ export default function SecondHour() {
       {formule === "2h par semaine" ? (
         <button
           onClick={() =>
-            handleButtonClick(2, selectedScheduleSecond, setShowModal)
+            handleButtonClick(2, selectedScheduleSecond, openModal1)
           }
         >
           Valider
@@ -78,9 +81,9 @@ export default function SecondHour() {
           Suivant
         </button>
       )}
-      <button onClick={() => navigatePreviusHour()}>Précédent </button>
+      <button onClick={() => navigatePreviousHour()}>Précédent </button>
 
-      {showModal && <ConfirmationModal />}
+      {modal1 && <ConfirmationModal />}
     </div>
   );
 }

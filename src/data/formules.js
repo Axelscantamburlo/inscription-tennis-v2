@@ -1,6 +1,6 @@
 export const FORMULES = [
     {
-        formules: ['1h par semaine', "2h par semaine"],
+        formules: ['1h par semaine', "2h par semaine", "forme jouée 3h par semaine"],
         levels: ["1", "2", "3", "4", "5","6"]
     },
     {

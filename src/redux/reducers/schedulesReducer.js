@@ -4,6 +4,7 @@ const initialStatee = {
     selectedScheduleSecond: null,
     selectedScheduleThird: null
   };
+
   
   const schedulesReducer = (state = initialStatee, action) => {
    

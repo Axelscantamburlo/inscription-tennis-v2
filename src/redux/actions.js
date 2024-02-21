@@ -13,7 +13,6 @@ export const setPlayeurInfo = (info) => (dispatch) =>  {
 }
 
 export const selectSchedule = (schedule, path) => (dispatch) => {
-
     dispatch ({
       type: SET_SELECT_SCHEDULE,
       payload: schedule,

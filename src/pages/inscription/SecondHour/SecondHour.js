@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // COMPONENT
 import ScheduleItem from "../ScheduleItem/ScheduleItem";
@@ -15,10 +15,8 @@ import { selectSchedule } from "../../../redux/actions";
 import { handleButtonClick } from "../../../functions/handleButtonClick";
 
 export default function SecondHour() {
-
- 
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // récupérer les tableaux à mapper à l'utilisateur
   const { loadedData } = useContext(AllDataSchedules);
 
@@ -27,63 +25,79 @@ export default function SecondHour() {
 
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const {
-    selectedScheduleFirst: { uid },
+    selectedScheduleFirst,
     selectedScheduleSecond,
   } = useSelector((state) => state.schedule);
 
-  const [showModal, setShowModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   // naviguer à l'heure précédente: supprimer le schedule séléctionné dans redux
 
   const navigatePreviousHour = () => {
-    dispatch(selectSchedule(null, 'Second'));  
-    navigate('/inscrire-un-joueur/inscription')
+    dispatch(selectSchedule(null, "Second"));
+    navigate("/inscrire-un-joueur/inscription");
+  };
 
-  }
+  const [errorMessage, setErrorMessage] = useState("");
+  useEffect(() => {
+    const confirmRefresh = (event) => {
+      event.preventDefault();
+      const message = 'Êtes-vous sûr de vouloir actualiser la page ? Toutes vos modifications seront perdues.';
+      event.returnValue = message; // For Chrome
+      return message; // For Firefox
+    };
+  
+    if (selectedScheduleFirst === null) {
+      navigate('/inscrire-un-joueur/inscription');
+    }
+  
+    window.addEventListener('beforeunload', confirmRefresh);
+  
+    return () => {
+      window.removeEventListener('beforeunload', confirmRefresh);
+    };
+  }, [selectedScheduleFirst, selectedScheduleSecond, navigate]);
 
-  const {openModal1, modal1} = useModal()
-
+  
   return (
-    <div className="second-hour-container">
-      {loadedData
-        .filter((el) => el.level === level && el.uid !== uid)
-        .map((schedule, index) => {
-          return (
-            <div
-              className="schedule"
-              style={{ background: "yellow", marginBottom: "50px" }}
-              key={index}
-            >
-              <ScheduleItem schedule={schedule} path="Second" />
-            </div>
-          );
-        })}
-      {formule === "2h par semaine" ? (
-        <button
-          onClick={() =>
-            handleButtonClick(2, selectedScheduleSecond, openModal1)
-          }
-        >
-          Valider
-        </button>
-      ) : (
-        <button
-          onClick={() =>
-            handleButtonClick(
-              1,
-              selectedScheduleSecond,
-              null,
-              navigate,
-              "troisieme-heure"
-            )
-          }
-        >
-          Suivant
-        </button>
-      )}
-      <button onClick={() => navigatePreviousHour()}>Précédent </button>
+    <div className="inscription-schedules-container">
+      <div style={{position: 'relative'}}>
+      <button className="previous-btn" onClick={() => navigatePreviousHour()}>
+        Précédent
+      </button>
+      <h1 className="title" style={{ color: "var(--background-color)" }}>
+        Votre deuxième heure :
+      </h1>
+      </div>
+      <div className="schedules-container">
+        {loadedData
+          .filter((el) => el.level === level && el.uid !== selectedScheduleFirst.uid)
+          .map((schedule, index) => {
+            return (
+              <div className="schedule" key={index}>
+                <ScheduleItem schedule={schedule} path="Second" />
+              </div>
+            );
+          })}
+      </div>
 
-      {modal1 && <ConfirmationModal />}
+      <button
+        className="submit-btn"
+        onClick={() =>
+          handleButtonClick(
+            formule === "2h par semaine" ? 2 : 1,
+            selectedScheduleSecond,
+            setOpenModal,
+            setErrorMessage,
+            navigate,
+            formule === "2h par semaine" ? null : "troisieme-heure",
+          )
+        }
+      >
+        {formule === "2h par semaine" ? "Valider" : "Suivant"}
+      </button>
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
+      {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}
     </div>
   );
 }

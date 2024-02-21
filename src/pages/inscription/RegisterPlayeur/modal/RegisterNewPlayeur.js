@@ -62,13 +62,14 @@ export default function RegisterNewPlayer({ playeursNames }) {
     const cleanName = name.trim().replace(/\s+/g, ' ').toLowerCase();
   
     if (!cleanName || !phone || !email || !birthDay) {
-      setErrorMessage('Merci de remplir toutes les infos');
+      setErrorMessage('Veuillez remplir tous les champs');
       return;
     }
   
     const playeur = loadedExcelData.find((data) => data.name.toLowerCase() === cleanName);
-    if (!playeur) {
-      setErrorMessage("Le joueur n'est pas dans la base de données Excel");
+
+ if (!playeur) {
+      setErrorMessage("Le joueur n'a pas été trouvé (entrer le prénom puis le nom)");
       return;
     }
   
@@ -86,6 +87,7 @@ export default function RegisterNewPlayer({ playeursNames }) {
       setErrorMessage("La date de naissance est incorrecte");
       return;
     }
+    checkPhoneNumber(phone)
   
     const updatedRegisterPlayeurInfo = {
       ...registerPlayeurInfo,
@@ -98,24 +100,33 @@ export default function RegisterNewPlayer({ playeursNames }) {
     navigate("inscription");
   };
 
+  function checkPhoneNumber(phoneNumber) {
+    const phoneRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/; // Expression régulière pour valider un numéro de téléphone international
+    if (!phoneRegex.test(phoneNumber)) {
+        setErrorMessage("Veuillez vérifier le numéro de téléphone")
+    }
+}
+
   const {closeModal1} = useModal()
+
+  const [toggleClassName, setToggleClassName] = useState(0)
 
   return (
     <div className="register-playeur-modal-container">
-      <p onClick={() => closeModal1()}>dldl</p>
-      <div className="responsive-container">
+      <div className="box">
+      <button className="close-modal" onClick={closeModal1}>&times;</button>
         <ul>
-          <li>Ré-inscription</li>
-          <li>Nouvelle inscription</li>
+          <li onClick={() => setToggleClassName(0)} className={toggleClassName === 0 ? 'underlign' : null} >Ré-inscription</li>
+          <li className={toggleClassName === 1 ? 'underlign' : null} onClick={() => setToggleClassName(1)}>Nouvelle inscription</li>
         </ul>
-        <h2>Info du Joueur !!</h2>
+        <h2>Joueur</h2>
         <form
             onSubmit={handleFormSubmit}
         >
           {NEW_PLAYEUR_INPUTS.map((input) => {
             const { id, label, type, maxLength } = input;
             return (
-              <div className="input" key={id}>
+              <div className="inputs" key={id}>
                 <label>{label}</label>
                 <input
                   type={type}
@@ -128,8 +139,8 @@ export default function RegisterNewPlayer({ playeursNames }) {
               </div>
             );
           })}
-          <button type="submit">Valider</button>
-          <span style={{ color: "red" }}>{errorMessage}</span>
+          <button type="submit" className="submit-btn">Valider</button>
+          <span className="error-message">{errorMessage}</span>
         </form>
       </div>
     </div>

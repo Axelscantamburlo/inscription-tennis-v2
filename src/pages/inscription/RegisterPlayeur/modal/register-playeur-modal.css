@@ -4,6 +4,106 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: green/* Fond semi-transparent pour l'effet de superposition */
+    background-color: var(--background-color);
+    color: var(--grey-color);
+}
 
+.register-playeur-modal-container .box {
+    margin-top: 70px;
+    height: 100%;
+}
+.register-playeur-modal-container .box .close-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 5vw;
+    top: 2vh;
+    width: 5vw; /* Taille du bouton en fonction de la largeur de l'écran */
+    height: 5vw; /* Taille du bouton en fonction de la largeur de l'écran */
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 3vw;
+}
+
+.register-playeur-modal-container .box ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+}
+
+.register-playeur-modal-container .box ul .underlign  {
+    border-bottom: 1px solid var(--grey-color);
+}
+
+.register-playeur-modal-container .box  h2 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.register-playeur-modal-container .box form  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    overflow: auto; /* Utilisez "auto" au lieu de "scroll" pour activer le défilement uniquement si nécessaire */
+    max-height: 70vh;
+}
+
+.register-playeur-modal-container .box form .inputs {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-bottom: 2vh;
+}
+.register-playeur-modal-container .box form .inputs label {
+    margin-bottom: 5px;
+}
+.register-playeur-modal-container .box form .inputs input {
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 15px 0px 15px 12.5px;
+    background-color: #eaeaea;
+    border-radius: 8px;
+    outline: none;
+    margin-bottom: 20px;
+    color: var(--background-color)
+}
+
+@media screen and (min-width: 700px) {
+    
+    .register-playeur-modal-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--background-color);
+    }
+    .register-playeur-modal-container .box {
+        background-color: var(--grey-color);
+        height: 70vh;
+        width: 600px;
+        border-radius: 20px;
+        position: relative;
+        margin-top: 0;
+    }
+
+    .register-playeur-modal-container .box .close-modal {
+        height: 20px;
+        width: 20px; 
+        right: 20px;
+        top: 15px;
+        font-size: 15px;
+        background-color: var(--red-color);
+        color: var(--grey-color);
+    }
+    .register-playeur-modal-container .box ul {
+        margin: 20px 0;
+    }
+    
+.register-playeur-modal-container .box ul .underlign  {
+    border-bottom: 1px solid var(--background-color);
+}
 }

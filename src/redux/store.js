@@ -13,11 +13,12 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, playeurInfoReducer);
+const persistedUserReducer = persistReducer(persistConfig, playeurInfoReducer);
+const persistedSchedulesReducer = persistReducer(persistConfig, schedulesReducer);
 
 const store = configureStore({
   reducer: {
-    user: playeurInfoReducer,
+    user: persistedUserReducer,
     schedule: schedulesReducer,
   },
 });

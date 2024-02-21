@@ -59,45 +59,12 @@
     color: var(--background-color)
 }
 
-.login-container .box form .submit-btn {
-    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
-    color: white;
-    background: var(--linear-gradient);
-    border: none;
-    padding: 9px 0;
-    border-radius: 10px;
-    margin-top: 27px;
-    font-size: 1.1rem;
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-}
 
 
-.login-container .box form .submit-btn:hover {
-    cursor: pointer;
-    width: 90%;
-    animation: scale 0.15s;
-}
-
-@keyframes scale {
-    0% {
-        transform: scale(1) translateX(-50%);
-    }
-
-    50% {
-        transform: scale(0.95) translateX(-50%);
-    }
-
-    100% {
-        transform: scale(1) translateX(-50%);
-    }
-}
 
 
-@media screen and (min-width: 630px) {
+
+@media screen and (min-width: 700px) {
 
     .login-container {
         display: flex;
@@ -119,19 +86,8 @@
 
     }
 
-
-/* 
-    .login-container .responsive-container {
-        position: relative;
-        height: 650px;
-        background-color: var(--grey-color);
-        box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-        width: 600px;
-        border-radius: 20px;
-    } */
-
-
-    .login-container form .row label {
+   
+.login-container .box form .row label {
         margin-bottom: 10px;
         color: var(--background-color);
     }
@@ -139,7 +95,7 @@
     .login-container form .submit-btn {
         position: absolute;
         bottom: 30px;
-        max-width: 400px;
+        width: 90%;
     }
 
     .login-container form .submit-btn:hover {

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // CONNEXION
@@ -22,10 +22,15 @@ import AdminLogin from "./pages/admin/connexion/AdminLogin";
 import ShowAllSchedules from "./pages/admin/showSchedules/ShowAllSchedules";
 import CreateSchedules from "./pages/admin/createSchedules/CreateSchedules";
 import ShowAllUsers from "./pages/admin/showAllUsers/ShowAllUsers";
+import { useSelector, useDispatch } from "react-redux";
 
 
 
 export default function App() {
+  const dispatch = useDispatch()
+  const { selectedScheduleFirst, selectedScheduleSecond, selectedScheduleThird } = useSelector((state) => state.schedule);
+console.log(selectedScheduleFirst, selectedScheduleSecond, selectedScheduleThird);
+
 
   return (
     <div className="App">

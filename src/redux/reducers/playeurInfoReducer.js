@@ -7,6 +7,7 @@ const initialState = {
     level: 0,
     birthDay: '',
     sexe: '',
+    formule: ''
 }
 
 const playeurInfoReducer = (state = initialState, action) => {

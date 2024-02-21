@@ -51,28 +51,31 @@ export default function CreateAccount() {
 
     return (
         <>
+        <div className='login-container'>
+            <div className="box">
+            <h1>Se connecter</h1>  
 
-            <div className="register-container">
-                <div className="reponsive-container">
-                    <h1>Créer un Compte</h1>
-                    <div className="form-container">
-                        <form onSubmit={handleSubmit}>
-                            <div className="inputs">
-                                {INPUTS_DATA.map(input => {
-                                    const { id, label, type, maxLength, className } = input
-                                    return (
-                                        <div className='input' key={id}>
-                                            <label>{label}</label>
-                                            <input type={type} name={id} id={id} className={className} maxLength={maxLength} autoComplete='off' onChange={handleInputChange} />
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                            <button type="submit" className="submit-btn">Valider</button>
-                        </form>
-                    </div>
+              <form onSubmit={handleSubmit}>
+
+                <div className="inputs">
+                  
+          {INPUTS_DATA.map(input => {
+              const { id, label, type, maxLength, className } = input
+              return (
+                  <div className='row' key={id}>
+                      <label>{label}</label>
+                      <input type={type} name={id} id={id} className={className} maxLength={maxLength} autoComplete='off' onChange={handleInputChange} />
+                  </div>
+              )
+          })}
+
                 </div>
-            </div>
-        </>
+                {/* {error && <span>Wrong Email or Password</span>} */}
+                <button type="submit" className="submit-btn">Valider</button>
+              </form>
+
+          </div>
+        </div>
+    </>
     );
 }

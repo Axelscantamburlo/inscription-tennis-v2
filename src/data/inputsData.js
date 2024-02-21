@@ -27,6 +27,7 @@ export const NEW_PLAYEUR_INPUTS = [
         label: 'Numéro de téléphone',
         type: 'text',
         maxLength: 10,
+        minLength: 10
     },
     {
         id:'email',

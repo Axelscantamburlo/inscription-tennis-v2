@@ -34,6 +34,7 @@
 
 .welcome-page-container .box .buttons button {
     background-color: green;
+    font-size: 1.7vh;
     padding: 20px 0;
     width: 100%;
     border: none;
@@ -42,10 +43,14 @@
     background: var(--blue-color);
 }
 
+.welcome-page-container .box .buttons .admin {
+    text-align: center;
+    color: var(--grey-color);
+}
 
 
 
-@media screen and (min-width: 630px) {
+@media screen and (min-width: 700px) {
     .welcome-page-container {
         display: flex;
         justify-content: center;
@@ -83,5 +88,9 @@
         text-decoration: none;
         position: absolute;
         bottom: 30px;
+    }
+
+    .welcome-page-container .box .buttons .admin {
+        color: var(--background-color);
     }
 }

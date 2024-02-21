@@ -1,12 +1,77 @@
-.progress-bar {
-    width: 100%;
-    height: 20px;
-    background-color: #f2f2f2;
+.inscription-schedules-container .schedules-container .schedule-card {
+  background-color: var(--background-color);
+  width: 90%;
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 20px 10px;
+  color: var(--grey-color);
+}
+
+.inscription-schedules-container .schedules-container .schedule-card h2 {
+  font-size: 5vw;
+  margin-bottom: 5px;
+}
+.inscription-schedules-container .schedules-container .schedule-card .progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.inscription-schedules-container .schedules-container .schedule-card .progress-bar-fill {
+  height: 100%;
+  background-color: #ffcc00;
+}
+
+.inscription-schedules-container .schedules-container .schedule-card .bottom-card  {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+.inscription-schedules-container .schedules-container .schedule-card .bottom-card p {
+  margin-left: 5px;
+  font-size: 3.5vw;
+}
+
+.inscription-schedules-container .schedules-container .schedule-card .bottom-card button {
+  margin-right: 10px;
+  padding: 7px 15px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 3vw
+}
+.selected {
+  border: 2px solid green;
+}
+
+@media screen and (min-width: 700px) {
+  .inscription-schedules-container .schedules-container .schedule-card {
+    background-color: var(--background-color);
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 20px 10px;
+    color: var(--grey-color);
+    font-size: 10px;
+    height: 160px;
+  }
+
+  .inscription-schedules-container .schedules-container .schedule-card h2 {
+    font-size: 25px;
+  }
+  .inscription-schedules-container .schedules-container .schedule-card .bottom-card p {
+    font-size: 15px;
+  }
+
+  .inscription-schedules-container .schedules-container .schedule-card .bottom-card button {
+    margin-right: 10px;
+    padding: 7px 15px;
+    border: none;
+    outline: none;
     border-radius: 5px;
-    overflow: hidden;
+    font-size: 15px;
   }
-  
-  .progress-bar-fill {
-    height: 100%;
-    background-color: #4caf50;
-  }
+}

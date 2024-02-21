@@ -7,7 +7,7 @@ import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../config/firebase-config";
 // CONTEXT
 import { UidUserConnected } from "../../../context/UidUserConnected";
-import {useSelector} from 'react-redux'
+import { useModal } from "../../../context/ModalContext";
 
 
 export default function RegisterPlayeur() {
@@ -38,19 +38,12 @@ export default function RegisterPlayeur() {
 
 
 
-
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setOpenModal(true);
-  };
-
-
+const {openModal1, modal1} = useModal()
 
 
   return (
     <div className="register-playeur-container">
-      <h1>Inscrire un joueur</h1>
+      <h1 className="title">Inscrire un joueur</h1>
       <div className="card-container">
         {playeurInfoToMap?.length > 0 &&
           playeurInfoToMap.map((playeur, index) => {
@@ -59,13 +52,11 @@ export default function RegisterPlayeur() {
             );
           })}
       </div>
-      <div className="add-playeur-button" onClick={handleOpenModal}>
+      <div className="add-playeur-button" onClick={() => openModal1(true)}>
         <button>Ajouter</button>
       </div>
-      {openModal && (
-        <div className="modal">
+      {modal1 && (
           <RegisterNewPlayer playeursNames={propsToPass} />
-        </div>
       )}
     </div>
   );

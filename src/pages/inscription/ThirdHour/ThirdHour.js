@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // COMPONENT
 import ScheduleItem from "../ScheduleItem/ScheduleItem";
@@ -7,46 +7,104 @@ import ConfirmationModal from "../Schedules/confirmationModal/ConfirmationModal"
 
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
-import { useModal } from '../../../context/ModalContext';
+import { useModal } from "../../../context/ModalContext";
 // REDUX
-import {useSelector} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
+import { selectSchedule } from "../../../redux/actions";
 
 //FUNCTIONS
-import { handleButtonClick } from '../../../functions/handleButtonClick';
+import { handleButtonClick } from "../../../functions/handleButtonClick";
 
 export default function ThirdHour() {
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // récupérer les tableaux à mapper à l'utilisateur
   const { loadedData } = useContext(AllDataSchedules);
 
   // récucpérer les infos de l'utilisateur (son niveau)
-  const {level} = useSelector((state) => state.user);
+  const { level } = useSelector((state) => state.user);
 
-    const { selectedScheduleFirst: { uid: uidFirst }, selectedScheduleSecond: { uid: uidSecond }, selectedScheduleThird } = useSelector((state) => state.schedule);
+  const {
+    selectedScheduleFirst ,
+    selectedScheduleSecond,
+    selectedScheduleThird,
+  } = useSelector((state) => state.schedule);
 
-    const [showModal, setShowModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
-    const {openModal1, modal1} = useModal()
+  const navigatePreviousHour = () => {
+    dispatch(selectSchedule(null, "Third"));
+    navigate("/inscrire-un-joueur/inscription/deuxieme-heure");
+  };
 
-    return (
-    <div className='third-hour-container'>
-      {loadedData
-        .filter((el) => el.level === level && el.uid !== uidFirst && el.uid !== uidSecond)
-        .map((schedule, index) => {
-          return (
-            <div
-              className="schedule"
-              style={{ background: "yellow", marginBottom: "50px" }}
-              key={index}
-            >
-              <ScheduleItem schedule={schedule} path="Third" />
-            </div>
-          );
-        })}
+  const [errorMessage, setErrorMessage] = useState("");
 
-      <button onClick={() => handleButtonClick(2, selectedScheduleThird, openModal1)}>Valider</button>
-    {modal1 && <ConfirmationModal />}
+  useEffect(() => {
+
+    if(selectedScheduleFirst === null || selectedScheduleSecond === null) {
+      navigate('/inscrire-un-joueur/inscription')
+    }
+}, []);
+
+useEffect(() => {
+  const confirmRefresh = (event) => {
+    event.preventDefault();
+    const message = 'Êtes-vous sûr de vouloir actualiser la page ? Toutes vos modifications seront perdues.';
+    event.returnValue = message; // For Chrome
+    return message; // For Firefox
+  };
+
+  if (selectedScheduleFirst === null || selectedScheduleSecond === null) {
+    navigate('/inscrire-un-joueur/inscription');
+  }
+
+  window.addEventListener('beforeunload', confirmRefresh);
+
+  return () => {
+    window.removeEventListener('beforeunload', confirmRefresh);
+  };
+}, [selectedScheduleFirst, selectedScheduleSecond, navigate]);
+  return (
+    <div className="inscription-schedules-container">
+      <div style={{ position: "relative" }}>
+        <button className="previous-btn" onClick={() => navigatePreviousHour()}>
+          Précédent
+        </button>
+        <h1 className="title" style={{ color: "var(--background-color)" }}>
+          Votre troisième heure :
+        </h1>
+      </div>
+      <div className="schedules-container">
+        {loadedData
+          .filter(
+            (el) =>
+              el.level === level && el.uid !== selectedScheduleFirst?.uid && el.uid !== selectedScheduleSecond?.uid
+          )
+          .map((schedule, index) => {
+            return (
+              <div className="schedule" key={index}>
+                <ScheduleItem schedule={schedule} path="Third" />
+              </div>
+            );
+          })}
+      </div>
+
+      <button
+        className="submit-btn"
+        onClick={() =>
+          handleButtonClick(
+            2,
+            selectedScheduleThird,
+            setOpenModal,
+            setErrorMessage
+          )
+        }
+      >
+        Valider
+      </button>
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
+
+      {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}
     </div>
-  )
+  );
 }

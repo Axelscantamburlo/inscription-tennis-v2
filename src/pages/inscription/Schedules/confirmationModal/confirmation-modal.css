@@ -1,0 +1,48 @@
+.confirmation-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-color);
+  color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  max-width: 80%;
+  background-color: var(--grey-color);
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px;
+  margin-top: 30%;
+  font-size: 3.5vw;
+}
+
+.card > * {
+  margin-bottom: 1vh;
+}
+
+/* .confirmation-modal-container .card .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+} */
+
+@media screen and (min-width: 700px) {
+  .confirmation-modal-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+  }
+  .card {
+    transform: translateY(-100px);
+    margin-top: 0;
+    font-size: 20px;
+  }
+}

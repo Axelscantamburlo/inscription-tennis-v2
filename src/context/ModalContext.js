@@ -6,8 +6,9 @@ const ModalContext = createContext();
 export const ModalProvider = ({ children }) => {
   const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
+  console.log(modal2);
   const [modal3, setModal3] = useState(false);
-
+  
   const openModal1 = () => {
     setModal1(true);
   };

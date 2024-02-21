@@ -6,13 +6,6 @@
 
 }
 
-.register-playeur-container h1 {
-    text-align: center;
-    margin-top: 5vh;
-    color: var(--grey-color);
-    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
-
-}
 
 .register-playeur-container .add-playeur-button {
     width: 40%;
@@ -37,4 +30,27 @@
 .register-playeur-container .card-container  {
     display: flex;
     flex-direction: column;
+}
+
+
+@media screen and (min-width: 700px) {
+    .register-playeur-container h1 {
+        font-size: 40px;
+    }
+    .register-playeur-container .card-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+    }
+    .register-playeur-container .add-playeur-button {
+        width: 150px;
+        height: 50px;
+        bottom: 50px;
+        right: 50px;
+    }
+
+    .register-playeur-container .add-playeur-button button {
+        padding: 20px;
+        font-size: 20px;
+    }
 }

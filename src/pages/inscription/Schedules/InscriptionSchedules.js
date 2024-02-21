@@ -3,26 +3,24 @@ import { useNavigate } from "react-router-dom";
 
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
+import { useModal } from "../../../context/ModalContext";
 // COMPONENT
 import ScheduleItem from "../ScheduleItem/ScheduleItem";
 import ConfirmationModal from "./confirmationModal/ConfirmationModal";
 
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
-
+import { setPlayeurInfo } from "../../../redux/actions";
 // FUNCTIONS
 import { handleButtonClick } from "../../../functions/handleButtonClick";
 
 // DATA
-
 import { FORMULES } from "../../../data/formules";
-import { setPlayeurInfo } from "../../../redux/actions";
-import { useModal } from "../../../context/ModalContext";
 
 // ///////////////////////
 export default function InscriptionSchedules() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   // récupérer les tableaux à mapper à l'utilisateur
   const { loadedData } = useContext(AllDataSchedules);
   // récucpérer les infos de l'utilisateur (son niveau)
@@ -32,8 +30,7 @@ export default function InscriptionSchedules() {
   const { selectedScheduleFirst } = useSelector((state) => state.schedule);
 
   // const [showModal, setShowModal] = useState(false);
-  const {openModal1, modal1} = useModal()
-
+  const { openModal2, modal2 } = useModal();
   // GESTION FORMULES
   const [formules, setFormules] = useState([]);
   useEffect(() => {
@@ -43,16 +40,26 @@ export default function InscriptionSchedules() {
     if (formulesByLevel) {
       setFormules(formulesByLevel.formules);
     }
+
   }, []);
 
-  const [chooseFormule, setChooseFormule] = useState(level === 0 ? "50min par semaine" : "1h par semaine");
+  const [chooseFormule, setChooseFormule] = useState(
+    level === 0 ? "50min par semaine" : "1h par semaine"
+  );
   const handleChangeFormule = (e) => {
-    setChooseFormule(e.target.value);
+    const selectedFormule = e.target.value;
+  setChooseFormule(selectedFormule);
+  dispatch(setPlayeurInfo({ formule: selectedFormule }));
+
   };
-  
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [openModal, setOpenModal] = useState(false)
+
   return (
     <div className="inscription-schedules-container">
-      <div className="schedules">
+      <div className="formules-container">
+        <h2>Sélectionner votre formule</h2>
         <select name="formules" id="" onChange={handleChangeFormule}>
           {formules.map((formule, index) => (
             <option value={formule} key={index}>
@@ -60,57 +67,39 @@ export default function InscriptionSchedules() {
             </option>
           ))}
         </select>
+      </div>
+      <div className="schedules-container">
         {chooseFormule === "1h par semaine" ||
-        chooseFormule === "2h par semaine" ? (
+        chooseFormule === "2h par semaine" || chooseFormule === 'forme jouée 3h par semaine' ? (
           <>
             {loadedData
               .filter((el) => el.level === level)
+              // .filter(el => el.numberOfPlaces - el.usersRegisted.length !== 0)TODO: je sais pas si je met
               .map((schedule, index) => {
                 return (
-                  <div
-                    className="schedule"
-                    style={{ background: "yellow", marginBottom: "50px" }}
-                    key={index}
-                  >
-                    <ScheduleItem schedule={schedule} path="First" />
-                  </div>
+                  <ScheduleItem schedule={schedule} path="First" key={index} />
                 );
               })}
           </>
         ) : null}
       </div>
-      {chooseFormule === "1h par semaine" ? (
-        <button
-          onClick={() =>
-            handleButtonClick(
-              2,
-              selectedScheduleFirst,
-              openModal1,
-              navigate,
-              null
-            )
-          }
-        >
-          Valider
-        </button>
-      ) : (
-        <button
-          onClick={() =>
-            handleButtonClick(
-              1,
-              selectedScheduleFirst,
-              openModal1,
-              navigate,
-              "deuxieme-heure",
-              chooseFormule
-            )
-          }
-        >
-          Suivant
-        </button>
-      )}
-
-      {modal1 && <ConfirmationModal />}
+      <button
+        className="submit-btn "
+        onClick={() =>
+          handleButtonClick(
+            chooseFormule === "1h par semaine" ? 2 : 1,
+            selectedScheduleFirst,
+            setOpenModal,
+            setErrorMessage,
+            navigate,
+            chooseFormule === "1h par semaine" ? null : "deuxieme-heure",
+          )
+        }
+      >
+        {chooseFormule === "1h par semaine" ? "Valider" : "Suivant"}
+      </button>
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
+      {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}
     </div>
   );
 }

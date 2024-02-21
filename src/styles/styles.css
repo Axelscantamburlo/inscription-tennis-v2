@@ -13,6 +13,8 @@
 @import '../pages/inscription/RegisterPlayeur/modal/register-playeur-modal.css';
 @import '../pages/inscription/Schedules/inscription-schedules.css';
 @import '../pages/inscription/ScheduleItem/schedule-item.css';
+@import '../pages/inscription/Schedules/confirmationModal/confirmation-modal.css';
+@import '../pages/inscription/ThankYouPage/thank-you-page.css';
 
 /* Admin */
 @import '../pages/admin/showSchedules/ScheduleItemAdmin/schedule-item-admin.css';

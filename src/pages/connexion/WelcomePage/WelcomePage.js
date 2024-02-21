@@ -15,10 +15,10 @@ const WelcomePage = () => {
           </NavLink>
 
           <NavLink
-            style={{ textDecoration: "none", color: "white", textAlign: 'center' }}
+          style={{textDecoration: 'none'}}
             to="/connexion-admin"
           >
-            <p>Administrateur</p>
+            <p className="admin">Administrateur</p>
           </NavLink>
         </div>
       </div>

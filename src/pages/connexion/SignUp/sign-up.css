@@ -6,7 +6,6 @@
 /* header */
 
 .register-container h1 {
-    margin: 75px 0px 0 20px;
     color: var(--grey-color);
 }
 
@@ -109,7 +108,7 @@
 
 /* Responsive */
 
-@media screen and (min-width: 630px) {
+@media screen and (min-width: 700px) {
     .register-container h1 {
         margin: 50px 97px;
         color: var(--background-color);

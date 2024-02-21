@@ -9,16 +9,13 @@ import { db } from "../../../config/firebase-config";
 import { UidUserConnected } from "../../../context/UidUserConnected";
 import { useModal } from "../../../context/ModalContext";
 
-
 export default function RegisterPlayeur() {
   const { uid } = useContext(UidUserConnected);
-  
+
   const [playeurInfoToMap, setPlayeurInfoToMap] = useState([]);
 
-  const [propsToPass, setPropsToPass] = useState([])
+  const [propsToPass, setPropsToPass] = useState([]);
 
-
-  
   useEffect(() => {
     const loadDataUsers = async () => {
       if (uid) {
@@ -26,7 +23,7 @@ export default function RegisterPlayeur() {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           setPlayeurInfoToMap(docSnap.data().playeurInfo);
-          setPropsToPass(docSnap.data().playeurNames)
+          setPropsToPass(docSnap.data().playeurNames);
         } else {
           console.log("No such document!");
         }
@@ -35,28 +32,25 @@ export default function RegisterPlayeur() {
     loadDataUsers();
   }, [uid]);
 
-
-
-
-const {openModal1, modal1} = useModal()
-
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className="register-playeur-container">
-      <h1 className="title">Inscrire un joueur</h1>
+      <h1 className="title">Vos inscriptions</h1>
       <div className="card-container">
         {playeurInfoToMap?.length > 0 &&
           playeurInfoToMap.map((playeur, index) => {
-            return (
-              <PlayeurRegistedInfo key={index} playeurInfo={playeur}/>
-            );
+            return <PlayeurRegistedInfo key={index} playeurInfo={playeur} />;
           })}
       </div>
-      <div className="add-playeur-button" onClick={() => openModal1(true)}>
+      <div className="add-playeur-button" onClick={() => setOpenModal(true)}>
         <button>Ajouter</button>
       </div>
-      {modal1 && (
-          <RegisterNewPlayer playeursNames={propsToPass} />
+      {openModal && (
+        <RegisterNewPlayer
+          playeursNames={propsToPass}
+          setOpenModal={setOpenModal}
+        />
       )}
     </div>
   );

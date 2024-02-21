@@ -25,7 +25,7 @@ export default function PlayeurRegistedInfo({ playeurInfo }) {
     };
     playExternFunction();
   }, []);
-  console.log(playeurInscription);
+
   return (
     <div className="playeur-card">
       <h2>{name.toUpperCase()}</h2>

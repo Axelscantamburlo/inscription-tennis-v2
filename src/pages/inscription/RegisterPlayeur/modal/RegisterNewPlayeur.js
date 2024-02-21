@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 // FIREBASE
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
@@ -17,7 +16,7 @@ import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 import { NEW_PLAYEUR_INPUTS } from "../../../../data/inputsData";
 import { useModal } from "../../../../context/ModalContext";
 
-export default function RegisterNewPlayer({ playeursNames }) {
+export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -58,37 +57,45 @@ export default function RegisterNewPlayer({ playeursNames }) {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-  
-    const cleanName = name.trim().replace(/\s+/g, ' ').toLowerCase();
-  
-    if (!cleanName || !phone || !email || !birthDay) {
-      setErrorMessage('Veuillez remplir tous les champs');
-      return;
-    }
-  
-    const playeur = loadedExcelData.find((data) => data.name.toLowerCase() === cleanName);
 
- if (!playeur) {
-      setErrorMessage("Le joueur n'a pas été trouvé (entrer le prénom puis le nom)");
+    const cleanName = name.trim().replace(/\s+/g, " ").toLowerCase();
+
+    if (!cleanName || !phone || !email || !birthDay) {
+      setErrorMessage("Veuillez remplir tous les champs");
       return;
     }
-  
+
+    const playeur = loadedExcelData.find(
+      (data) => data.name.toLowerCase() === cleanName
+    );
+
+    if (!playeur) {
+      setErrorMessage(
+        "Le joueur n'a pas été trouvé (entrer le prénom puis le nom)"
+      );
+      return;
+    }
+
     const isPlayeurAlreadyRegisted =
-      loadedData.some((data) => data.usersRegisted.map((user) => user.toLowerCase()).includes(cleanName)) ||
-      playeursNames?.map((playeur) => playeur.toLowerCase()).includes(cleanName);
-  
+      loadedData.some((data) =>
+        data.usersRegisted.map((user) => user.toLowerCase()).includes(cleanName)
+      ) ||
+      playeursNames
+        ?.map((playeur) => playeur.toLowerCase())
+        .includes(cleanName);
+
     if (isPlayeurAlreadyRegisted) {
       setErrorMessage("Le joueur est déjà inscrit");
       return;
     }
-  
+
     const isBirthDayMatch = playeur.birthDay === birthDay;
     if (!isBirthDayMatch) {
       setErrorMessage("La date de naissance est incorrecte");
       return;
     }
-    checkPhoneNumber(phone)
-  
+    checkPhoneNumber(phone);
+
     const updatedRegisterPlayeurInfo = {
       ...registerPlayeurInfo,
       name: cleanName,
@@ -96,33 +103,41 @@ export default function RegisterNewPlayer({ playeursNames }) {
       sexe: playeur.sexe,
     };
     dispatch(setPlayeurInfo(updatedRegisterPlayeurInfo));
-  
+
     navigate("inscription");
   };
 
   function checkPhoneNumber(phoneNumber) {
     const phoneRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/; // Expression régulière pour valider un numéro de téléphone international
     if (!phoneRegex.test(phoneNumber)) {
-        setErrorMessage("Veuillez vérifier le numéro de téléphone")
+      setErrorMessage("Veuillez vérifier le numéro de téléphone");
     }
-}
+  }
 
-  const {closeModal1} = useModal()
-
-  const [toggleClassName, setToggleClassName] = useState(0)
+  const [toggleClassName, setToggleClassName] = useState(0);
 
   return (
     <div className="register-playeur-modal-container">
       <div className="box">
-      <button className="close-modal" onClick={closeModal1}>&times;</button>
+        <button className="close-modal" onClick={() => setOpenModal(false)}>
+          &times;
+        </button>
         <ul>
-          <li onClick={() => setToggleClassName(0)} className={toggleClassName === 0 ? 'underlign' : null} >Ré-inscription</li>
-          <li className={toggleClassName === 1 ? 'underlign' : null} onClick={() => setToggleClassName(1)}>Nouvelle inscription</li>
+          <li
+            onClick={() => setToggleClassName(0)}
+            className={toggleClassName === 0 ? "underlign" : null}
+          >
+            Ré-inscription
+          </li>
+          <li
+            className={toggleClassName === 1 ? "underlign" : null}
+            onClick={() => setToggleClassName(1)}
+          >
+            Nouvelle inscription
+          </li>
         </ul>
         <h2>Joueur</h2>
-        <form
-            onSubmit={handleFormSubmit}
-        >
+        <form onSubmit={handleFormSubmit}>
           {NEW_PLAYEUR_INPUTS.map((input) => {
             const { id, label, type, maxLength } = input;
             return (
@@ -139,7 +154,9 @@ export default function RegisterNewPlayer({ playeursNames }) {
               </div>
             );
           })}
-          <button type="submit" className="submit-btn">Valider</button>
+          <button type="submit" className="submit-btn">
+            Valider
+          </button>
           <span className="error-message">{errorMessage}</span>
         </form>
       </div>

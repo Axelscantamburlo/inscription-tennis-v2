@@ -17,7 +17,7 @@
 }
 
 .welcome-page-container .box .buttons {
-    height: 500px;
+    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,7 +61,7 @@
 
     .welcome-page-container .box {
         width: 600px;
-        height: 70vh;
+        height: 80vh;
         background-color: var(--grey-color);
         border-radius: 20px;
         position: relative;

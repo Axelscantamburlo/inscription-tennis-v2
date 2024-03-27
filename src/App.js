@@ -27,10 +27,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 export default function App() {
-  const dispatch = useDispatch()
-  const { selectedScheduleFirst, selectedScheduleSecond, selectedScheduleThird } = useSelector((state) => state.schedule);
-console.log(selectedScheduleFirst, selectedScheduleSecond, selectedScheduleThird);
-
 
   return (
     <div className="App">

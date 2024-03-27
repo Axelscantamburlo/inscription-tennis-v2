@@ -1,0 +1,55 @@
+
+
+.register-playeur-modal-container .tab-buttons {
+    width: 100%;
+}
+
+
+/* tab  */
+
+.tab-container {
+    margin: 20px;
+    height: 100%;
+
+}
+
+
+.tab-container .text-container {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0;
+}
+
+.tab-container .text-container > * {
+    margin-bottom: 20px;
+}
+
+/* tab 3 */
+
+
+.tab-container .buttons-container h2 {
+    margin-bottom: 20px;
+}
+.tab-container .buttons-container button {
+    border-radius: 10px;
+    color: var(--background-color);
+
+}
+
+.tab-container .buttons-container button:hover {
+    opacity: 1;
+}
+
+@media screen and (min-width: 800px) {
+    .responsive-container {
+        background-color: var(--background-transparent)
+    }
+    
+    .register-playeur-modal-container .responsive-box {
+        width: 450px;
+        text-align: center;
+    }
+    .register-playeur-modal-container .responsive-box .tab-buttons {
+        margin-top: 50px;
+    }
+}

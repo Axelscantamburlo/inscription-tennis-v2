@@ -9,8 +9,10 @@ import { firebaseUpdateSchedulesDb } from '../../../../functions/firebaseUpdateS
 
 // CONTEXT
 import { useModal } from "../../../../context/ModalContext";
+// COMPONENT
+import InputFields from "../CreateScheduleModal/InputsFields/InputsFields";
 
-export default function EditScheduleModal({ scheduleClick }) {
+export default function EditScheduleModal({ scheduleClick, setOpenModal1 }) {
     const [scheduleEdit, setScheduleEdit] = useState(scheduleClick)
     const {day, startHour, endHour, numberOfPlaces, level, playedForm, educator, uid} = scheduleEdit
 
@@ -21,7 +23,7 @@ export default function EditScheduleModal({ scheduleClick }) {
     }
     
     const handleSubmit = async  e => {
-        closeModal1()
+        setOpenModal1(false)
         e.preventDefault()
         const userRef = doc(db, 'schedules', uid)
         await updateDoc(userRef, {
@@ -31,42 +33,19 @@ export default function EditScheduleModal({ scheduleClick }) {
 
     }
 
-    const {closeModal1} = useModal()
+    
   return (
-    <div>
-      <form onSubmit={handleSubmit} style={{display: 'flex'}}>
-        <select name="day" value={day} id=""  onChange={handleInputChange}>
-            <option value="lundi">Lundi</option>
-            <option value="mardi">Mardi</option>
-        </select>
-        <div>
-            <input type="time" value={startHour}  name="startHour" id="" onChange={handleInputChange}  />
-        </div>
-        <div>
-            <input type="time" value={endHour}  name="endHour" id="" onChange={handleInputChange} />
-        </div>
-        <select name="level" id="" value={level} onChange={handleInputChange}>
-            <option value='0'>Blanc</option>
-            <option value="1">Violet</option>
-            <option value='2'>Rouge</option>
-            <option value='3'>Orange</option>
-            <option value='4'>Vert</option>
-            <option value='5'>Jaune</option>
-        </select>
-        <div>
-            <input type="number" value={numberOfPlaces} name="numberOfPlaces" id="" onChange={handleInputChange} />
-        </div>
-        <select name="playedForm" value={playedForm} id="" onChange={handleInputChange} >
-            <option value="0">Classique</option>
-            <option value="1">Forme Jouée</option>
-        </select>
-        <div>
-            <input type="text" value={educator} name="educator" id="" onChange={handleInputChange} />
-        </div>
-        <button type="submit">Valider</button>
+    <div className="create-schedule-modal-container">
+        <h1 style={{margin: '20px'}} className="title">Modifier un créneau</h1>
+              <button className="close-modal" onClick={() => setOpenModal1(false)}>
+          &times;
+        </button>
+      <form onSubmit={handleSubmit}>
+      <InputFields scheduleCreate={scheduleEdit} handleInputChange={handleInputChange}/>
 
+
+       <button className="submit-btn" type="submit">Valider</button>
         </form>
-        <button onClick={closeModal1}>Annuler</button>
     </div>
   );
 }

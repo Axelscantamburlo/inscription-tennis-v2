@@ -7,6 +7,15 @@ import DeletePlayeurModal from "../deletePlayeurModal/DeletePlayeurModal";
 
 // CONTEXT
 import { useModal } from "../../../../context/ModalContext";
+// FUNCTION
+import {
+  convertLevelToWord,
+  convertFormuleToWord,
+} from "../../../../functions/convertLevelToWord";
+
+// ICONS
+import { FaTrash } from "react-icons/fa";
+
 
 export default function ScheduleItemAdmin({ schedule }) {
   const {
@@ -36,38 +45,52 @@ export default function ScheduleItemAdmin({ schedule }) {
   // const {modal1, modal2, modal3, openModal1, openModal2, openModal3} = useModal()
   // console.log(showInfoPlayeurModal);
   const [playeurClick, setPlayeurClick] = useState("");
+
+  const color = {
+     0: "white",
+      1: "magenta",
+      2: "red",
+      3: "orange",
+      4: "green",
+      5: "yellow",
+  }
   return (
-    <>
-      <div className="one-schedule">
-        <h2>
-          {day} de {startHour} à {endHour}
-        </h2>
-        <h2>
-          {educator} {level} {playedForm}
-        </h2>
-        <table style={{ background: "green" }}>
+    <>  
+      <div className="schedule-card">
+        <div className="header-card">
+          <h2>
+            {day} de {startHour} à {endHour}
+          </h2>
+          <div>
+            <p>{educator}</p>
+            <p>{convertLevelToWord(level)}</p>
+            <p>{convertFormuleToWord(playedForm)}</p>
+          </div>
+        </div>
+        <table style={{backgroundColor: color[level]}}>
           <tbody>
             {tableData.map((item, index) => (
-              <tr key={index}>
+              <tr key={index} style={item ? {padding: "15px 5px"} : {height: "50px"}}>
                 <td
-                  style={{ background: "pink", height: "20px" }}
                   onClick={() =>
                     item
                       ? (setShowModal2(true), setPlayeurClick(item))
                       : setShowModal1(true)
                   }
+                  
                 >
                   {item}
                 </td>
                 {item && (
-                  <h6
+                  <span
                     onClick={() => {
                       setShowModal3(true);
                       setPlayeurClick(item);
                     }}
                   >
-                    Icon
-                  </h6>
+                    <FaTrash />
+                  </span>
+                  
                 )}
               </tr>
             ))}
@@ -93,6 +116,7 @@ export default function ScheduleItemAdmin({ schedule }) {
           playeurToDelete={playeurClick}
           uid={uid}
           setShowModal3={setShowModal3}
+          schedule={schedule}
         />
       )}
     </>

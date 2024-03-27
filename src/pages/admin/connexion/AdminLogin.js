@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 // FIREBASE
 import {collection, getDocs} from 'firebase/firestore'
 import { db } from '../../../config/firebase-config'
+import { INPUTS_DATA } from '../../../data/inputsData'
 
 export default function AdminLogin() {
 const navigate = useNavigate()
@@ -46,20 +47,37 @@ const handleSubmit = (e) => {
   }
 };   
   return (
-    <div className="register-container">
-    <div className="reponsive-container">
-        <h1>Créer un Compte</h1>
-        <div className="form-container">
-            <form onSubmit={handleSubmit}>
-                <div className="inputs">
-                    <input type="text" name="name" placeholder='nom' onChange={handleInputChange}/>
-                    <input type="text" name="key" placeholder='key' onChange={handleInputChange}/>
-                </div>
-                <button type="submit" className="submit-btn">Valider</button>
-            </form>
+    <div className="login-container">
+    <div className="box">
+      <h1>Se connecter - Administrateur</h1>
+
+      <form onSubmit={handleSubmit}>
+        <div className="inputs">
+          {INPUTS_DATA.map((input) => {
+            const { id, label, type, maxLength, className } = input;
+            return (
+              <div className="row" key={id}>
+                <label>{label}</label>
+                <input
+                  type={type}
+                  name={id}
+                  id={id}
+                  className={className}
+                  maxLength={maxLength}
+                  autoComplete="off"
+                  onChange={handleInputChange}
+                />
+              </div>
+            );
+          })}
         </div>
+        {/* {error && <span>Wrong Email or Password</span>} */}
+        <button type="submit" className="submit-btn">
+          Valider
+        </button>
+      </form>
     </div>
-</div>
+  </div>
   )
 }
 

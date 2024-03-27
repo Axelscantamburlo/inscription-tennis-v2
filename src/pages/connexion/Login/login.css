@@ -48,16 +48,6 @@
 
 }
 
-.login-container .box form .inputs input {
-    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
-    border: none;
-    padding: 15px 0px 15px 12.5px;
-    background-color: #eaeaea;
-    border-radius: 8px;
-    outline: none;
-    margin-bottom: 20px;
-    color: var(--background-color)
-}
 
 
 

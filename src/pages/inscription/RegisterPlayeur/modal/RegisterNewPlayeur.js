@@ -122,6 +122,8 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
         <button className="close-modal" onClick={() => setOpenModal(false)}>
           &times;
         </button>
+        {/* A mapper */}
+        <div className="tab-buttons">
         <ul>
           <li
             onClick={() => setToggleClassName(0)}
@@ -136,6 +138,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
             Nouvelle inscription
           </li>
         </ul>
+        </div>
         <h2>Joueur</h2>
         <form onSubmit={handleFormSubmit}>
           {NEW_PLAYEUR_INPUTS.map((input) => {

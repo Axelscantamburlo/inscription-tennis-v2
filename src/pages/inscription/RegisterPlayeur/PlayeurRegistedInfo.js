@@ -30,17 +30,15 @@ export default function PlayeurRegistedInfo({ playeurInfo }) {
     <div className="playeur-card">
       <h2>{name.toUpperCase()}</h2>
       {playeurInscription.length === 0 && <p>Pas inscrit</p>}
+      <h2>Inscription(s) :</h2>
       {playeurInscription.map((inscription, index) => {
         return (
-          <div key={index}>
-            <p>
-              Inscription: {inscription.day} de {inscription.startHour} à{" "}
-              {inscription.endHour}
+            <p key={index}>
+               {inscription.day} de {inscription.startHour} à {inscription.endHour}
             </p>
-          </div>
         );
       })}
-      {isPayed ? <p>Payé</p> : <p>Prix à payer: {priceToPay}</p>}
+      {isPayed ? <p style={{color: 'green', fontWeight: 'bold'}}>Payé</p> : <p>Prix à payer: {priceToPay}</p>}
     </div>
   );
 }

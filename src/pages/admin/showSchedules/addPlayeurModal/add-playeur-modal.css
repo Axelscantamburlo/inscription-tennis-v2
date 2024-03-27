@@ -1,0 +1,9 @@
+.confirmation-modal-container .responsive-card {
+    width: 80%;
+}
+
+@media screen and (min-width: 700px) {
+    .confirmation-modal-container .responsive-card {
+        width: 30%;
+    }
+}

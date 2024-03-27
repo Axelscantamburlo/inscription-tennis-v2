@@ -24,13 +24,13 @@ export default function NavBar({toggleClassName}) {
     // li style
     const getLiStyle = (className) => {
         if (toggleClassName === className) {
-          return { color: 'green' };
+          return { color: 'white'};
         } else {
-          return { color: 'red' };
+          return { color: 'var(--background-color)' };
         }
       };    
   return (
-    <div className='nav-bar-container' style={{ background: 'yellow'}}>
+    <div className='nav-bar-container'>
         <ul>
             {tabBar.map((tab, index) => {
                 const {link, style, text} = tab
@@ -42,6 +42,7 @@ export default function NavBar({toggleClassName}) {
             })}
 
         </ul>
+
     </div>
   )
 }

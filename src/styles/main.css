@@ -16,7 +16,7 @@
     --red-color: #f15656;
     --linear-gradient: linear-gradient(90deg, rgba(34, 116, 165, 1) 14%, rgba(36, 122, 204, 1) 49%, rgba(9, 102, 191, 1) 84%);
     --box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
-
+    --background-transparent: rgba(0, 0, 0, 0.5);
 
 }
 
@@ -25,8 +25,8 @@
     color: white;
     background: var(--linear-gradient);
     border: none;
-    /* padding: 0.8vh 0; */
-    padding: 12px 0;
+    padding: 0.8vh 0;
+    /* padding: 12px 0; */
     border-radius: 10px;
     font-size: 2.5vh;
     position: absolute;
@@ -36,8 +36,30 @@
     width: 90%;
     cursor: pointer;
 }
+
+
 .submit-btn:hover {
     opacity: 0.8;
+}
+
+.close-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 5vw;
+    top: 2vh;
+    width: 5vw; /* Taille du bouton en fonction de la largeur de l'écran */
+    height: 5vw; /* Taille du bouton en fonction de la largeur de l'écran */
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: var(--red-color);
+    color: var(--grey-color);
+    font-size: 3.5vw;
+    z-index: 300;
+
+    
 }
 .error-message {
     color: var(--red-color); 
@@ -82,7 +104,7 @@
     box-shadow: 4px 4px 15px rgba(0,0,0,0.2);
     border-radius: 20px;
     color: var(--grey-color);
-    font-size: 2.5vw;
+    font-size: 3vw;
 }
  button:hover {
     opacity: 0.7;
@@ -94,23 +116,29 @@
     background: var(--red-color);
 }
 
-@media screen and (min-width: 700px) {
-    /* .submit-btn {
-        padding: 20px;
-        font-size: 20px;
-        position: absolute;
-        bottom: 25px;
-        right: 50px;
-        left: unset;
-        transform: unset;
+.inputs input, .inputs select {
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 15px 0px 15px 12.5px;
+    background-color: #eaeaea;
+    border-radius: 8px;
+    outline: none;
+    margin-bottom: 20px;
+    color: var(--background-color)
+}
 
-        width: 150px;
-    } */
+input[type='time'] {
+   padding-right: 10px; 
+}
+
+@media screen and (min-width: 700px) {
+
 
     .title {
     margin: 50px 0;
     font-size: 30px;
     }
+
 
 
     .buttons button {
@@ -136,5 +164,15 @@
     
     form::-webkit-scrollbar-track:horizontal {
         background-color: initial; /* Remise à la couleur de fond par défaut */
+    }
+
+    .close-modal {
+        height: 20px;
+        width: 20px;
+        right: 20px;
+        top: 15px;
+        font-size: 15px;
+        background-color: var(--red-color);
+        color: var(--grey-color);
     }
 }

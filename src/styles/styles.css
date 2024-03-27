@@ -17,4 +17,13 @@
 @import '../pages/inscription/ThankYouPage/thank-you-page.css';
 
 /* Admin */
+/* NavBar */
+@import '../pages/admin/navBar/nav-bar.css';
+@import '../pages/admin/showSchedules/show-all-schedules.css';
 @import '../pages/admin/showSchedules/ScheduleItemAdmin/schedule-item-admin.css';
+@import '../pages/admin/showSchedules/addPlayeurModal/add-playeur-modal.css';
+@import '../pages/admin/showSchedules/InfoPlayeurModal/info-user-modal.css';
+@import '../pages/admin/createSchedules/create-schedules.css';
+@import '../pages/admin/createSchedules/CreateScheduleModal/create-schedule-modal.css';
+@import '../pages/admin/showAllUsers/show-all-users.css'
+

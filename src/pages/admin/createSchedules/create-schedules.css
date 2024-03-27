@@ -1,0 +1,112 @@
+.create-schedules-container {
+  min-height: 100vh;
+  background-color: var(--grey-color);
+  overflow: hidden;
+}
+
+.create-schedules-container .schedules-container {
+  height: 90%;
+  overflow: auto;
+  margin-top: 50px;
+}
+
+.create-schedules-container .schedules-container .schedule-card {
+  background-color: var(--background-color);
+  color: var(--grey-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 270px;
+  margin: 15px;
+  border-radius: 15px;
+}
+
+.create-schedules-container .schedules-container .schedule-card:last-child {
+  margin-bottom: 70px;
+}
+
+.create-schedules-container .schedules-container .schedule-card .content {
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-schedules-container
+  .schedules-container
+  .schedule-card
+  .content:first-child {
+  margin-top: 10px;
+}
+
+.create-schedules-container .schedules-container .schedule-card .content span {
+  margin: 0 20px;
+}
+.create-schedules-container .schedules-container .schedule-card .buttons {
+  margin: 15px 0;
+}
+
+.create-schedules-container .submit-btn {
+  position: fixed;
+}
+
+/* @media screen and (min-width: 1200px) {
+  .create-schedules-container .schedules-container .schedule-card {
+  }
+
+  .contents {
+display: flex;
+  justify-content: space-between;
+
+  }
+
+  .contents .content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+  }
+
+  
+  .content span:first-child {
+    min-width: 150px; /* Adjust the width as needed */
+  /* }
+} */
+
+
+
+@media screen and (min-width: 800px) {
+
+
+     .create-schedules-container .schedules-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* grid-auto-rows: 200px; */
+
+        grid-gap: 10px;
+    }
+
+     .create-schedules-container .submit-btn {
+        background-color:red;
+        width: 250px;
+        position: absolute;
+        bottom: 25px;
+        right: 50px;
+        left: unset;
+        transform: unset;
+    }
+}
+@media screen and (min-width: 1200px) {
+
+
+     .create-schedules-container .schedules-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (min-width: 1600px) {
+
+
+     .create-schedules-container .schedules-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+}

@@ -18,7 +18,7 @@ export const INPUTS_DATA = [
 export const NEW_PLAYEUR_INPUTS = [
     {
         id:'name',
-        label: 'Nom',
+        label: 'Nom et Prénom',
         type: 'text',
         maxLength: 40,
     },
@@ -43,3 +43,4 @@ export const NEW_PLAYEUR_INPUTS = [
     },
 
 ]
+

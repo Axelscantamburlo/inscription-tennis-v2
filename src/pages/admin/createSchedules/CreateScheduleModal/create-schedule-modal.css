@@ -1,0 +1,87 @@
+
+
+.create-schedule-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-color);
+  color: var(--grey-color);
+  z-index: 200;
+}
+
+
+.create-schedule-modal-container .responsive-container {
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.create-schedule-modal-container h1 {
+    margin: 20px;
+}
+
+.create-schedule-modal-container form {
+  max-height: 100vh;
+  overflow: hidden;
+  z-index: 200;
+  width: 100%;
+}
+
+.create-schedule-modal-container form .inputs-container {
+  width: 80%;
+  padding-top: 20px;
+  margin: 0 auto;
+  height: 90%;
+  overflow: auto;
+}
+
+.create-schedule-modal-container form .inputs-container .inputs {
+  display: flex;
+  flex-direction: column;
+  color: var(--grey-color);
+}
+
+@media screen and (min-width: 1200px) {
+    .create-schedule-modal-container {
+        background-color: var(--background-transparent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .create-schedule-modal-container h1 {
+        color: var(--background-color);
+    }
+  .create-schedule-modal-container .responsive-container {
+    background-color:var(--grey-color);
+    width: 90%;
+    transform: translateY(-100px);
+    border-radius: 15px;
+    height: 400px;
+  }
+
+  .create-schedule-modal-container form {
+    display: block;
+  }
+  .create-schedule-modal-container button:first-child {
+    display: none;
+  }
+ 
+.create-schedule-modal-container form .inputs-container {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 20px;
+  }
+  .create-schedule-modal-container form .inputs-container .inputs {
+    width: 100%; /* Utilisez 100% pour que la largeur s'adapte à la taille de son conteneur */
+    max-width: 200px; /* Définissez une largeur maximale de 200px pour chaque input */
+    box-sizing: border-box;
+  }
+
+  .create-schedule-modal-container form .inputs-container .inputs label {
+    color: var(--background-color)
+  }
+
+}

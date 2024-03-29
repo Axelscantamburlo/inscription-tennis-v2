@@ -20,10 +20,10 @@
   margin: 15px;
   border-radius: 15px;
 }
-
+/* 
 .create-schedules-container .schedules-container .schedule-card:last-child {
   margin-bottom: 70px;
-}
+} */
 
 .create-schedules-container .schedules-container .schedule-card .content {
   margin: 5px 0;
@@ -85,10 +85,10 @@ display: flex;
         grid-gap: 10px;
     }
 
+
      .create-schedules-container .submit-btn {
-        background-color:red;
         width: 250px;
-        position: absolute;
+        position: fixed;
         bottom: 25px;
         right: 50px;
         left: unset;

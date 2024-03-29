@@ -1,7 +1,19 @@
 .show-all-schedules-container {
-    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
     background-color: var(--grey-color);
 }
+.show-all-schedules-container  .inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-all-schedules-container  .inputs select {
+    padding: 15px 20px;
+
+}
+
 
 .show-all-schedules-container .schedules-container {
     height: 80%;
@@ -15,13 +27,13 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         /* grid-auto-rows: 200px; */
-
+        place-items: center;
         grid-gap: 10px;
     }
 
-    .show-all-schedules-container .schedules-container h1 {
+    /* .show-all-schedules-container .schedules-container h1 {
         position: absolute;
-    }
+    } */
     .show-all-schedules-container .schedules-container > div {
         break-inside: avoid;
       }
@@ -32,6 +44,9 @@
 
     .show-all-schedules-container .schedules-container {
         grid-template-columns: repeat(3, 1fr);
+    }
+    .show-all-schedules-container .schedules-container:last-child {
+        margin-bottom: 20px;
     }
 }
 @media screen and (min-width: 1600px) {

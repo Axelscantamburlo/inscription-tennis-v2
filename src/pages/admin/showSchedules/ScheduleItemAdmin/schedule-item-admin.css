@@ -1,6 +1,5 @@
 .show-all-schedules-container .schedule-card {
   width: 90%;
-  margin: 20px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,6 +34,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
   }
 
   .show-all-schedules-container .schedule-card table tbody tr:not(:last-child) {
@@ -52,4 +52,10 @@
 
   .show-all-schedules-container .schedule-card table tbody tr span {
     margin-right: 20px;
+    
+  }
+
+  
+  .show-all-schedules-container .schedule-card table tbody tr span:hover {
+    transform: scale(1.1)
   }

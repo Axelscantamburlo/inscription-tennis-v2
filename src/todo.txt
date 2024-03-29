@@ -1,7 +1,7 @@
 TODO: ne pas oublier d'adapter l'affichage des tableaux en fonctions du niveau et des formules
 TODO: lorsque on clique sur un schedule mette une border green pour que l'utilisateur voit ce qu'il sélectionne 
 TODO: vérifier le style dans login et CreateAccount
-TODO: je crois qu'il n'y a pas les messages d'erreurs dans les login et CreateAccount
+TODO: je crois qu'il n'y a pas les messages d'erreurs dans les login et CreateAccount et loginAdmin
 TODO: Gérer les open/ fermeture de modal
 TODO: Mettre une defaultValue au select de la formule pour que la conserve en cas de retour au moment de l'iscription
 TODO: Peut etre vérifier au moment de la confirmation si les heures de début et les jours ne sont pas les même 

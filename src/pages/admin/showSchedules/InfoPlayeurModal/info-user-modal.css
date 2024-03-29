@@ -7,9 +7,10 @@
 
 /* tab  */
 
-.tab-container {
+.tab-container   {
     margin: 20px;
-    height: 100%;
+    overflow: auto;
+    background-color: red;
 
 }
 
@@ -47,9 +48,17 @@
     
     .register-playeur-modal-container .responsive-box {
         width: 450px;
-        text-align: center;
+        /* text-align: center; */
     }
     .register-playeur-modal-container .responsive-box .tab-buttons {
         margin-top: 50px;
+    }
+    .register-playeur-modal-container .responsive-box .tab-container {
+
+    }
+
+    .register-playeur-modal-container .responsive-box .tab-container  h2 {
+        text-align: left;
+        margin: 40px 0;
     }
 }

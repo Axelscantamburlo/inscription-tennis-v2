@@ -10,7 +10,6 @@
 .tab-container   {
     margin: 20px;
     overflow: auto;
-    background-color: red;
 
 }
 
@@ -19,6 +18,15 @@
     display: flex;
     flex-direction: column;
     margin: 50px 0;
+}
+
+.tab-container .text-container h1,
+.tab-container .text-container h3 {
+    color: var(--blue-color);
+}
+
+.tab-container .text-container h4 {
+    font-size: 20px;
 }
 
 .tab-container .text-container > * {
@@ -30,6 +38,7 @@
 
 .tab-container .buttons-container h2 {
     margin-bottom: 20px;
+    color: var(--blue-color);
 }
 .tab-container .buttons-container button {
     border-radius: 10px;
@@ -53,12 +62,13 @@
     .register-playeur-modal-container .responsive-box .tab-buttons {
         margin-top: 50px;
     }
-    .register-playeur-modal-container .responsive-box .tab-container {
-
-    }
 
     .register-playeur-modal-container .responsive-box .tab-container  h2 {
         text-align: left;
         margin: 40px 0;
+    }
+    .register-playeur-modal-container .responsive-box .tab-container  h2 span {
+        font-weight: bold;
+        color: var(--blue-color)
     }
 }

@@ -53,7 +53,7 @@ export default function CreateAccount() {
         <>
         <div className='login-container'>
             <div className="box">
-            <h1>Se connecter</h1>  
+            <h1>Créer un compte</h1>  
 
               <form onSubmit={handleSubmit}>
 

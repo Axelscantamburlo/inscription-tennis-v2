@@ -13,3 +13,4 @@ TODO: regarder dans AddPlayeur au niveau du message d'erreur ( en mettre un ???)
 TODO: Mettre la date d'inscription dans firebase et l'afficher (aussi dans show all users faire un calcul ta capté)
 TODO: Enregister les noms en lowerCase dans les schedules
 TODO: Boutton arreter les inscriptions
+TODO: Gérer les accents dans le fichier excel

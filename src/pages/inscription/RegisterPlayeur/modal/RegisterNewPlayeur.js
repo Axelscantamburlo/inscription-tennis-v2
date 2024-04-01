@@ -2,7 +2,17 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // FIREBASE
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  query,
+  where,
+  limit,
+  orderBy,
+  limitToLast
+} from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
 
 // REDUX
@@ -20,19 +30,37 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [loadedExcelData, setLoadedExcelData] = useState([]);
+  // const [loadedExcelData, setLoadedExcelData] = useState([]);
+  // const loadExcelUsers = async () => {
+  //   const querySnapshot = await getDocs(collection(db, "excel-users"));
+  //   const dataArr = [];
+  //   querySnapshot.forEach((doc) => {
+  //     dataArr.push(doc.data());
+  //   });
+  //   setLoadedExcelData(dataArr);
+  // };
+  // useEffect(() => {
+  //   loadExcelUsers();
+  // }, []);
 
-  const loadExcelUsers = async () => {
-    const querySnapshot = await getDocs(collection(db, "excel-users"));
-    const dataArr = [];
-    querySnapshot.forEach((doc) => {
-      dataArr.push(doc.data());
-    });
-    setLoadedExcelData(dataArr);
+  const loadExcelUsers = async (name) => {
+    const q = query(
+      collection(db, "excel-users"),
+      where("name", "==", name),
+      orderBy('name'),
+      limit(1)
+    );
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      return querySnapshot.docs[0].data();
+    } else {
+      return null;
+    }
+    // querySnapshot.forEach((doc) => {
+    //   // doc.data() is never undefined for query doc snapshots
+    //   return doc.data()
+    // });
   };
-  useEffect(() => {
-    loadExcelUsers();
-  }, []);
 
   const [registerPlayeurInfo, setRegisterPlayeurInfo] = useState({
     name: "",
@@ -59,15 +87,17 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     e.preventDefault();
 
     const cleanName = name.trim().replace(/\s+/g, " ").toLowerCase();
-
+    console.log(cleanName);
     if (!cleanName || !phone || !email || !birthDay) {
       setErrorMessage("Veuillez remplir tous les champs");
       return;
     }
 
-    const playeur = loadedExcelData.find(
-      (data) => data.name.toLowerCase() === cleanName
-    );
+    // const playeur = loadedExcelData.find(
+    //   (data) => data.name.trim().replace(/\s+/g, " ").toLowerCase() === cleanName
+    // );
+
+    const playeur = await loadExcelUsers(cleanName);
 
     if (!playeur) {
       setErrorMessage(
@@ -124,20 +154,20 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
         </button>
         {/* A mapper */}
         <div className="tab-buttons">
-        <ul>
-          <li
-            onClick={() => setToggleClassName(0)}
-            className={toggleClassName === 0 ? "underlign" : null}
-          >
-            Ré-inscription
-          </li>
-          <li
-            className={toggleClassName === 1 ? "underlign" : null}
-            onClick={() => setToggleClassName(1)}
-          >
-            Nouvelle inscription
-          </li>
-        </ul>
+          <ul>
+            <li
+              onClick={() => setToggleClassName(0)}
+              className={toggleClassName === 0 ? "underlign" : null}
+            >
+              Ré-inscription
+            </li>
+            <li
+              className={toggleClassName === 1 ? "underlign" : null}
+              onClick={() => setToggleClassName(1)}
+            >
+              Nouvelle inscription
+            </li>
+          </ul>
         </div>
         <h2>Joueur</h2>
         <form onSubmit={handleFormSubmit}>

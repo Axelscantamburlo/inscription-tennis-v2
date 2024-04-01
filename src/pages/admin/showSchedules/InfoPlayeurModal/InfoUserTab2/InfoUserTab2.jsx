@@ -8,9 +8,9 @@ import {
   getPlayeurInscription,
   findPriceToPay,
 } from "../../../../../functions/getPlayeurInscription";
+import { formatDate } from "../../../../../functions/formatDate";
 
-export default function InfoUserTab2({ playeurClick }) {
- 
+export default function InfoUserTab2({ playeurClick, dateInscription }) {
   // Appel d'une fonction externe pour récupérer les horaires d'inscriptions du joueur et les afficher
   const { loadedData } = useContext(AllDataSchedules);
   const [playeurInscription, setPlayeurInscription] = useState([]);
@@ -27,21 +27,25 @@ export default function InfoUserTab2({ playeurClick }) {
   return (
     <div className="tab-container">
       <div className="text-container">
-        <p>Formule : </p>
+        <h3>Formule : </h3>
         {playeurInscription.length === 0 ? (
-          <p>Pas inscrit</p>
+          <h3>Pas inscrit</h3>
         ) : (
-          <p>{playeurInscription.length} heure(s) par semaine</p>
+          <h4>{playeurInscription.length} heure(s) par semaine</h4>
         )}
       </div>
       <div className="text-container">
-        <p>Inscription(s) : </p>
+        <h3>Date inscription :</h3>
+        <h4>{formatDate(dateInscription)}</h4>
+      </div>
+      <div className="text-container">
+        <h3>Inscription(s) : </h3>
         {playeurInscription?.map((inscription, index) => {
           const { startHour, endHour, day } = inscription;
           return (
-            <p key={index}>
-              {inscription.day} de {inscription.startHour} à {inscription.endHour}
-            </p>
+            <h4 key={index}>
+              {day} de {startHour} à {endHour}
+            </h4>
           );
         })}
       </div>

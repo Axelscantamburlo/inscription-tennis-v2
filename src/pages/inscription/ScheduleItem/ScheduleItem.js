@@ -34,7 +34,7 @@ export default function ScheduleItem({ schedule, path }) {
         ></div>
       </div>
       <div className="bottom-card">
-        <p>{numberOfPlaces - usersRegisted.length} places disponnibles</p>
+        <p>{numberOfPlaces - usersRegisted.length} places disponibles</p>
         <button style={numberOfPlaces - usersRegisted.length === 0 ? {opacity: '0.5'} : null} onClick={() => numberOfPlaces - usersRegisted.length !== 0 && handleChooseSchedule()}>
           Choisir cette heure
         </button>

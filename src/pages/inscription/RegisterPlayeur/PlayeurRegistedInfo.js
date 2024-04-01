@@ -29,11 +29,11 @@ export default function PlayeurRegistedInfo({ playeurInfo }) {
   return (
     <div className="playeur-card">
       <h2>{name.toUpperCase()}</h2>
-      {playeurInscription.length === 0 && <p>Pas inscrit</p>}
       <h2>Inscription(s) :</h2>
-      {playeurInscription.map((inscription, index) => {
+      {playeurInscription.length === 0 && <p className="p-style">Pas inscrit</p>}
+      {playeurInscription?.map((inscription, index) => {
         return (
-            <p key={index}>
+            <p className="p-style" key={index}>
                {inscription.day} de {inscription.startHour} à {inscription.endHour}
             </p>
         );

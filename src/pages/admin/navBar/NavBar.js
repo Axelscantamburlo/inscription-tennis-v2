@@ -15,10 +15,15 @@ export default function NavBar({toggleClassName}) {
             text: 'Ajouter un créneau'
         },
         {
-            link: '/admin/renseignements-joueurs',
+            link: '/admin/liste-joueurs',
             style: 3,
-            text: 'Renseigements joueurs'
-        }
+            text: 'Liste joueurs'
+        },
+        // {
+        //     link: '/admin/renseignements-joueurs',
+        //     style: 4,
+        //     text: 'Renseignements joueurs'
+        // }
     ]
 
     // li style

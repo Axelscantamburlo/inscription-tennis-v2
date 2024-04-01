@@ -23,6 +23,6 @@ export const handleButtonClick = (
   } else if (selectedSchedule == null) {
     return setErrorMessage("Veuillez sélectionner un créneau");
   } else {
-    return setErrorMessage("Plus de places disponnibles");
+    return setErrorMessage("Plus de places disponibles");
   }
 };

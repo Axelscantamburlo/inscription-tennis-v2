@@ -32,7 +32,6 @@ export default function CreateScheduleModal({ setOpenModal0 }) {
     setScheduleCreate({ ...scheduleCreate, [name]: value });
   };
 
-  const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSumbit = async (e) => {
@@ -46,7 +45,7 @@ export default function CreateScheduleModal({ setOpenModal0 }) {
       playedForm &&
       educator
     ) {
-      setShowModal(false);
+      setOpenModal0(false);
       const docRef = await addDoc(collection(db, "schedules"), {
         ...scheduleCreate,
         usersRegisted: [],

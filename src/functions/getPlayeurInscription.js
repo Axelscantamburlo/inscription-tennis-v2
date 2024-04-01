@@ -6,6 +6,9 @@ const playeurInscriptions = loadedData.filter((data) =>
 }
 
 export  const findPriceToPay = (playeurInscriptions, level) => {
+    if(playeurInscriptions.length === 0) {
+        return '0€ (Pas inscrit)'
+    }
     if(level === '0') {
         return "127€"
     } else {

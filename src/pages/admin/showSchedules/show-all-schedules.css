@@ -18,17 +18,18 @@
 .show-all-schedules-container .schedules-container {
     height: 80%;
     margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    /* grid-auto-rows: 200px; */
+    place-items: center;
+    grid-gap: 10px;
 }
 
 @media screen and (min-width: 800px) {
 
 
     .show-all-schedules-container .schedules-container {
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        /* grid-auto-rows: 200px; */
-        place-items: center;
-        grid-gap: 10px;
     }
 
     /* .show-all-schedules-container .schedules-container h1 {

@@ -24,11 +24,11 @@ root.render(
       {/* <PersistGate loading={null} persistor={persistor}> */}
       <UidUserConnectedProvider>
         <AllDataSchedulesProvider>
-          <AllDataUsersProvider>
+          {/* <AllDataUsersProvider> */}
             <ModalProvider>
               <App />
             </ModalProvider>
-          </AllDataUsersProvider>
+          {/* </AllDataUsersProvider> */}
         </AllDataSchedulesProvider>
       </UidUserConnectedProvider>
       {/* </PersistGate> */}

@@ -36,7 +36,8 @@ export default function EditScheduleModal({ scheduleClick, setOpenModal1 }) {
     
   return (
     <div className="create-schedule-modal-container">
-        <h1 style={{margin: '20px'}} className="title">Modifier un créneau</h1>
+        <div className="responsive-container">
+        <h1 className="title">Modifier un créneau</h1>
               <button className="close-modal" onClick={() => setOpenModal1(false)}>
           &times;
         </button>
@@ -46,6 +47,7 @@ export default function EditScheduleModal({ scheduleClick, setOpenModal1 }) {
 
        <button className="submit-btn" type="submit">Valider</button>
         </form>
+        </div>
     </div>
   );
 }

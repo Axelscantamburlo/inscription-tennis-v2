@@ -25,7 +25,7 @@ export default function InscriptionSchedules() {
   const { loadedData } = useContext(AllDataSchedules);
   // récucpérer les infos de l'utilisateur (son niveau)
   const { level } = useSelector((state) => state.user);
-
+  console.log(level);
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const { selectedScheduleFirst } = useSelector((state) => state.schedule);
 
@@ -70,10 +70,11 @@ export default function InscriptionSchedules() {
       </div>
       <div className="schedules-container">
         {chooseFormule === "1h par semaine" ||
-        chooseFormule === "2h par semaine" || chooseFormule === 'forme jouée 3h par semaine' ? (
+        chooseFormule === "2h par semaine" ? (
           <>
             {loadedData
               .filter((el) => el.level === level)
+              .filter(el => el.playedForm === "0")
               // .filter(el => el.numberOfPlaces - el.usersRegisted.length !== 0)TODO: je sais pas si je met
               .map((schedule, index) => {
                 return (
@@ -81,6 +82,18 @@ export default function InscriptionSchedules() {
                 );
               })}
           </>
+        ) : chooseFormule === 'Forme jouée 2h par semaine' || chooseFormule === 'Forme jouée 3h par semaine' ? (
+          <>
+          {loadedData
+              .filter((el) => el.level === level)
+              .filter(el => el.playedForm === "1")
+
+              // .filter(el => el.numberOfPlaces - el.usersRegisted.length !== 0)TODO: je sais pas si je met
+              .map((schedule, index) => {
+                return (
+                  <ScheduleItem schedule={schedule} path="First" key={index} />
+                );
+              })}</>
         ) : null}
       </div>
       <button

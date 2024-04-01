@@ -53,7 +53,7 @@ export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
         {activeTab === 0 && (
           <InfoUserTab1 infoPlayeurClick={infoPlayeurClick} />
         )}
-        {activeTab === 1 && <InfoUserTab2 playeurClick={playeurClick} />}
+        {activeTab === 1 && <InfoUserTab2 playeurClick={playeurClick} dateInscription={infoPlayeurClick.dateInscription} />}
         {activeTab === 2 && (
           <InfoUserTab3
             infoPlayeurClick={infoPlayeurClick}

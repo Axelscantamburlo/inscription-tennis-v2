@@ -22,7 +22,7 @@ export default function InfoUserTab3({ infoPlayeurClick, setShowModal2 }) {
     pricePay,
     howManyTimePaiement,
     typePaiement,
-  } = infoPlayeurClick[0];
+  } = infoPlayeurClick[0] || {};
   const [price, setPrice] = useState("");
 
   useEffect(() => {
@@ -67,15 +67,32 @@ export default function InfoUserTab3({ infoPlayeurClick, setShowModal2 }) {
   return (
     <div className="tab-container">
       {isPayed ? (
-        <div className="text-container">
-          <h1>Prix payé: {pricePay}</h1>
-          <p>Moyen de paiement: {typePaiement}</p>
-          <p>Paiement en: {howManyTimePaiement}</p>
-          <button className="submit-btn" onClick={handleConfirmPaiement}>Annuler le paiement</button>
-        </div>
+        // <div className="text-container">
+        //   <h1><span>Prix payé:</span> {pricePay}</h1>
+        //   <p><span>Moyen de paiement: </span>{typePaiement}</p>
+        //   <p><span>Paiement en: </span>{howManyTimePaiement}</p>
+        // </div>
+        <>
+          <div className="text-container">
+            <h1>Prix payé: </h1>
+            <h4>{pricePay}</h4>
+          </div>
+          <div className="text-container">
+            <h3>Moyen de paiement:</h3>
+            <h4>{typePaiement}</h4>
+          </div>
+          <div className="text-container">
+            <h3>Paiement en: </h3>
+            <h4>{howManyTimePaiement}</h4>
+          </div>
+        <button className="submit-btn" onClick={handleConfirmPaiement}>Annuler le paiement</button>
+        </>
       ) : (
         <>
-          <h2>Prix à payer: {price}</h2>
+          <h2>
+            <span style={{ color: "var(--blue-color)" }}>Prix à payer:</span>{" "}
+            {price}
+          </h2>
           <div className="buttons-container">
             <h2>Moyen de paiement:</h2>
             <div className="buttons">
@@ -85,7 +102,10 @@ export default function InfoUserTab3({ infoPlayeurClick, setShowModal2 }) {
                   onClick={() => setSelectedMethodPaiement(item)}
                   style={
                     selectedMethodPaiement === item
-                      ? { background: "var(--background-color)", color: 'var(--grey-color)' }
+                      ? {
+                          background: "var(--background-color)",
+                          color: "var(--grey-color)",
+                        }
                       : null
                   }
                 >
@@ -103,7 +123,10 @@ export default function InfoUserTab3({ infoPlayeurClick, setShowModal2 }) {
                   onClick={() => setSelectedHowManyTimePaiement(item)}
                   style={
                     selectedHowManyTimePaiement === item
-                      ? { background: "var(--background-color)", color: 'var(--grey-color)' }
+                      ? {
+                          background: "var(--background-color)",
+                          color: "var(--grey-color)",
+                        }
                       : null
                   }
                 >

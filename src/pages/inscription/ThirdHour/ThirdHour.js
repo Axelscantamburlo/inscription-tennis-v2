@@ -25,7 +25,7 @@ export default function ThirdHour() {
   const { level } = useSelector((state) => state.user);
 
   const {
-    selectedScheduleFirst ,
+    selectedScheduleFirst,
     selectedScheduleSecond,
     selectedScheduleThird,
   } = useSelector((state) => state.schedule);
@@ -40,30 +40,30 @@ export default function ThirdHour() {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-
-    if(selectedScheduleFirst === null || selectedScheduleSecond === null) {
-      navigate('/inscrire-un-joueur/inscription')
+    if (selectedScheduleFirst === null || selectedScheduleSecond === null) {
+      navigate("/inscrire-un-joueur/inscription");
     }
-}, []);
+  }, []);
 
-useEffect(() => {
-  const confirmRefresh = (event) => {
-    event.preventDefault();
-    const message = 'Êtes-vous sûr de vouloir actualiser la page ? Toutes vos modifications seront perdues.';
-    event.returnValue = message; // For Chrome
-    return message; // For Firefox
-  };
+  useEffect(() => {
+    const confirmRefresh = (event) => {
+      event.preventDefault();
+      const message =
+        "Êtes-vous sûr de vouloir actualiser la page ? Toutes vos modifications seront perdues.";
+      event.returnValue = message; // For Chrome
+      return message; // For Firefox
+    };
 
-  if (selectedScheduleFirst === null || selectedScheduleSecond === null) {
-    navigate('/inscrire-un-joueur/inscription');
-  }
+    if (selectedScheduleFirst === null || selectedScheduleSecond === null) {
+      navigate("/inscrire-un-joueur/inscription");
+    }
 
-  window.addEventListener('beforeunload', confirmRefresh);
+    window.addEventListener("beforeunload", confirmRefresh);
 
-  return () => {
-    window.removeEventListener('beforeunload', confirmRefresh);
-  };
-}, [selectedScheduleFirst, selectedScheduleSecond, navigate]);
+    return () => {
+      window.removeEventListener("beforeunload", confirmRefresh);
+    };
+  }, [selectedScheduleFirst, selectedScheduleSecond, navigate]);
   return (
     <div className="inscription-schedules-container">
       <div style={{ position: "relative" }}>
@@ -78,8 +78,12 @@ useEffect(() => {
         {loadedData
           .filter(
             (el) =>
-              el.level === level && el.uid !== selectedScheduleFirst?.uid && el.uid !== selectedScheduleSecond?.uid
+              el.level === level &&
+              el.uid !== selectedScheduleFirst?.uid &&
+              el.uid !== selectedScheduleSecond?.uid
           )
+          .filter((el) => el.playedForm === "0")
+
           .map((schedule, index) => {
             return (
               <div className="schedule" key={index}>

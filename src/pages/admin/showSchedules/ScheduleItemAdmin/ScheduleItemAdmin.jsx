@@ -11,6 +11,7 @@ import { useModal } from "../../../../context/ModalContext";
 import {
   convertLevelToWord,
   convertFormuleToWord,
+  convertLevelToColor,
 } from "../../../../functions/convertLevelToWord";
 
 // ICONS
@@ -46,14 +47,6 @@ export default function ScheduleItemAdmin({ schedule }) {
   // console.log(showInfoPlayeurModal);
   const [playeurClick, setPlayeurClick] = useState("");
 
-  const color = {
-     0: "white",
-      1: "magenta",
-      2: "red",
-      3: "orange",
-      4: "green",
-      5: "yellow",
-  }
   return (
     <>  
       <div className="schedule-card">
@@ -67,7 +60,7 @@ export default function ScheduleItemAdmin({ schedule }) {
             <p>{convertFormuleToWord(playedForm)}</p>
           </div>
         </div>
-        <table style={{backgroundColor: color[level]}}>
+        <table style={{backgroundColor: convertLevelToColor(level)}}>
           <tbody>
             {tableData.map((item, index) => (
               <tr key={index} style={item ? {padding: "15px 5px"} : {height: "50px"}}>

@@ -72,6 +72,8 @@ export default function SecondHour() {
       <div className="schedules-container">
         {loadedData
           .filter((el) => el.level === level && el.uid !== selectedScheduleFirst.uid)
+          .filter(el => el.playedForm === '0')
+
           .map((schedule, index) => {
             return (
               <div className="schedule" key={index}>

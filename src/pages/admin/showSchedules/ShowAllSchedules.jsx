@@ -12,15 +12,21 @@ export default function ShowAllSchedules() {
   const [sortBy, setSortBy] = useState("level");
 
   const sortedSchedules = loadedData?.sort((a, b) => {
-    if (sortBy === "day") {
-      const daysOrder = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+    if (sortBy === "level") {
+      const numbersArray = Array.from({ length: 15 }, (_, index) => index.toString()); 
+      return numbersArray.indexOf(a.level) - numbersArray.indexOf(b.level);
+    } else if (sortBy === "day") {
+      const daysOrder = [
+        "Lundi",
+        "Mardi",
+        "Mercredi",
+        "Jeudi",
+        "Vendredi",
+        "Samedi",
+        "Dimanche",
+      ];
       return daysOrder.indexOf(a.day) - daysOrder.indexOf(b.day);
-    } else if (sortBy === "level") {
-      const levelOrder = ['0', '1', '2', '3', '4', '5', '6'];
-      // console.log(levelOrder.indexOf(a.level) - levelOrder.indexOf(b.level));
-      return levelOrder.indexOf(a.level) - levelOrder.indexOf(b.level);
-    }
-    else if (sortBy === "numberOfPlaces") {
+    } else if (sortBy === "numberOfPlaces") {
       return a.numberOfPlaces - b.numberOfPlaces;
     }
   });
@@ -29,37 +35,39 @@ export default function ShowAllSchedules() {
     <div className="show-all-schedules-container">
       <NavBar toggleClassName={1} />
       <div className="inputs">
-      <select style={{marginTop: '70px'}} value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-        <option value="level">Trier par niveau</option>
-        <option value="day">Trier par jour</option>
-        <option value="numberOfPlaces">Nombre de places</option>
-      </select>
+        <select
+          style={{ marginTop: "70px" }}
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+        >
+          <option value="level">Trier par niveau</option>
+          <option value="day">Trier par jour</option>
+          <option value="numberOfPlaces">Nombre de places</option>
+        </select>
       </div>
       <div className="schedules-container">
-      {sortedSchedules?.map((schedule, index) => (
-       
-            <>
+        {sortedSchedules?.map((schedule, index) => (
+          <>
             <ScheduleItemAdmin schedule={schedule} />
-            </>
+          </>
         ))}
       </div>
     </div>
   );
 }
 
-
-  // return (
-  //   <div className="show-all-schedules-container">
-  //     <NavBar toggleClassName={1} />
-  //     <div className="schedules-container">
-  //     {sortedSchedulesByDay?.map((schedule, index) => (
-  //         <div key={index}>
-  //           {index === 0 || schedule.day !== sortedSchedulesByDay[index - 1].day ? (
-  //             <h1>{schedule.day}</h1>
-  //           ) : null}
-  //           <ScheduleItemAdmin schedule={schedule} />
-  //         </div>
-  //       ))}
-  //     </div>
-  //   </div>
-  // );
+// return (
+//   <div className="show-all-schedules-container">
+//     <NavBar toggleClassName={1} />
+//     <div className="schedules-container">
+//     {sortedSchedulesByDay?.map((schedule, index) => (
+//         <div key={index}>
+//           {index === 0 || schedule.day !== sortedSchedulesByDay[index - 1].day ? (
+//             <h1>{schedule.day}</h1>
+//           ) : null}
+//           <ScheduleItemAdmin schedule={schedule} />
+//         </div>
+//       ))}
+//     </div>
+//   </div>
+// );

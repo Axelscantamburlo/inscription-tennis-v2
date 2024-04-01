@@ -1,4 +1,3 @@
-import { fetchDataFunction } from "../functions/fetchDataFunction";
 
 export const SET_PLAYEUR_INFO = 'SET_PLAYEUR_INFO'
 export const SET_SELECT_SCHEDULE = 'SET_SELECT_SCHEDULE'

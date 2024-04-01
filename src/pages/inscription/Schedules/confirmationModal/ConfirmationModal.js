@@ -21,16 +21,18 @@ export default function ConfirmationModal({ setOpenModal }) {
 
   // récucpérer les infos de l'utilisateur (son niveau)
   const playeurInfo = useSelector((state) => state.user);
-
   //  const [playeurInfoState, setPlayeurInfoState] = useState({...playeurInfo, inscriptions: [], priceToPay: '', isStillRegisted: true})
   const [playeurInfoState, setPlayeurInfoState] = useState({
     ...playeurInfo,
     isPayed: false,
+
+    inscriptionDate: new Date(),  
   });
+  // console.log(playeurInfoState);
+  console.log(playeurInfoState);
   const { name, level } = playeurInfoState;
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const inscriptions = useSelector((state) => state.schedule);
-
 
   const handleConfirm = async () => {
     for (const key in inscriptions) {
@@ -67,7 +69,12 @@ export default function ConfirmationModal({ setOpenModal }) {
   return (
     <div className="confirmation-modal-container">
       <div className="card">
-        <h1 className="title" style={{color: 'var(--background-color)', margin: '10px 0'}}>Confirmer l'inscription</h1>
+        <h1
+          className="title"
+          style={{ color: "var(--background-color)", margin: "10px 0" }}
+        >
+          Confirmer l'inscription
+        </h1>
         <p>Confirmez votre inscription pour le(s) créneau(x) suivant(s) :</p>
         {schedulesChoose.map((schedule, index) => (
           <h2 style={{ fontWeight: "bold" }} key={index}>
@@ -79,8 +86,12 @@ export default function ConfirmationModal({ setOpenModal }) {
           sera possible par la suite.
         </p>
         <div className="buttons">
-          <button className="cancel-button" onClick={() => setOpenModal(false)}>Annuler</button>
-          <button className="confirm-button" onClick={handleConfirm}>Confirmer</button>
+          <button className="cancel-button" onClick={() => setOpenModal(false)}>
+            Annuler
+          </button>
+          <button className="confirm-button" onClick={handleConfirm}>
+            Confirmer
+          </button>
         </div>
       </div>
     </div>

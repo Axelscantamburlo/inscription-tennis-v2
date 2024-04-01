@@ -26,7 +26,7 @@ export default function ConfirmationModal({ setOpenModal }) {
     ...playeurInfo,
     isPayed: false,
 
-    inscriptionDate: new Date(),  
+    dateInscription: new Date(),  
   });
   // console.log(playeurInfoState);
   console.log(playeurInfoState);

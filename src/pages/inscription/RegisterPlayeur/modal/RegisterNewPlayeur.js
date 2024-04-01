@@ -26,6 +26,9 @@ import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 import { NEW_PLAYEUR_INPUTS } from "../../../../data/inputsData";
 import { useModal } from "../../../../context/ModalContext";
 
+// DEPENDENCIE
+import ReactFlagsSelect from "react-flags-select";
+
 export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -68,9 +71,12 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     email: "",
     birthDay: "",
     level: null,
+    job: '',
+    nationality: '',
+    adress: '',
   });
 
-  const { name, phone, email, birthDay } = registerPlayeurInfo;
+  const { name, phone, email, birthDay, nationality, adress } = registerPlayeurInfo;
 
   const handleInputChange = (e) => {
     const { value, name } = e.target;
@@ -88,7 +94,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
 
     const cleanName = name.trim().replace(/\s+/g, " ").toLowerCase();
     console.log(cleanName);
-    if (!cleanName || !phone || !email || !birthDay) {
+    if (!cleanName || !phone || !email || !birthDay || !nationality || !adress) {
       setErrorMessage("Veuillez remplir tous les champs");
       return;
     }
@@ -145,7 +151,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   }
 
   const [toggleClassName, setToggleClassName] = useState(0);
-
+  const [countrySelected, setCountrySelected] = useState('')
   return (
     <div className="register-playeur-modal-container">
       <div className="box">
@@ -187,6 +193,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
               </div>
             );
           })}
+
           <button type="submit" className="submit-btn">
             Valider
           </button>

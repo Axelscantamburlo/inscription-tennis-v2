@@ -1,16 +1,20 @@
 TODO: ne pas oublier d'adapter l'affichage des tableaux en fonctions du niveau et des formules
-TODO: lorsque on clique sur un schedule mette une border green pour que l'utilisateur voit ce qu'il sélectionne 
-TODO: vérifier le style dans login et CreateAccount
 TODO: je crois qu'il n'y a pas les messages d'erreurs dans les login et CreateAccount et loginAdmin
-TODO: Gérer les open/ fermeture de modal
 TODO: Mettre une defaultValue au select de la formule pour que la conserve en cas de retour au moment de l'iscription
 TODO: Peut etre vérifier au moment de la confirmation si les heures de début et les jours ne sont pas les même 
 pour éviter qu'un mec s'inscrire deux fois au même moment
-TODO: MEttre les cursor pointer et les hover
 TODO: Faire un systeme de redirection si la personne n'est pas connectée
 TODO: Faire une erreur 404
-TODO: regarder dans AddPlayeur au niveau du message d'erreur ( en mettre un ???)
-TODO: Mettre la date d'inscription dans firebase et l'afficher (aussi dans show all users faire un calcul ta capté)
 TODO: Enregister les noms en lowerCase dans les schedules
 TODO: Boutton arreter les inscriptions
 TODO: Gérer les accents dans le fichier excel
+TODO: Gérer les prix*
+
+
+DO:
+TODO: Gérer les open/ fermeture de modal
+TODO: MEttre les cursor pointer et les hover
+TODO: vérifier le style dans login et CreateAccount
+TODO: lorsque on clique sur un schedule mette une border green pour que l'utilisateur voit ce qu'il sélectionne 
+TODO: regarder dans AddPlayeur au niveau du message d'erreur ( en mettre un ???)
+TODO: Mettre la date d'inscription dans firebase et l'afficher (aussi dans show all users faire un calcul ta capté)

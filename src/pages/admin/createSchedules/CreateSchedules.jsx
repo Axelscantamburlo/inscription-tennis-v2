@@ -10,7 +10,7 @@ import DeleteScheduleModal from "./DeleteScheduleModal/DeleteScheduleModal";
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
 import { useModal } from "../../../context/ModalContext";
 // FUNCTION
-import { convertLevelToWord } from "../../../functions/convertLevelToWord";
+import { convertLevelToColor, convertLevelToWord } from "../../../functions/convertLevelToWord";
 
 export default function CreateSchedules() {
   const { loadedData } = useContext(AllDataSchedules);
@@ -58,7 +58,7 @@ export default function CreateSchedules() {
               </div>
               <div className="content">
                 <span>Niveau : </span>
-                <span> {convertLevelToWord(level)}</span>
+                <span style={{color: convertLevelToColor(level)}}> {convertLevelToWord(level)}</span>
               </div>
               <div className="content">
                 <span>Nombre de places :</span>

@@ -145,24 +145,24 @@ input[type='time'] {
         font-size: 15px;
     }
 
-    form::-webkit-scrollbar {
+    *::-webkit-scrollbar {
         width: 10px; /* Largeur de la barre de défilement */
     }
     
-    form::-webkit-scrollbar-thumb {
+    *::-webkit-scrollbar-thumb {
         background-color: #888; /* Couleur du fond de la barre de défilement */
         border-radius: 5px; /* Arrondi des coins de la barre de défilement */
     }
     
-    form::-webkit-scrollbar-track {
+    *::-webkit-scrollbar-track {
         background-color: #f1f1f1; /* Couleur de fond de la zone de la barre de défilement */
     }
-    form::-webkit-scrollbar-thumb:horizontal {
+    *::-webkit-scrollbar-thumb:horizontal {
         background-color: initial; /* Remise à la couleur par défaut */
         border-radius: initial; /* Remise au rayon initial */
     }
     
-    form::-webkit-scrollbar-track:horizontal {
+    *::-webkit-scrollbar-track:horizontal {
         background-color: initial; /* Remise à la couleur de fond par défaut */
     }
 

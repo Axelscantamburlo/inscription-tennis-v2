@@ -22,7 +22,7 @@ export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
   
   const { usersData } = useContext(AllDataUsers);
   const [infoPlayeurClick, setInfoPlayeurClick] = useState([]);
-
+  
   useEffect(() => {
     const info = usersData.filter((user) => user.name == playeurClick);
 
@@ -53,7 +53,7 @@ export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
         {activeTab === 0 && (
           <InfoUserTab1 infoPlayeurClick={infoPlayeurClick} />
         )}
-        {activeTab === 1 && <InfoUserTab2 playeurClick={playeurClick} dateInscription={infoPlayeurClick.dateInscription} />}
+        {activeTab === 1 && <InfoUserTab2 playeurClick={playeurClick} dateInscription={infoPlayeurClick[0].dateInscription} />}
         {activeTab === 2 && (
           <InfoUserTab3
             infoPlayeurClick={infoPlayeurClick}

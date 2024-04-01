@@ -17,7 +17,6 @@ import { formatDate } from "../../../functions/formatDate";
 // DEPENDENCIE
 // import {XLSX} from 'xlsx'
 
-
 export default function ShowAllUsers() {
   // Récupérer et stocker tous les joueurs INSCRITS
   const { usersData } = useContext(AllDataUsers);
@@ -36,15 +35,14 @@ export default function ShowAllUsers() {
     setFilteredPlayeursInfos(filteredUsers);
   };
 
-
   // const handleDownload = () => {
   //   const wb = XLSX.utils.book_new()
   //    const ws = XLSX.utils.json_to_sheet(usersData)
   //    XLSX.utils.book_append_sheet(wb, ws, "MySheet1")
   //    XLSX.writeFile(wb, "MyExcel.xlsx")
   // };
- 
 
+  const currentTimestamp = new Date().getTime();
   const [showModal2, setShowModal2] = useState(false);
   const [playeurClick, setPlayeurClick] = useState("");
   return (
@@ -63,6 +61,10 @@ export default function ShowAllUsers() {
         {(searchBar.length >= 2 ? filteredPlayeursInfos : usersData).map(
           (playeurInfo, index) => {
             const { name, isPayed, dateInscription } = playeurInfo;
+            const limitePaiement =
+              dateInscription.seconds * 1000 +
+              dateInscription.nanoseconds / 1000000 +
+              604800000;
             return (
               <div
                 className="user-card"
@@ -71,8 +73,8 @@ export default function ShowAllUsers() {
                   setShowModal2(true);
                   setPlayeurClick(name);
                 }}
-                style={isPayed ? {border: '3px solid #2E933C'} : {border: '3px solid var(--red-color)'}}
-                
+                // style={isPayed ? {border: '3px solid #2E933C'} : {border: '3px solid var(--red-color)'}}
+                style={isPayed ? { border: "3px solid #2E933C" } : currentTimestamp > limitePaiement ? { border: "3px solid var(--red-color)" } : { border: " 3px solid orange" }}
               >
                 <h2>{name.toUpperCase()}</h2>
                 <p>{formatDate(dateInscription)}</p>
@@ -83,7 +85,12 @@ export default function ShowAllUsers() {
         )}
       </div>
       {/* <button onClick={handleDownload}>Cliquer</button> */}
-      {showModal2 && <InfoPlayeurModal playeurClick={playeurClick} setShowModal2={setShowModal2} />}
+      {showModal2 && (
+        <InfoPlayeurModal
+          playeurClick={playeurClick}
+          setShowModal2={setShowModal2}
+        />
+      )}
     </div>
   );
 }

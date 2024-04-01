@@ -18,7 +18,7 @@ export default function ThankYouPage() {
         </p>
         <p>
           Durant ce laps de temps, l'équipe pédagogique sera susceptible de vous
-          contactez dans l'objectif d'une meilleure harmonisation et cohérence
+          contactez <br /> dans l'objectif d'une meilleure harmonisation et cohérence
           du niveau des groupes.
         </p>
         <p style={{ color: "var(--red-color)", maxWidth: "80%" }}>

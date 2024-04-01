@@ -23,6 +23,12 @@ export const NEW_PLAYEUR_INPUTS = [
         maxLength: 40,
     },
     {
+        id: 'nationality',
+        label :'Nationalité',
+        type: 'text',
+        maxLength: 100
+    },
+    {
         id:'phone',
         label: 'Numéro de téléphone',
         type: 'text',
@@ -40,6 +46,18 @@ export const NEW_PLAYEUR_INPUTS = [
         label: 'Date de naissance',
         type: 'date',
         maxLength: 100,
+    },
+    {
+        id: 'job',
+        label :'Profession',
+        type: 'text',
+        maxLength: 100
+    },
+    {
+        id: 'adress',
+        label :'Adresse postale',
+        type: 'text',
+        maxLength: 100
     },
 
 ]

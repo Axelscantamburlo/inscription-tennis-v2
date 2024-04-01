@@ -40,7 +40,7 @@
     overflow-x: hidden;
     overflow-y: auto; /* Utilisez "auto" au lieu de "scroll" pour activer le défilement uniquement si nécessaire */
     max-height: 70vh;
-    height: 75%;
+    height: 65%;
 }
 
 

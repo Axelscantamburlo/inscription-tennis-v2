@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 // FIREBASE
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { QueryConstraint, collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "../../../config/firebase-config";
 
 // COMPONENT
@@ -15,11 +15,18 @@ import { AllDataUsers } from "../../../context/AllDataUsers";
 import { formatDate } from "../../../functions/formatDate";
 
 // DEPENDENCIE
-// import {XLSX} from 'xlsx'
+
+import * as XLSX from 'xlsx';
+
+// ICONS
+import { RiFileDownloadLine } from "react-icons/ri";
 
 export default function ShowAllUsers() {
   // Récupérer et stocker tous les joueurs INSCRITS
   const { usersData } = useContext(AllDataUsers);
+
+ 
+
   // filtrer les joueurs lorsque on cherche dans la searchBar
   const [searchBar, setSearchBar] = useState("");
   const [filteredPlayeursInfos, setFilteredPlayeursInfos] = useState([]);
@@ -35,12 +42,26 @@ export default function ShowAllUsers() {
     setFilteredPlayeursInfos(filteredUsers);
   };
 
-  // const handleDownload = () => {
-  //   const wb = XLSX.utils.book_new()
-  //    const ws = XLSX.utils.json_to_sheet(usersData)
-  //    XLSX.utils.book_append_sheet(wb, ws, "MySheet1")
-  //    XLSX.writeFile(wb, "MyExcel.xlsx")
-  // };
+
+  // DOWNLAND TO Excel
+  const downloadExcelFile = () => {
+    const editUsersDataArray = usersData.map(({ birthDay, email, name, sexe, nationality, job, adress, typePaiement }) => ({
+      'date de naiss': birthDay,
+      email,
+      'nom et prénom': name,
+      sexe,
+      nationaité: nationality,
+      profession: job,
+      adresse: adress,
+      'paiement en': typePaiement,
+    }));
+  
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(editUsersDataArray);
+    XLSX.utils.book_append_sheet(wb, ws, "MySheet1");
+    XLSX.writeFile(wb, "info-adhérents.xlsx");
+  };
+
 
   const currentTimestamp = new Date().getTime();
   const [showModal2, setShowModal2] = useState(false);
@@ -48,6 +69,7 @@ export default function ShowAllUsers() {
   return (
     <div className="show-all-users-container">
       <NavBar toggleClassName={3} />
+      <div className="header-container">
       <div className="inputs">
         <input
           type="text"
@@ -55,6 +77,8 @@ export default function ShowAllUsers() {
           onChange={(e) => filterName(e.target.value)}
           placeholder="Rechercher par nom"
         />
+      </div>
+      <RiFileDownloadLine title="Télécharger le fichier excel" className="icon" onClick={downloadExcelFile}/>
       </div>
 
       <div className="users-container">
@@ -84,7 +108,6 @@ export default function ShowAllUsers() {
           }
         )}
       </div>
-      {/* <button onClick={handleDownload}>Cliquer</button> */}
       {showModal2 && (
         <InfoPlayeurModal
           playeurClick={playeurClick}

@@ -25,7 +25,7 @@ export default function InscriptionSchedules() {
   const { loadedData } = useContext(AllDataSchedules);
   // récucpérer les infos de l'utilisateur (son niveau)
   const { level } = useSelector((state) => state.user);
-  console.log(level);
+  
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const { selectedScheduleFirst } = useSelector((state) => state.schedule);
 

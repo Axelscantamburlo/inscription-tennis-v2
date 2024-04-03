@@ -28,8 +28,7 @@ export default function ConfirmationModal({ setOpenModal }) {
 
     dateInscription: new Date(),  
   });
-  // console.log(playeurInfoState);
-  console.log(playeurInfoState);
+
   const { name, level } = playeurInfoState;
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const inscriptions = useSelector((state) => state.schedule);

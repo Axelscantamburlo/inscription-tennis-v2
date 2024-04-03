@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 // COMPONENT
 import RegisterNewPlayer from "./modal/RegisterNewPlayeur";
 import PlayeurRegistedInfo from "./PlayeurRegistedInfo";
+import LogoutButton from "../../connexion/Logout/LogoutButton";
 // FIREBASE
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../config/firebase-config";
@@ -37,6 +38,7 @@ export default function RegisterPlayeur() {
   return (
     <div className="register-playeur-container">
       <h1 className="title">Vos inscriptions</h1>
+      <LogoutButton />
       <div className="card-container">
         {playeurInfoToMap?.length > 0 &&
           playeurInfoToMap.map((playeur, index) => {

@@ -93,7 +93,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     e.preventDefault();
 
     const cleanName = name.trim().replace(/\s+/g, " ").toLowerCase();
-    console.log(cleanName);
+    
     if (!cleanName || !phone || !email || !birthDay || !nationality || !adress) {
       setErrorMessage("Veuillez remplir tous les champs");
       return;

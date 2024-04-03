@@ -1,29 +1,35 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Redirect } from "react-router-dom";
 import {AllDataUsersProvider} from "./context/AllDataUsers";
 
 // Import des composants
+// Connexion
 import WelcomePage from "./pages/connexion/WelcomePage/WelcomePage";
 import Login from "./pages/connexion/Login/Login";
 import CreateAccount from "./pages/connexion/SignUp/CreateAccount";
+// Inscription
 import RegisterPlayeur from "./pages/inscription/RegisterPlayeur/RegisterPlayeur";
 import InscriptionSchedules from "./pages/inscription/Schedules/InscriptionSchedules";
 import SecondHour from "./pages/inscription/SecondHour/SecondHour";
 import ThirdHour from './pages/inscription/ThirdHour/ThirdHour'
 import ThankYouPage from "./pages/inscription/ThankYouPage/ThankYouPage";
+// Admin
 import AdminLogin from "./pages/admin/connexion/AdminLogin";
 import ShowAllSchedules from "./pages/admin/showSchedules/ShowAllSchedules";
 import CreateSchedules from "./pages/admin/createSchedules/CreateSchedules";
 import ShowAllUsers from "./pages/admin/showAllUsers/ShowAllUsers";
-
+// NotFound
+import NotFoundPage from "./pages/not-found-page/NotFoundPage";
 // Wrapper pour les routes nécessitant le contexte AllDataUsersProvider
 function AdminRoutes() {
   return (
     <AllDataUsersProvider>
       <Routes>
-        <Route path="tableaux-joueurs" element={<ShowAllSchedules />} />
-        <Route path='ajouter-un-creneau' element={<CreateSchedules />} />
-        <Route path='liste-joueurs' element={<ShowAllUsers />} />
+        <Route exact path="tableaux-joueurs" element={<ShowAllSchedules />} />
+        <Route exact path='ajouter-un-creneau' element={<CreateSchedules />} />
+        <Route exact path='liste-joueurs' element={<ShowAllUsers />} />
+        <Route path="*" element={<NotFoundPage />}/>
+
       </Routes>
     </AllDataUsersProvider>
   );
@@ -57,6 +63,8 @@ export default function App() {
           {/* Partie Admin */}
           <Route exact path="/connexion-admin" element={<AdminLogin />}/>
           <Route path='/admin/*' element={<AdminRoutes />} />
+          {/* 404 Error */}
+          <Route path="*" element={<NotFoundPage />}/>
         </Routes>
       </BrowserRouter>
     </div>

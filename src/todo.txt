@@ -9,6 +9,11 @@ TODO: Enregister les noms en lowerCase dans les schedules
 TODO: Boutton arreter les inscriptions
 TODO: Gérer les accents dans le fichier excel
 TODO: Gérer les prix*
+TODO: Faire un logout et deleteAccount
+TODO: Préciszer que un compte suffit par famille
+TODO: Cacher la clé firebase
+TODO: Faire tous les messages d'erreurs
+TODO: Sécruritée
 
 
 DO:

@@ -36,6 +36,9 @@ export default function CreateAccount() {
         })
         
 
+        localStorage.setItem("user", JSON.stringify('connecté'));
+        localStorage.removeItem('persist:root'); 
+
 
         navigate("/inscrire-un-joueur")
        } catch (err) {

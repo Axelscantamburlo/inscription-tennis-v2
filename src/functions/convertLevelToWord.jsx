@@ -20,14 +20,7 @@ export const convertLevelToWord = (level) => {
     return levelMap[level] || "Inconnu";
   };
 
-export const convertFormuleToWord = formule => {
-  const formuleMap = {
-    0: "Classique",
-    1: "Forme jouée"
-  };
 
-  return formuleMap[formule] || "Inconnu";
-}
 
 export const convertLevelToColor = (level) => {
   const levelMap = {

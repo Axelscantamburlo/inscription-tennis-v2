@@ -10,7 +10,6 @@ import { useModal } from "../../../../context/ModalContext";
 // FUNCTION
 import {
   convertLevelToWord,
-  convertFormuleToWord,
   convertLevelToColor,
 } from "../../../../functions/convertLevelToWord";
 
@@ -57,7 +56,7 @@ export default function ScheduleItemAdmin({ schedule }) {
           <div>
             <p>{educator}</p>
             <p>{convertLevelToWord(level)}</p>
-            <p>{convertFormuleToWord(playedForm)}</p>
+            <p>{playedForm === "0" ? "Classique" : "Forme jouée"}</p>
           </div>
         </div>
         <table style={{backgroundColor: convertLevelToColor(level)}}>

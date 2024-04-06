@@ -197,9 +197,9 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
           <button type="submit" className="submit-btn">
             Valider
           </button>
-          <span className="error-message">{errorMessage}</span>
         </form>
       </div>
+          <span className="error-message">{errorMessage}</span>
     </div>
   );
 }

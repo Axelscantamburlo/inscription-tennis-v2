@@ -29,6 +29,8 @@ export default function Login() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        localStorage.setItem("user", JSON.stringify('connecté')); 
+        localStorage.removeItem('persist:root'); 
 
         navigate("/inscrire-un-joueur");
 

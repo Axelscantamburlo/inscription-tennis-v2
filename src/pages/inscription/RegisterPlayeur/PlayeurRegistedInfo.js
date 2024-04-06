@@ -38,7 +38,7 @@ export default function PlayeurRegistedInfo({ playeurInfo }) {
             </p>
         );
       })}
-      {isPayed ? <p style={{color: 'green', fontWeight: 'bold'}}>Payé</p> : <p>Prix à payer: {priceToPay}</p>}
+      {isPayed ? <p style={{color: 'green', fontWeight: 'bold'}}>Payé</p> : <p>Prix à payer: {priceToPay}€</p>}
     </div>
   );
 }

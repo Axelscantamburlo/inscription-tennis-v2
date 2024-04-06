@@ -8,7 +8,7 @@ export default function InputFields({ scheduleCreate, handleInputChange }) {
     { name: "startHour", type: "time", value: startHour, label: 'Début :' },
     { name: "endHour", type: "time", value: endHour, label: 'Fin :' },
     { name: "level", type: "select", value: level, options: ["Baby",'Mini', "Violet", "Rouge", "Orange", "Vert", "Jaune 1", 'Jaune 2', 'Jaune 3', 'Jaune 4', 'Adulte niveau 1', 'Adulte Niveau 2', 'Adulte niveau 3',  'Adulte niveau 4',  'Adulte niveau 5' ], label: 'Niveau :' },
-    { name: "numberOfPlaces", type: "number", value: numberOfPlaces, min: 1, label: 'Nombre de places :' },
+    { name: "numberOfPlaces", type: "number", value: numberOfPlaces, min: 1, max: 20, label: 'Nombre de places :' },
     { name: "playedForm", type: "select", value: playedForm, options: ["Classique", "Forme Jouée"], label: 'Formule :' },
     { name: "educator", type: "text", value: educator, label: 'Enseignant :' }
   ];
@@ -17,24 +17,28 @@ export default function InputFields({ scheduleCreate, handleInputChange }) {
 
   return (
     <div className="inputs-container">
-      {inputFields.map(field => (
-        <div className="inputs">
-          <label>{field.label}</label>
-          {field.type === 'select' ? (
-                <select name={field.name} value={field.value} onChange={ handleInputChange}>
-                {field.options.map((option, index) => (
-                    <option key={option} value={field.name === 'level' ? index : option}>{option}</option>
+      
+      {inputFields.map((field, index) => {
+        const {name, type, value, options, label, min, max} = field
+        return(
+          <div className="inputs" key={index}>
+          <label>{label}</label>
+          {type === 'select' ? (
+                <select name={name} value={value} onChange={ handleInputChange}>
+                {options.map((option, index) => (
+                    <option key={option} value={name === 'level' || name === 'playedForm' ? index : option}>{option}</option>
                 ))}
             </select>
-          ) : field.type === 'time' ? (
-            <input type="time" value={field.value} name={field.name} onChange={handleInputChange} />
-          ) : field.type === 'number' ? (
-            <input type="number" value={field.value} min={field.min} name={field.name} onChange={handleInputChange} />
+          ) : type === 'time' ? (
+            <input type="time" value={value} name={name} onChange={handleInputChange} />
+          ) : type === 'number' ? (
+            <input type="number" value={value} min={min} max={max} name={name} onChange={handleInputChange} />
           ) : (
-            <input type="text" value={field.value} name={field.name} onChange={handleInputChange} />
+            <input type="text" value={value} name={name} onChange={handleInputChange} />
           )}
         </div>
-      ))}
+        )
+      })}
     </div>
   );
 }

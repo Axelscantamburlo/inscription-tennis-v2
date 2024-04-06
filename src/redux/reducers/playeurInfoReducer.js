@@ -4,10 +4,10 @@ const initialState = {
     name: '',
     email: '',
     phone: '',
-    level: 0,
+    level: null,
     birthDay: '',
     sexe: '',
-    formule: '',
+    formule: '1h par semaine',
     job: '',
     nationality: '',
     adress: ''

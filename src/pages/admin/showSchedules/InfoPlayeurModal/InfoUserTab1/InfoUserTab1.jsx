@@ -9,6 +9,7 @@ export default function InfoUserTab1({ infoPlayeurClick }) {
   };
   return (
     <>
+    {infoPlayeurClick.length === 0 && <h2>Pas d'informations</h2>}
       {infoPlayeurClick.map((user, index) => {
         const {
           name,

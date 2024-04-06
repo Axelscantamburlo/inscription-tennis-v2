@@ -24,16 +24,17 @@ export default function InscriptionSchedules() {
   // récupérer les tableaux à mapper à l'utilisateur
   const { loadedData } = useContext(AllDataSchedules);
   // récucpérer les infos de l'utilisateur (son niveau)
-  const { level } = useSelector((state) => state.user);
-  
-  // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
+  const { level, formule } = useSelector((state) => state.user);
+console.log(formule);
   const { selectedScheduleFirst } = useSelector((state) => state.schedule);
 
-  // const [showModal, setShowModal] = useState(false);
-  const { openModal2, modal2 } = useModal();
+
   // GESTION FORMULES
   const [formules, setFormules] = useState([]);
   useEffect(() => {
+    if(!level) {
+     return  navigate('/inscrire-un-joueur')
+    }
     const formulesByLevel = FORMULES.find((formule) =>
       formule.levels.includes(level)
     );
@@ -60,7 +61,7 @@ export default function InscriptionSchedules() {
     <div className="inscription-schedules-container">
       <div className="formules-container">
         <h2>Sélectionner votre formule</h2>
-        <select name="formules" id="" onChange={handleChangeFormule}>
+        <select name="formules" id="" value={formule} onChange={handleChangeFormule}>
           {formules.map((formule, index) => (
             <option value={formule} key={index}>
               {formule}
@@ -69,50 +70,32 @@ export default function InscriptionSchedules() {
         </select>
       </div>
       <div className="schedules-container">
-        {chooseFormule === "1h par semaine" ||
-        chooseFormule === "2h par semaine" ? (
-          <>
-            {loadedData
-              .filter((el) => el.level === level)
-              .filter(el => el.playedForm === "0")
-              // .filter(el => el.numberOfPlaces - el.usersRegisted.length !== 0)TODO: je sais pas si je met
-              .map((schedule, index) => {
-                return (
-                  <ScheduleItem schedule={schedule} path="First" key={index} />
-                );
-              })}
-          </>
-        ) : chooseFormule === 'Forme jouée 2h par semaine' || chooseFormule === 'Forme jouée 3h par semaine' ? (
-          <>
-          {loadedData
-              .filter((el) => el.level === level)
-              .filter(el => el.playedForm === "1")
-
-              // .filter(el => el.numberOfPlaces - el.usersRegisted.length !== 0)TODO: je sais pas si je met
-              .map((schedule, index) => {
-                return (
-                  <ScheduleItem schedule={schedule} path="First" key={index} />
-                );
-              })}</>
-        ) : null}
+        {loadedData.filter((el) => el.level === level).filter(el => el.playedForm === '0').map((schedule, index) => {
+          return (
+            <ScheduleItem schedule={schedule} path='First' key={index} />
+          )
+        })}
       </div>
       <button
         className="submit-btn "
         onClick={() =>
           handleButtonClick(
-            chooseFormule === "1h par semaine" ? 2 : 1,
+            formule === "1h par semaine" ? 2 : 1,
             selectedScheduleFirst,
             setOpenModal,
             setErrorMessage,
             navigate,
-            chooseFormule === "1h par semaine" ? null : "deuxieme-heure",
+            formule === "1h par semaine" ? null : "deuxieme-heure",
           )
         }
       >
-        {chooseFormule === "1h par semaine" ? "Valider" : "Suivant"}
+        {formule === "1h par semaine" ? "Valider" : "Suivant"}
       </button>
       {errorMessage && <span className="error-message">{errorMessage}</span>}
       {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}
     </div>
   );
 }
+
+
+//TODO:  Vérifier formule

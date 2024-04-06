@@ -4,11 +4,11 @@ export const FORMULES = [
         levels: ["1", "2", "3", "4", "5", '6',]
     },
     {
-        formules: ['1h par semaine', "2 x 1 par semaine", "Forme jouée 2h par semaine", 'Forme jouée 3h par semaine'],
+        formules: ['1h par semaine', "2 x 1h par semaine", "Forme jouée 2h par semaine", 'Forme jouée 3h par semaine'],
         levels: ["7", '8']
     },
     {
-        formules: ['1h par semaine', "2 x 1 par semaine", "Forme jouée 2h par semaine", 'Forme jouée 3h par semaine'],
+        formules: ['1h par semaine', "2 x 1h par semaine", "Forme jouée 2h par semaine", 'Forme jouée 3h par semaine'],
         levels: ["9"]
     },
 

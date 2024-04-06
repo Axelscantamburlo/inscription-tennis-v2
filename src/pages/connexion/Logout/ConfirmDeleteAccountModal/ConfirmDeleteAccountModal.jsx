@@ -1,16 +1,16 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 // CONTEXT
-import {UidUserConnected} from '../../../../context/UidUserConnected'
-import {AllDataSchedules} from '../../../../context/AllDataSchedules'
+import { UidUserConnected } from "../../../../context/UidUserConnected";
+import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 // FIREBASE
 import { getAuth, deleteUser } from "firebase/auth";
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, getDoc, } from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
 
 const ConfirmDeleteAccountModal = ({ setOpenModal2 }) => {
-  const {uid} = useContext(UidUserConnected)
-  const navigate = useNavigate()
+  const { uid } = useContext(UidUserConnected);
+  const navigate = useNavigate();
 
   const handleDeleteAccount = () => {
     const auth = getAuth();
@@ -18,7 +18,7 @@ const ConfirmDeleteAccountModal = ({ setOpenModal2 }) => {
     console.log(user);
     if (user) {
       deleteUser(user).then(() => {
-        //  deleteDoc(doc(db, "users", uid))
+         deleteDoc(doc(db, "users", uid))
         //  deletePlayeurRegistedInSchedules()
         //  navigate('/')
 
@@ -29,9 +29,26 @@ const ConfirmDeleteAccountModal = ({ setOpenModal2 }) => {
       console.error('Aucun utilisateur connecté.');
       // Rediriger l'utilisateur vers la page de connexion ou afficher un message d'erreur
     }
-  
+
   }
 
+  // const handleDeleteAccount = async () => {
+  //   const docRef = doc(db, "users", uid);
+  //   const docSnap = await getDoc(docRef);
+
+  //   if (docSnap.exists()) {
+  //     cc(docSnap.data().playeurNames)
+  //   } else {
+  //     // docSnap.data() will be undefined in this case
+  //     console.log("No such document!");
+  //   }
+  // };
+
+  // const {loadedData} = useContext(AllDataSchedules)
+  // const cc = playeurNames => {
+  //   const outt = loadedData.forEach((data) => data.usersRegisted.filter(el => playeurNames.includes(el)))
+  //   console.log(playeurNames);
+  // }
 
   return (
     <div className="confirmation-modal-container">
@@ -44,7 +61,7 @@ const ConfirmDeleteAccountModal = ({ setOpenModal2 }) => {
         </h1>
         <p>Êtes-vous certain de vouloir supprimer votre compte ?</p>
         <p style={{ color: "var(--red-color)" }}>
-          Cette action entraînera l'annulation de chacune de vos inscriptions.
+        Cette action n'entraîne pas l'annulation de vos inscriptions,<br /> veuillez vous adresser directement au club pour cela.
         </p>
         <div className="buttons">
           <button
@@ -53,7 +70,9 @@ const ConfirmDeleteAccountModal = ({ setOpenModal2 }) => {
           >
             Annuler
           </button>
-          <button className="confirm-button" onClick={handleDeleteAccount}>Valider</button>
+          <button className="confirm-button" onClick={handleDeleteAccount}>
+            Valider
+          </button>
         </div>
       </div>
     </div>

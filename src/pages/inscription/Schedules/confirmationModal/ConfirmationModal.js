@@ -26,7 +26,7 @@ export default function ConfirmationModal({ setOpenModal }) {
     ...playeurInfo,
     isPayed: false,
 
-    dateInscription: new Date(),  
+    dateInscription: new Date(),
   });
 
   const { name, level } = playeurInfoState;
@@ -49,6 +49,7 @@ export default function ConfirmationModal({ setOpenModal }) {
       playeurInfo: arrayUnion(playeurInfoState),
       playeurNames: arrayUnion(name),
     });
+    localStorage.removeItem('persist:root'); 
     navigate("/informations-inscription");
   };
 

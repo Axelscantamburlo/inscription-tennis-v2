@@ -31,12 +31,12 @@ export default function InfoUserTab2({ playeurClick, dateInscription }) {
         {playeurInscription.length === 0 ? (
           <h3>Pas inscrit</h3>
         ) : (
-          <h4>{playeurInscription.length} heure(s) par semaine</h4>
+          <h4>{playeurInscription.length} entrainement(s) par semaine</h4>
         )}
       </div>
       <div className="text-container">
         <h3>Date inscription :</h3>
-        <h4>{formatDate(dateInscription)}</h4>
+        {dateInscription ? <h4>{formatDate(dateInscription)}</h4> : <h4>Pas renseigné</h4>}
       </div>
       <div className="text-container">
         <h3>Inscription(s) : </h3>

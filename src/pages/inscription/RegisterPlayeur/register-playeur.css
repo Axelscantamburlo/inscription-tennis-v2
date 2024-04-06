@@ -25,6 +25,7 @@
     border-radius: 5px;
     font-size: 4vw;
     outline: none;
+    cursor: pointer;
 }
 
 .register-playeur-container .card-container  {

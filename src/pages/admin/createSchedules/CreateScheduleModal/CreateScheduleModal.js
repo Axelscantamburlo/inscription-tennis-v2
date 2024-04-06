@@ -17,6 +17,7 @@ export default function CreateScheduleModal({ setOpenModal0 }) {
     playedForm: "0",
     educator: "",
   });
+  console.log(scheduleCreate);
   const {
     day,
     startHour,

@@ -48,7 +48,7 @@ export default function ShowAllSchedules() {
       <div className="schedules-container">
         {sortedSchedules?.map((schedule, index) => (
           <>
-            <ScheduleItemAdmin schedule={schedule} />
+            <ScheduleItemAdmin schedule={schedule} key={index} />
           </>
         ))}
       </div>

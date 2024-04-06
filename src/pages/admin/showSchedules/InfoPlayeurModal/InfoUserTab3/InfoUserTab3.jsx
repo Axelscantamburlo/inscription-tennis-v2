@@ -12,7 +12,7 @@ import {
   findPriceToPay,
 } from "../../../../../functions/getPlayeurInscription";
 
-export default function InfoUserTab3({ infoPlayeurClick, setShowModal2 }) {
+export default function InfoUserTab3({ infoPlayeurClick,playeurClick, setShowModal2 }) {
   const { loadedData } = useContext(AllDataSchedules);
   const {
     name,
@@ -24,15 +24,14 @@ export default function InfoUserTab3({ infoPlayeurClick, setShowModal2 }) {
     typePaiement,
   } = infoPlayeurClick[0] || {};
   const [price, setPrice] = useState("");
-
   useEffect(() => {
     const playExternFunction = async () => {
-      const inscriptions = await getPlayeurInscription(loadedData, name);
+      const inscriptions = await getPlayeurInscription(loadedData, playeurClick);
       const price = findPriceToPay(inscriptions, level);
       setPrice(price);
     };
     playExternFunction();
-  }, [infoPlayeurClick]);
+  }, [infoPlayeurClick, playeurClick]);
 
   // const {closeModal2} = useModal()
   const handleConfirmPaiement = async () => {
@@ -67,15 +66,10 @@ export default function InfoUserTab3({ infoPlayeurClick, setShowModal2 }) {
   return (
     <div className="tab-container">
       {isPayed ? (
-        // <div className="text-container">
-        //   <h1><span>Prix payé:</span> {pricePay}</h1>
-        //   <p><span>Moyen de paiement: </span>{typePaiement}</p>
-        //   <p><span>Paiement en: </span>{howManyTimePaiement}</p>
-        // </div>
         <>
           <div className="text-container">
             <h1>Prix payé: </h1>
-            <h4>{pricePay}</h4>
+            <h4>{pricePay}€</h4>
           </div>
           <div className="text-container">
             <h3>Moyen de paiement:</h3>
@@ -91,7 +85,7 @@ export default function InfoUserTab3({ infoPlayeurClick, setShowModal2 }) {
         <>
           <h2>
             <span style={{ color: "var(--blue-color)" }}>Prix à payer:</span>{" "}
-            {price}
+            {price}€
           </h2>
           <div className="buttons-container">
             <h2>Moyen de paiement:</h2>

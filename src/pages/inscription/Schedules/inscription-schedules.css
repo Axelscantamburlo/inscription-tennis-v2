@@ -31,12 +31,7 @@
     margin-top: 10px;
 }
 
-.inscription-schedules-container .previous-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    
-}
+
 @media screen and (min-width: 800px) {
     .inscription-schedules-container .formules-container {
         margin: 0 auto;
@@ -61,13 +56,16 @@
     }
 
     .inscription-schedules-container .submit-btn {
-        background-color:red;
         width: 150px;
-        position: absolute;
-        bottom: 25px;
-        right: 50px;
+        position: fixed;
+        bottom: 60px;
+        right: 75px;
         left: unset;
         transform: unset;
+    }
+    .inscription-schedules-container .previous-btn {
+        right: unset;
+        left: 75px;
     }
 }
 @media screen and (min-width: 1200px) {

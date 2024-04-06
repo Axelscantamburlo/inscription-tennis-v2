@@ -4,20 +4,19 @@ import { useNavigate } from "react-router-dom";
 // COMPONENT
 import ScheduleItem from "../ScheduleItem/ScheduleItem";
 import ConfirmationModal from "../Schedules/confirmationModal/ConfirmationModal";
+import PreviousHourButtons from "../SecondHour/PreviousHourButton/PreviousHourButtons";
 
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
 import { useModal } from "../../../context/ModalContext";
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
-import { selectSchedule } from "../../../redux/actions";
 
 //FUNCTIONS
 import { handleButtonClick } from "../../../functions/handleButtonClick";
 
 export default function ThirdHour() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   // récupérer les tableaux à mapper à l'utilisateur
   const { loadedData } = useContext(AllDataSchedules);
 
@@ -32,10 +31,7 @@ export default function ThirdHour() {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const navigatePreviousHour = () => {
-    dispatch(selectSchedule(null, "Third"));
-    navigate("/inscrire-un-joueur/inscription/deuxieme-heure");
-  };
+
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -67,11 +63,9 @@ export default function ThirdHour() {
   return (
     <div className="inscription-schedules-container">
       <div style={{ position: "relative" }}>
-        <button className="previous-btn" onClick={() => navigatePreviousHour()}>
-          Précédent
-        </button>
-        <h1 className="title" style={{ color: "var(--background-color)" }}>
-          Votre troisième heure :
+        <PreviousHourButtons path='Third' urlPath='inscription/deuxieme-heure' />
+        <h1 className="title" style={{ color: "var(--background-color)", margin: '50px 0 15px 0' }}>
+          Votre troisième heure : (Forme jouée)
         </h1>
       </div>
       <div className="schedules-container">
@@ -82,7 +76,7 @@ export default function ThirdHour() {
               el.uid !== selectedScheduleFirst?.uid &&
               el.uid !== selectedScheduleSecond?.uid
           )
-          .filter((el) => el.playedForm === "0")
+          .filter((el) => el.playedForm === "1")
 
           .map((schedule, index) => {
             return (

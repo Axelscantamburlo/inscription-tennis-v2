@@ -9,6 +9,9 @@ const ConfirmLogoutModal = ({setOpenModal1}) => {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
+        localStorage.removeItem("user");
+        localStorage.removeItem('persist:root'); 
+
         navigate('/')
       })
       .catch((error) => {

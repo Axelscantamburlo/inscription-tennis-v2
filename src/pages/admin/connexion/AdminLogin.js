@@ -39,6 +39,7 @@ export default function AdminLogin() {
     if (admin) {
       // Les valeurs correspondent, vous pouvez effectuer l'action souhaitée
       navigate("/admin/tableaux-joueurs");
+      localStorage.setItem("admin", JSON.stringify(admin));
     } else {
       // Les valeurs ne correspondent pas, affichez une erreur
       console.log("Erreur de connexion. Veuillez vérifier vos informations.");

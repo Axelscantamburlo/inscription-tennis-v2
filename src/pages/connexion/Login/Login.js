@@ -39,12 +39,16 @@ export default function Login() {
         // ...
       })
       .catch((error) => {
-        if(error.code === 'auth/invalid-email') {
-          setErrorMessage('Email invalide')
-        } else {
-          setErrorMessage(error.message)
-        }
+        const errorMessages = {
+          'auth/invalid-email': 'Email invalide',
+          'auth/missing-password': 'Veuillez entrer un mot de passe',
+          'auth/invalid-login-credentials': 'Email ou mot de passe invalide',
+          default: 'Une erreur est survenue'
+        };
+      
+        setErrorMessage(errorMessages[error.code] || errorMessages.default);
       });
+
   };
 
   return (

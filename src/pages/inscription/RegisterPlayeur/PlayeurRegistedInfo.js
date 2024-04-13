@@ -23,7 +23,7 @@ export default function PlayeurRegistedInfo({ playeurInfo }) {
       setPlayeurInscription(inscriptions);
       setPriceToPay(price);
     };
-    playExternFunction();
+     playExternFunction();
   }, []);
 
   return (

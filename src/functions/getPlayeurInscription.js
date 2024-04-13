@@ -6,11 +6,11 @@ export const getPlayeurInscription = (loadedData, playeur) => {
 };
 
 export const findPriceToPay = (playerInscriptions, level) => {
-    const l = level || playerInscriptions[0].level;
-    const { startHour, endHour, playedForm } = playerInscriptions[0];
-  
-    if (playerInscriptions.length === 0) {
-      return "0€ (Pas inscrit)";
+    const l = level || playerInscriptions[0].level || null;
+    const { startHour, endHour, playedForm } = playerInscriptions[0] || [];
+    console.log(playerInscriptions);
+    if (playerInscriptions.length === 0 || level === null) {
+      return "0";
     } else if (l === "0") {
       return "127";
     } else if (l === "1") {

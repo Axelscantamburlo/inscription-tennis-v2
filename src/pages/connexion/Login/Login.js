@@ -15,6 +15,8 @@ export default function Login() {
     password: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState('')
+
   const { email, password } = loginInfo;
 
   const handleInputChange = (e) => {
@@ -37,8 +39,11 @@ export default function Login() {
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        if(error.code === 'auth/invalid-email') {
+          setErrorMessage('Email invalide')
+        } else {
+          setErrorMessage(error.message)
+        }
       });
   };
 
@@ -73,6 +78,8 @@ export default function Login() {
           </button>
         </form>
       </div>
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
+
     </div>
   );
 }

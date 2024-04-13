@@ -198,7 +198,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
           </button>
         </form>
       </div>
-          <span className="error-message">{errorMessage}</span>
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
     </div>
   );
 }

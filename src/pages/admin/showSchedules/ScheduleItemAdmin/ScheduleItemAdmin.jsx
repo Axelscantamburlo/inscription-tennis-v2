@@ -70,7 +70,7 @@ export default function ScheduleItemAdmin({ schedule }) {
                   }
                   
                 >
-                  {item}
+                  {item.toUpperCase()}
                 </td>
                 {item && (
                   <span

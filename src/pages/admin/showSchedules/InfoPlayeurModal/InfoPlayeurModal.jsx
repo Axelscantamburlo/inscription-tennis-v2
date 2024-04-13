@@ -24,7 +24,6 @@ export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
   
   useEffect(() => {
     const info = usersData.filter((user) => user.name == playeurClick);
-    console.log(info);
     if (info) {
       setInfoPlayeurClick(info);
     }

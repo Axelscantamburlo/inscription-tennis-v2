@@ -6,47 +6,24 @@ import NavBar from "../navBar/NavBar";
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
 // COMPONENT
 import ScheduleItemAdmin from "./ScheduleItemAdmin/ScheduleItemAdmin";
+import FilterSchedules from "./filterSchedules/FilterSchedules";
 
 export default function ShowAllSchedules() {
   const { loadedData } = useContext(AllDataSchedules);
-  const [sortBy, setSortBy] = useState("level");
-
-  const sortedSchedules = loadedData?.sort((a, b) => {
-    if (sortBy === "level") {
-      const numbersArray = Array.from({ length: 15 }, (_, index) => index.toString()); 
-      return numbersArray.indexOf(a.level) - numbersArray.indexOf(b.level);
-    } else if (sortBy === "day") {
-      const daysOrder = [
-        "Lundi",
-        "Mardi",
-        "Mercredi",
-        "Jeudi",
-        "Vendredi",
-        "Samedi",
-        "Dimanche",
-      ];
-      return daysOrder.indexOf(a.day) - daysOrder.indexOf(b.day);
-    } else if (sortBy === "numberOfPlaces") {
-      return a.numberOfPlaces - b.numberOfPlaces;
-    }
-  });
+  const [filterData, setFilterData] = useState([]);
+  const handleFilterData = (sortedSchedules) => {
+    setFilterData(sortedSchedules);
+  };
 
   return (
     <div className="show-all-schedules-container">
       <NavBar toggleClassName={1} />
-      <div className="inputs">
-        <select
-          style={{ marginTop: "70px" }}
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
-        >
-          <option value="level">Trier par niveau</option>
-          <option value="day">Trier par jour</option>
-          <option value="numberOfPlaces">Nombre de places</option>
-        </select>
-      </div>
+      <FilterSchedules
+        handleFilterData={handleFilterData}
+        loadedData={loadedData}
+      />
       <div className="schedules-container">
-        {sortedSchedules?.map((schedule, index) => (
+        {filterData?.map((schedule, index) => (
           <>
             <ScheduleItemAdmin schedule={schedule} key={index} />
           </>

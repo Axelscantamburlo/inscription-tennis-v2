@@ -8,7 +8,6 @@ import { db } from "../../../../config/firebase-config";
 import { firebaseUpdateSchedulesDb } from '../../../../functions/firebaseUpdateSchedulesdb';
 
 // CONTEXT
-import { useModal } from "../../../../context/ModalContext";
 // COMPONENT
 import InputFields from "../CreateScheduleModal/InputsFields/InputsFields";
 

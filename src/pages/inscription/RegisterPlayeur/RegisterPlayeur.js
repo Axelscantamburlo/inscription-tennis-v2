@@ -4,11 +4,10 @@ import RegisterNewPlayer from "./modal/RegisterNewPlayeur";
 import PlayeurRegistedInfo from "./PlayeurRegistedInfo";
 import LogoutButton from "../../connexion/Logout/LogoutButton";
 // FIREBASE
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../config/firebase-config";
 // CONTEXT
 import { UidUserConnected } from "../../../context/UidUserConnected";
-import { useModal } from "../../../context/ModalContext";
 
 export default function RegisterPlayeur() {
   const { uid } = useContext(UidUserConnected);
@@ -16,9 +15,29 @@ export default function RegisterPlayeur() {
   const [playeurInfoToMap, setPlayeurInfoToMap] = useState([]);
 
   const [propsToPass, setPropsToPass] = useState([]);
+  
+  const [endInscription, setEndInscription] = useState(true);
 
+  const [errorMessage, setErrorMesage] = useState('')
+
+
+    const getEndInscriptionState = async () => {
+    const adminDocRef = doc(db, "admin", "endInscription");
+    const adminDocSnap = await getDoc(adminDocRef);
+
+    if (adminDocSnap.exists()) {
+      setEndInscription(adminDocSnap.data().endInscription);
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
+    const unsub = onSnapshot(doc(db, "admin", "endInscription"), (doc) => {
+      setEndInscription(doc.data().endInscription);
+
+  });
+  };
   useEffect(() => {
-    const loadDataUsers = async () => {
+    const loadDataUser = async () => {
       if (uid) {
         const docRef = doc(db, "users", uid);
         const docSnap = await getDoc(docRef);
@@ -30,8 +49,16 @@ export default function RegisterPlayeur() {
         }
       }
     };
-    loadDataUsers();
+
+    const fetchData = async () => {
+      await loadDataUser();
+      await getEndInscriptionState();
+    };
+
+    fetchData();
+
   }, [uid]);
+
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -45,15 +72,18 @@ export default function RegisterPlayeur() {
             return <PlayeurRegistedInfo key={index} playeurInfo={playeur} />;
           })}
       </div>
-      <div className="add-playeur-button" onClick={() => setOpenModal(true)}>
-        <button>Ajouter</button>
+      <div className="add-playeur-button" onClick={() => !endInscription ? setOpenModal(true) : setErrorMesage('Les inscriptions sont fermées')}>
+        <button style={!endInscription ? {} : { opacity: '0.5', cursor: 'no-drop' }}>Ajouter</button>
       </div>
+
       {openModal && (
         <RegisterNewPlayer
           playeursNames={propsToPass}
           setOpenModal={setOpenModal}
         />
       )}
+              {errorMessage && <span className="error-message">{errorMessage}</span>}
+
     </div>
   );
 }

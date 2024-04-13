@@ -8,7 +8,6 @@ import PreviousHourButtons from "../SecondHour/PreviousHourButton/PreviousHourBu
 
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
-import { useModal } from "../../../context/ModalContext";
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
 

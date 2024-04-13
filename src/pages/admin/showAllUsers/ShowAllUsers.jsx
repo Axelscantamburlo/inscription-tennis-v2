@@ -8,7 +8,6 @@ import NavBar from "../navBar/NavBar";
 import InfoPlayeurModal from "../showSchedules/InfoPlayeurModal/InfoPlayeurModal";
 
 // CONTEXT
-import { useModal } from "../../../context/ModalContext";
 import { AllDataUsers } from "../../../context/AllDataUsers";
 
 // FUNCTIONS
@@ -101,7 +100,7 @@ export default function ShowAllUsers() {
                 style={isPayed ? { border: "3px solid #2E933C" } : currentTimestamp > limitePaiement ? { border: "3px solid var(--red-color)" } : { border: " 3px solid orange" }}
               >
                 <h2>{name.toUpperCase()}</h2>
-                <p>{formatDate(dateInscription)}</p>
+                <p>Inscription: le {formatDate(dateInscription)}</p>
                 {isPayed ? <p>Payé</p> : <p>Pas payé</p>}
               </div>
             );

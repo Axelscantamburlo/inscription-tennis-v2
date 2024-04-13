@@ -13,7 +13,6 @@
     margin: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
     padding: 0;
     width: 100%;
     display: flex;
@@ -29,12 +28,24 @@
     list-style-type: none;
     padding: 10px;
     cursor: pointer;
-    font-size: 3vw;
+    font-size: 15px;
+}
+.nav-bar-container .button {
+    padding: 3px;
+    border-radius: 10px;
+    border: none;
+    color: var(--grey-color);
+    margin-right: 20px;
+    cursor: pointer;
 }
 @media screen and (min-width: 700px) {
     .nav-bar-container ul a li {
-
+        
         font-size: 1.05rem;
+    }
+    .nav-bar-container .button {
+        padding: 10px;
+        width: 200px;
     }
 }
 

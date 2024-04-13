@@ -14,7 +14,6 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { AllDataSchedulesProvider } from "./context/AllDataSchedules";
 import { UidUserConnectedProvider } from "./context/UidUserConnected";
-import { ModalProvider } from "./context/ModalContext";
 import { AllDataUsersProvider } from "./context/AllDataUsers";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -25,9 +24,7 @@ root.render(
       <UidUserConnectedProvider>
         <AllDataSchedulesProvider>
           {/* <AllDataUsersProvider> */}
-            <ModalProvider>
               <App />
-            </ModalProvider>
           {/* </AllDataUsersProvider> */}
         </AllDataSchedulesProvider>
       </UidUserConnectedProvider>

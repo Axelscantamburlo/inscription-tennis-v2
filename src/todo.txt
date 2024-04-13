@@ -1,12 +1,13 @@
 TODO: Peut etre vérifier au moment de la confirmation si les heures de début et les jours ne sont pas les même 
 pour éviter qu'un mec s'inscrire deux fois au même moment
-TODO: Boutton arreter les inscriptions
 TODO: Gérer les accents dans le fichier excel
 TODO: Préciszer que un compte suffit par famille
 TODO: Cacher la clé firebase
 TODO: Sécruritée
 TODO: Peut etre faire une fonction pour calculer la formule dans InfoUserTab2
 TODO: J'aimerais bien que au moment d'inscrire les champs se préremplissent avec possibilité de les modifier
+TODO: Faire un filter dans CreateSchedules.js
+TODO: Faire une page si pas de connexion
 
 Quasiment do:
 TODO: Faire tous les messages d'erreurs
@@ -18,6 +19,7 @@ TODO: Mettre une defaultValue au select de la formule pour que la conserve en ca
 TODO: je crois qu'il n'y a pas les messages d'erreurs dans les login et CreateAccount et loginAdmin
 TODO: ne pas oublier d'adapter l'affichage des tableaux en fonctions du niveau et des formules
 TODO: Faire un systeme de redirection si la personne n'est pas connectée
+TODO: Boutton arreter les inscriptions
 
 
 

@@ -5,10 +5,10 @@ import NavBar from "../navBar/NavBar";
 import CreateScheduleModal from "./CreateScheduleModal/CreateScheduleModal";
 import EditScheduleModal from "./EditScheduleModal/EditScheduleModal";
 import DeleteScheduleModal from "./DeleteScheduleModal/DeleteScheduleModal";
+import FilterSchedules from "../showSchedules/filterSchedules/FilterSchedules";
 
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
-import { useModal } from "../../../context/ModalContext";
 // FUNCTION
 import { convertLevelToColor, convertLevelToWord } from "../../../functions/convertLevelToWord";
 
@@ -23,18 +23,25 @@ export default function CreateSchedules() {
   const [openModal0, setOpenModal0] = useState(false)
   const [openModal1, setOpenModal1] = useState(false)
   const [openModal2, setOpenModal2] = useState(false)
+
   const handleButtonClick = (button, schedule) => {
     setScheduleClick({ ...schedule });
     button === 'edit' ? setOpenModal1(true) : setOpenModal2(true);
   };
 
+  const [filterData, setFilterData] = useState([])
+const handleFilterData = (sortedSchedules) => {
+  setFilterData(sortedSchedules);
+};
+
   return (
     <div className="create-schedules-container">
       <NavBar toggleClassName={2} />
+      <FilterSchedules handleFilterData={handleFilterData} loadedData={loadedData}/>
 
      
       <div className="schedules-container">
-        {loadedData.map((schedule, index) => {
+        {filterData.map((schedule, index) => {
           const {
             day,
             startHour,
@@ -46,7 +53,7 @@ export default function CreateSchedules() {
             uid,
           } = schedule;
           return (
-            <div className="schedule-card" key={index}>
+            <div className="schedule-card" key={index} style={{border: `4px solid ${convertLevelToColor(level)}`}}>
               <div className="contents">
               <div className="content">
                 <span>Jour: </span>

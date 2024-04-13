@@ -6,7 +6,6 @@ import InfoPlayeurModal from "../InfoPlayeurModal/InfoPlayeurModal";
 import DeletePlayeurModal from "../deletePlayeurModal/DeletePlayeurModal";
 
 // CONTEXT
-import { useModal } from "../../../../context/ModalContext";
 // FUNCTION
 import {
   convertLevelToWord,

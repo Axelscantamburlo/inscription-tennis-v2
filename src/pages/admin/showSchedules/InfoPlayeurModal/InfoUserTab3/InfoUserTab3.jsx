@@ -5,7 +5,6 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../../config/firebase-config";
 // CONTEXT
 import { AllDataSchedules } from "../../../../../context/AllDataSchedules";
-import { useModal } from "../../../../../context/ModalContext";
 // FUNCTIONS
 import {
   getPlayeurInscription,

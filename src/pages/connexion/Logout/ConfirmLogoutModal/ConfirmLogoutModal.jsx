@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const ConfirmLogoutModal = ({setOpenModal1}) => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleConfirm = () => {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
@@ -32,7 +32,7 @@ const ConfirmLogoutModal = ({setOpenModal1}) => {
         <button className="cancel-button" onClick={() => setOpenModal1(false)}>
           Annuler
         </button>
-        <button className="confirm-button" onClick={handleLogout}>
+        <button className="confirm-button" onClick={handleConfirm}>
           Valider
         </button>
       </div>

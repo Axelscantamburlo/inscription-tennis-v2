@@ -7,7 +7,6 @@ import ConfirmationModal from "../Schedules/confirmationModal/ConfirmationModal"
 import PreviousHourButtons from "./PreviousHourButton/PreviousHourButtons";
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
-import { useModal } from "../../../context/ModalContext";
 
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -22,7 +21,6 @@ export default function SecondHour() {
 
   // récucpérer les infos de l'utilisateur (son niveau)
   const { level, formule } = useSelector((state) => state.user);
-
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const { selectedScheduleFirst, selectedScheduleSecond } = useSelector(
     (state) => state.schedule
@@ -105,16 +103,16 @@ export default function SecondHour() {
         className="submit-btn"
         onClick={() =>
           handleButtonClick(
-            formule === "2 x 1h par semaine" ? 2 : 1,
+            formule === "Forme jouée 3h par semaine" ? 1 : 2,
             selectedScheduleSecond,
             setOpenModal,
             setErrorMessage,
             navigate,
-            formule === "2 x 1h par semaine" ? null : "troisieme-heure"
+            formule === "Forme jouée 3h par semaine" ? "troisieme-heure" : null
           )
         }
       >
-        {formule === "2 x 1h par semaine" ? "Valider" : "Suivant"}
+        {formule === "Forme jouée 3h par semaine" ? "Suivant" : "Valider"}
       </button>
       {errorMessage && <span className="error-message">{errorMessage}</span>}
       {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}

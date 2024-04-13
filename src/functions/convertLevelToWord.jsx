@@ -26,19 +26,19 @@ export const convertLevelToColor = (level) => {
   const levelMap = {
     0: "white",
   1: 'var(--grey-color)',
-   2: "magenta",
-   3: "red",
-   4: "orange",
-   5: "green",
+   2: "#FB62F6",
+   3: "#EF3E36",
+   4: "#FF7F11",
+   5: "#379634",
    6: "yellow",
    7: "yellow",
    8: "yellow",
    9: "yellow",
-   10: 'yellowgreen',
-   11: 'yellowgreen',
-   12: 'yellowgreen',
-   13: 'yellowgreen',
-   14: 'yellowgreen',
+   10: '#FFD400',
+   11: '#FFE66D',
+   12: '#FFE66D',
+   13: '#FFE66D',
+   14: '#FFE66D',
   }
 
   return levelMap[level] || 'transparent'

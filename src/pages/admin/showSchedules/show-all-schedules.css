@@ -3,7 +3,8 @@
     overflow: hidden;
     background-color: var(--grey-color);
 }
-.show-all-schedules-container  .inputs {
+.show-all-schedules-container  .inputs,
+.create-schedules-container .inputs {
     display: flex;
     align-items: center;
     justify-content: center;

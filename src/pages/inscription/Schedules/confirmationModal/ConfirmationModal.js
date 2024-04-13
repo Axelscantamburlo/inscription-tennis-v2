@@ -9,7 +9,6 @@ import { db } from "../../../../config/firebase-config";
 
 //CONTEXT
 import { UidUserConnected } from "../../../../context/UidUserConnected";
-import { useModal } from "../../../../context/ModalContext";
 
 // FUNCTIONS
 import { firebaseUpdateSchedulesDb } from "../../../../functions/firebaseUpdateSchedulesdb";
@@ -65,7 +64,6 @@ export default function ConfirmationModal({ setOpenModal }) {
     setSchedulesChoose(selectedSchedules);
   }, []);
 
-  const { closeModal2 } = useModal();
   return (
     <div className="confirmation-modal-container">
       <div className="card">

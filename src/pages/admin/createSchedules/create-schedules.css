@@ -89,7 +89,7 @@ display: flex;
      .create-schedules-container .submit-btn {
         width: 250px;
         position: fixed;
-        bottom: 25px;
+        bottom: 50px;
         right: 50px;
         left: unset;
         transform: unset;

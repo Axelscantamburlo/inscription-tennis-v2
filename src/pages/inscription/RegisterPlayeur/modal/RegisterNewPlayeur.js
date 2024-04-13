@@ -24,7 +24,6 @@ import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 
 // DATA
 import { NEW_PLAYEUR_INPUTS } from "../../../../data/inputsData";
-import { useModal } from "../../../../context/ModalContext";
 
 // DEPENDENCIE
 import ReactFlagsSelect from "react-flags-select";

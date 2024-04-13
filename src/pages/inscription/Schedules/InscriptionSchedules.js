@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
-import { useModal } from "../../../context/ModalContext";
 // COMPONENT
 import ScheduleItem from "../ScheduleItem/ScheduleItem";
 import ConfirmationModal from "./confirmationModal/ConfirmationModal";
@@ -24,7 +23,7 @@ export default function InscriptionSchedules() {
   // récupérer les tableaux à mapper à l'utilisateur
   const { loadedData } = useContext(AllDataSchedules);
   // récucpérer les infos de l'utilisateur (son niveau)
-  const { level, formule } = useSelector((state) => state.user);
+  const { level, formule, name } = useSelector((state) => state.user);
 console.log(formule);
   const { selectedScheduleFirst } = useSelector((state) => state.schedule);
 
@@ -32,7 +31,7 @@ console.log(formule);
   // GESTION FORMULES
   const [formules, setFormules] = useState([]);
   useEffect(() => {
-    if(!level) {
+    if(!level || !name) {
      return  navigate('/inscrire-un-joueur')
     }
     const formulesByLevel = FORMULES.find((formule) =>

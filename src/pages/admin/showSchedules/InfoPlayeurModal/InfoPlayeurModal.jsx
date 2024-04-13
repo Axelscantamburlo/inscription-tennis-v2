@@ -14,7 +14,6 @@ import InfoUserTab2 from "./InfoUserTab2/InfoUserTab2";
 import InfoUserTab3 from "./InfoUserTab3/InfoUserTab3";
 
 // CONTEXT
-import { useModal } from "../../../../context/ModalContext";
 import { AllDataUsers } from "../../../../context/AllDataUsers";
 
 export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
@@ -25,7 +24,7 @@ export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
   
   useEffect(() => {
     const info = usersData.filter((user) => user.name == playeurClick);
-
+    console.log(info);
     if (info) {
       setInfoPlayeurClick(info);
     }

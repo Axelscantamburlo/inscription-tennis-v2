@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import StopInscriptionButton from '../StopInscription/StopInscriptionButton';
 
 export default function NavBar({toggleClassName}) {
 
@@ -45,8 +46,8 @@ export default function NavBar({toggleClassName}) {
                     </NavLink>
                 )
             })}
-
         </ul>
+        <StopInscriptionButton />
 
     </div>
   )

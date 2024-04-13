@@ -4,7 +4,6 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
 
 // CONTEXT
-import { useModal } from "../../../../context/ModalContext";
 
 export default function DeleteScheduleModal({ scheduleClick, setOpenModal2 }) {
   const { day, startHour, endHour, uid } = scheduleClick;

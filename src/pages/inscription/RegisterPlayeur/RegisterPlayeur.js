@@ -15,13 +15,12 @@ export default function RegisterPlayeur() {
   const [playeurInfoToMap, setPlayeurInfoToMap] = useState([]);
 
   const [propsToPass, setPropsToPass] = useState([]);
-  
+
   const [endInscription, setEndInscription] = useState(true);
 
-  const [errorMessage, setErrorMesage] = useState('')
+  const [errorMessage, setErrorMesage] = useState("");
 
-
-    const getEndInscriptionState = async () => {
+  const getEndInscriptionState = async () => {
     const adminDocRef = doc(db, "admin", "endInscription");
     const adminDocSnap = await getDoc(adminDocRef);
 
@@ -33,8 +32,7 @@ export default function RegisterPlayeur() {
     }
     const unsub = onSnapshot(doc(db, "admin", "endInscription"), (doc) => {
       setEndInscription(doc.data().endInscription);
-
-  });
+    });
   };
   useEffect(() => {
     const loadDataUser = async () => {
@@ -56,9 +54,7 @@ export default function RegisterPlayeur() {
     };
 
     fetchData();
-
   }, [uid]);
-
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -72,8 +68,19 @@ export default function RegisterPlayeur() {
             return <PlayeurRegistedInfo key={index} playeurInfo={playeur} />;
           })}
       </div>
-      <div className="add-playeur-button" onClick={() => !endInscription ? setOpenModal(true) : setErrorMesage('Les inscriptions sont fermées')}>
-        <button style={!endInscription ? {} : { opacity: '0.5', cursor: 'no-drop' }}>Ajouter</button>
+      <div
+        className="add-playeur-button"
+        onClick={() =>
+          !endInscription
+            ? setOpenModal(true)
+            : setErrorMesage("Les inscriptions sont fermées")
+        }
+      >
+        <button
+          style={!endInscription ? {} : { opacity: "0.5", cursor: "no-drop" }}
+        >
+          Ajouter
+        </button>
       </div>
 
       {openModal && (
@@ -82,8 +89,7 @@ export default function RegisterPlayeur() {
           setOpenModal={setOpenModal}
         />
       )}
-              {errorMessage && <span className="error-message">{errorMessage}</span>}
-
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
     </div>
   );
 }

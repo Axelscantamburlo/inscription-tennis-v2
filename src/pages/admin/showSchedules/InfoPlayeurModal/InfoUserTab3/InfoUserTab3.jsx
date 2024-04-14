@@ -63,7 +63,7 @@ export default function InfoUserTab3({ infoPlayeurClick,playeurClick, setShowMod
     useState(null);
 
   return (
-    <div className="tab-container">
+    <div className="tab-container tab-container-3">
       {isPayed ? (
         <>
           <div className="text-container">
@@ -72,11 +72,11 @@ export default function InfoUserTab3({ infoPlayeurClick,playeurClick, setShowMod
           </div>
           <div className="text-container">
             <h3>Moyen de paiement:</h3>
-            <h4>{typePaiement}</h4>
+            <h4>{typePaiement ? typePaiement : 'Pas renseigné'}</h4>
           </div>
           <div className="text-container">
             <h3>Paiement en: </h3>
-            <h4>{howManyTimePaiement}</h4>
+            <h4>{howManyTimePaiement ? howManyTimePaiement : 'Pas renseigné'}</h4>
           </div>
         <button className="submit-btn" onClick={handleConfirmPaiement}>Annuler le paiement</button>
         </>

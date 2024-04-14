@@ -13,6 +13,10 @@
     height: 80%;
 }
 
+.tab-container-3 {
+    height: 65%;
+}
+
 
 .tab-container .text-container {
     display: flex;

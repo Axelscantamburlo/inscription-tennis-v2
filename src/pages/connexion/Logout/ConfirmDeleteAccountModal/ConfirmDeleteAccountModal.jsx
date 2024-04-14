@@ -20,7 +20,7 @@ const ConfirmDeleteAccountModal = ({ setOpenModal2 }) => {
       deleteUser(user).then(() => {
          deleteDoc(doc(db, "users", uid))
         //  deletePlayeurRegistedInSchedules()
-        //  navigate('/')
+         navigate('/')
 
       }).catch((error) => {
         console.error('Une erreur s\'est produite lors de la suppression du compte :', error);

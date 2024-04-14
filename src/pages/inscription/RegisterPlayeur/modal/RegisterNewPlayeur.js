@@ -11,7 +11,7 @@ import {
   where,
   limit,
   orderBy,
-  limitToLast
+  limitToLast,
 } from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
 
@@ -32,24 +32,11 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const [loadedExcelData, setLoadedExcelData] = useState([]);
-  // const loadExcelUsers = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "excel-users"));
-  //   const dataArr = [];
-  //   querySnapshot.forEach((doc) => {
-  //     dataArr.push(doc.data());
-  //   });
-  //   setLoadedExcelData(dataArr);
-  // };
-  // useEffect(() => {
-  //   loadExcelUsers();
-  // }, []);
-
   const loadExcelUsers = async (name) => {
     const q = query(
       collection(db, "excel-users"),
       where("name", "==", name),
-      orderBy('name'),
+      orderBy("name"),
       limit(1)
     );
     const querySnapshot = await getDocs(q);
@@ -58,10 +45,6 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     } else {
       return null;
     }
-    // querySnapshot.forEach((doc) => {
-    //   // doc.data() is never undefined for query doc snapshots
-    //   return doc.data()
-    // });
   };
 
   const [registerPlayeurInfo, setRegisterPlayeurInfo] = useState({
@@ -70,12 +53,13 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     email: "",
     birthDay: "",
     level: null,
-    job: '',
-    nationality: '',
-    adress: '',
+    job: "",
+    nationality: "",
+    adress: "",
   });
 
-  const { name, phone, email, birthDay, nationality, adress } = registerPlayeurInfo;
+  const { name, phone, email, birthDay, nationality, adress } =
+    registerPlayeurInfo;
 
   const handleInputChange = (e) => {
     const { value, name } = e.target;
@@ -92,8 +76,15 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     e.preventDefault();
 
     const cleanName = name.trim().replace(/\s+/g, " ").toLowerCase();
-    
-    if (!cleanName || !phone || !email || !birthDay || !nationality || !adress) {
+
+    if (
+      !cleanName ||
+      !phone ||
+      !email ||
+      !birthDay ||
+      !nationality ||
+      !adress
+    ) {
       setErrorMessage("Veuillez remplir tous les champs");
       return;
     }
@@ -150,7 +141,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   }
 
   const [toggleClassName, setToggleClassName] = useState(0);
-  const [countrySelected, setCountrySelected] = useState('')
+  const [countrySelected, setCountrySelected] = useState("");
   return (
     <div className="register-playeur-modal-container">
       <div className="box">

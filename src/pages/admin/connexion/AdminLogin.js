@@ -20,6 +20,8 @@ export default function AdminLogin() {
     getAdminKeys();
   }, []);
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [adminInfo, setAdminInfo] = useState({
     name: "",
     key: "",
@@ -42,7 +44,9 @@ export default function AdminLogin() {
       localStorage.setItem("admin", JSON.stringify(admin));
     } else {
       // Les valeurs ne correspondent pas, affichez une erreur
-      console.log("Erreur de connexion. Veuillez vérifier vos informations.");
+      setErrorMessage(
+        "Erreur de connexion. Veuillez vérifier vos informations."
+      );
     }
   };
   return (
@@ -75,6 +79,7 @@ export default function AdminLogin() {
           </button>
         </form>
       </div>
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
     </div>
   );
 }

@@ -26,5 +26,8 @@
 @import '../pages/admin/showSchedules/InfoPlayeurModal/info-user-modal.css';
 @import '../pages/admin/createSchedules/create-schedules.css';
 @import '../pages/admin/createSchedules/CreateScheduleModal/create-schedule-modal.css';
-@import '../pages/admin/showAllUsers/show-all-users.css'
+@import '../pages/admin/showAllUsers/show-all-users.css';
+
+/* NOT FOUND PAGE */
+@import '../pages/not-found-page/not-found-page.css'
 

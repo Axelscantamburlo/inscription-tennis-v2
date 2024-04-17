@@ -1,0 +1,42 @@
+.not-found-page-container {
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.not-found-page-container .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-75px);
+    height: 40%;
+    color: var(--grey-color);
+}
+
+
+.not-found-page-container .content h1 {
+    font-size: 7vw;
+}
+
+
+.not-found-page-container .content p {
+    margin: 20px 0;
+}
+
+
+
+
+.not-found-page-container .content button {
+    width: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--linear-gradient);
+    outline: none;
+    border: none;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+    cursor: pointer;
+}

@@ -26,6 +26,8 @@
     font-size: 4vw;
     outline: none;
     cursor: pointer;
+    color: white;
+    background: var(--linear-gradient);
 }
 
 .register-playeur-container .card-container  {

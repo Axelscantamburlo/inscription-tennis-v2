@@ -8,6 +8,7 @@ TODO: Peut etre faire une fonction pour calculer la formule dans InfoUserTab2
 TODO: J'aimerais bien que au moment d'inscrire les champs se préremplissent avec possibilité de les modifier
 TODO: Faire un filter dans CreateSchedules.js
 TODO: Faire une page si pas de connexion
+TODO: Vérifier le pricing hosting firebase
 
 Quasiment do:
 TODO: Faire tous les messages d'erreurs

@@ -24,7 +24,7 @@ export default function InfoUserTab1({ infoPlayeurClick }) {
         } = user;
         return (
           <div key={index} className="tab-container">
-            <h2><span>Nom :</span> {name.toUpperCase()}</h2>
+            <h2 style={{textTransform: 'uppercase'}}><span>Nom :</span> {name}</h2>
             <h2><span>Civilité :</span>  {sexe}</h2>
             <h2><span>Nationalité :</span> {nationality}</h2>
             <h2><span>Date de naissance :</span>  {formatDate(birthDay)}</h2>

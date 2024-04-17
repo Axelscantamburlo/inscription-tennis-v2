@@ -99,7 +99,7 @@ export default function ShowAllUsers() {
                 // style={isPayed ? {border: '3px solid #2E933C'} : {border: '3px solid var(--red-color)'}}
                 style={isPayed ? { border: "3px solid #2E933C" } : currentTimestamp > limitePaiement ? { border: "3px solid var(--red-color)" } : { border: " 3px solid orange" }}
               >
-                <h2>{name.toUpperCase()}</h2>
+                <h2>{name}</h2>
                 <p>Inscription: le {formatDate(dateInscription)}</p>
                 {isPayed ? <p>Payé</p> : <p>Pas payé</p>}
               </div>

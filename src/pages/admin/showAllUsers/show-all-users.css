@@ -42,6 +42,10 @@
     cursor: pointer;
 }
 
+.show-all-users-container .users-container .user-card h2 {
+    text-transform: uppercase;
+}
+
 @media screen and (min-width: 800px) {
 
 

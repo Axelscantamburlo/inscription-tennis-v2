@@ -67,6 +67,7 @@
     color: var(--background-color)
 }
 
+
 @media screen and (min-width: 700px) {
     
     .register-playeur-modal-container {

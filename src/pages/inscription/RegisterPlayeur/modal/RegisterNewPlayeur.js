@@ -25,8 +25,6 @@ import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 // DATA
 import { NEW_PLAYEUR_INPUTS } from "../../../../data/inputsData";
 
-// DEPENDENCIE
-import ReactFlagsSelect from "react-flags-select";
 
 export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   const navigate = useNavigate();

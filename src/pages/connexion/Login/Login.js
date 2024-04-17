@@ -5,7 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../config/firebase-config";
 
 // DATA
-import { INPUTS_DATA } from '../../../data/inputsData';
+import { INPUTS_DATA } from "../../../data/inputsData";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function Login() {
     password: "",
   });
 
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { email, password } = loginInfo;
 
@@ -31,24 +31,24 @@ export default function Login() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        localStorage.setItem("user", JSON.stringify('connecté')); 
-        localStorage.removeItem('persist:root'); 
+        localStorage.setItem("user", JSON.stringify("connecté"));
+        localStorage.removeItem("persist:root");
 
+        // navigate("/informations-inscription");
         navigate("/inscrire-un-joueur");
 
         // ...
       })
       .catch((error) => {
         const errorMessages = {
-          'auth/invalid-email': 'Email invalide',
-          'auth/missing-password': 'Veuillez entrer un mot de passe',
-          'auth/invalid-login-credentials': 'Email ou mot de passe invalide',
-          default: 'Une erreur est survenue'
+          "auth/invalid-email": "Email invalide",
+          "auth/missing-password": "Veuillez entrer un mot de passe",
+          "auth/invalid-login-credentials": "Email ou mot de passe invalide",
+          default: "Une erreur est survenue",
         };
-      
+
         setErrorMessage(errorMessages[error.code] || errorMessages.default);
       });
-
   };
 
   return (
@@ -83,7 +83,6 @@ export default function Login() {
         </form>
       </div>
       {errorMessage && <span className="error-message">{errorMessage}</span>}
-
     </div>
   );
 }

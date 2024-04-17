@@ -64,6 +64,7 @@
     border-radius: 8px;
     outline: none;
     margin-bottom: 20px;
+    padding-right: 10px;
     color: var(--background-color)
 }
 

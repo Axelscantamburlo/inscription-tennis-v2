@@ -41,7 +41,7 @@
     border-bottom: 1px solid #b3adad;
 
   }
-  .show-all-schedules-container .schedule-card table tbody tr td {
+  .show-all-schedules-container .schedule-card table tbody tr .item {
     padding: 0px 10px;
     width: 100%;
     height: 100%;
@@ -51,12 +51,12 @@
 
   }
 
-  .show-all-schedules-container .schedule-card table tbody tr span {
+  .show-all-schedules-container .schedule-card table tbody tr .icon {
     margin-right: 20px;
     
   }
 
   
-  .show-all-schedules-container .schedule-card table tbody tr span:hover {
+  .show-all-schedules-container .schedule-card table tbody tr .icon:hover {
     transform: scale(1.1)
   }

@@ -48,8 +48,8 @@ export default function ConfirmationModal({ setOpenModal }) {
       playeurInfo: arrayUnion(playeurInfoState),
       playeurNames: arrayUnion(name),
     });
-    localStorage.removeItem('persist:root'); 
-    navigate("/informations-inscription");
+    localStorage.removeItem("persist:root");
+    navigate("/informations-paiement");
   };
 
   const [schedulesChoose, setSchedulesChoose] = useState([]);

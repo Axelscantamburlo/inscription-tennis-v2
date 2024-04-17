@@ -11,7 +11,11 @@ import {
   findPriceToPay,
 } from "../../../../../functions/getPlayeurInscription";
 
-export default function InfoUserTab3({ infoPlayeurClick,playeurClick, setShowModal2 }) {
+export default function InfoUserTab3({
+  infoPlayeurClick,
+  playeurClick,
+  setShowModal2,
+}) {
   const { loadedData } = useContext(AllDataSchedules);
   const {
     name,
@@ -25,7 +29,10 @@ export default function InfoUserTab3({ infoPlayeurClick,playeurClick, setShowMod
   const [price, setPrice] = useState("");
   useEffect(() => {
     const playExternFunction = async () => {
-      const inscriptions = await getPlayeurInscription(loadedData, playeurClick);
+      const inscriptions = await getPlayeurInscription(
+        loadedData,
+        playeurClick
+      );
       const price = findPriceToPay(inscriptions, level);
       setPrice(price);
     };
@@ -34,26 +41,29 @@ export default function InfoUserTab3({ infoPlayeurClick,playeurClick, setShowMod
 
   // const {closeModal2} = useModal()
   const handleConfirmPaiement = async () => {
-    setShowModal2(false);
-    const usersRef = doc(db, "users", uid);
-    const userDoc = await getDoc(usersRef);
+    if (uid) {
+      // Vérifie si uid existe
+      const usersRef = doc(db, "users", uid);
+      const userDoc = await getDoc(usersRef);
 
-    if (userDoc.exists()) {
-      const updatedPlayeurInfo = userDoc.data().playeurInfo.map((info) =>
-        info.name === name
-          ? {
-              ...info,
-              isPayed: !info.isPayed,
-              typePaiement:
-                info.isPayed === false ? selectedMethodPaiement : null,
-              howManyTimePaiement:
-                info.isPayed === false ? selectedHowManyTimePaiement : null,
-              pricePay: info.isPayed === false ? price : null,
-            }
-          : info
-      );
+      if (userDoc.exists()) {
+        const updatedPlayeurInfo = userDoc.data().playeurInfo.map((info) =>
+          info.name === name
+            ? {
+                ...info,
+                isPayed: !info.isPayed,
+                typePaiement:
+                  info.isPayed === false ? selectedMethodPaiement : null,
+                howManyTimePaiement:
+                  info.isPayed === false ? selectedHowManyTimePaiement : null,
+                pricePay: info.isPayed === false ? price : null,
+              }
+            : info
+        );
 
-      await updateDoc(usersRef, { playeurInfo: updatedPlayeurInfo });
+        await updateDoc(usersRef, { playeurInfo: updatedPlayeurInfo });
+      }
+      setShowModal2(false);
     }
   };
 
@@ -72,13 +82,17 @@ export default function InfoUserTab3({ infoPlayeurClick,playeurClick, setShowMod
           </div>
           <div className="text-container">
             <h3>Moyen de paiement:</h3>
-            <h4>{typePaiement ? typePaiement : 'Pas renseigné'}</h4>
+            <h4>{typePaiement ? typePaiement : "Pas renseigné"}</h4>
           </div>
           <div className="text-container">
             <h3>Paiement en: </h3>
-            <h4>{howManyTimePaiement ? howManyTimePaiement : 'Pas renseigné'}</h4>
+            <h4>
+              {howManyTimePaiement ? howManyTimePaiement : "Pas renseigné"}
+            </h4>
           </div>
-        <button className="submit-btn" onClick={handleConfirmPaiement}>Annuler le paiement</button>
+          <button className="submit-btn" onClick={handleConfirmPaiement}>
+            Annuler le paiement
+          </button>
         </>
       ) : (
         <>

@@ -1,0 +1,53 @@
+.informations-inscription-container {
+  height: 100vh;
+  overflow: auto;
+  background: var(--background-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.informations-inscription-container .card {
+  padding: 50px;
+}
+
+.informations-inscription-container .card .title {
+  color: var(--background-color);
+  margin: 20px 0;
+  font-size: 3.5vw;
+}
+
+.informations-inscription-container .card .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.informations-inscription-container .card .content ol {
+  justify-content: left;
+}
+
+.informations-inscription-container .card .content h3 {
+  color: var(--red-color);
+}
+
+@media screen and (min-width: 700px) {
+  .informations-inscription-container {
+    overflow: hidden;
+  }
+
+  .informations-inscription-container .card .title {
+    font-size: 25px;
+  }
+
+  .informations-inscription-container .card .buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+  }
+
+  .informations-inscription-container .card .buttons button {
+    margin-right: 40px;
+  }
+}

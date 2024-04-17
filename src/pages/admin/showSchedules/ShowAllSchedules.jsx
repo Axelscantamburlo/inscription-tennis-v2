@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback, useEffect } from "react";
 
 // NavBar
 import NavBar from "../navBar/NavBar";
@@ -11,9 +11,14 @@ import FilterSchedules from "./filterSchedules/FilterSchedules";
 export default function ShowAllSchedules() {
   const { loadedData } = useContext(AllDataSchedules);
   const [filterData, setFilterData] = useState([]);
-  const handleFilterData = (sortedSchedules) => {
+  const handleFilterData = useCallback((sortedSchedules) => {
+    console.log("call");
     setFilterData(sortedSchedules);
-  };
+  }, []);
+
+  useEffect(() => {
+    handleFilterData(loadedData);
+  }, [loadedData, handleFilterData]);
 
   return (
     <div className="show-all-schedules-container">
@@ -24,9 +29,9 @@ export default function ShowAllSchedules() {
       />
       <div className="schedules-container">
         {filterData?.map((schedule, index) => (
-          <>
-            <ScheduleItemAdmin schedule={schedule} key={index} />
-          </>
+          <React.Fragment key={index}>
+            <ScheduleItemAdmin schedule={schedule} />
+          </React.Fragment>
         ))}
       </div>
     </div>

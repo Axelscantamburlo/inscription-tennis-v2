@@ -1,15 +1,17 @@
-.logout-container {
-    position: fixed;
-    top: 50px;
-    right: 75px
-}
-
-.logout-container .settings-icon {
+  .logout-container .settings-icon,
+  .register-playeur-container .header .info-icon {
     font-size: 30px;
-    color: var(--grey-color)
-}
+    color: var(--grey-color);
+    cursor: pointer;
+} 
 .logout-container .logout-box {
     position: absolute;
-    left: 50%;
     transform: translateX(-50%);
 }
+
+.logout-container .logout-box button {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    cursor: pointer;
+    }

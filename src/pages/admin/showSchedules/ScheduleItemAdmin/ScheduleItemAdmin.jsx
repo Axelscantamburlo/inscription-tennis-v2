@@ -15,7 +15,6 @@ import {
 // ICONS
 import { FaTrash } from "react-icons/fa";
 
-
 export default function ScheduleItemAdmin({ schedule }) {
   const {
     day,
@@ -46,7 +45,7 @@ export default function ScheduleItemAdmin({ schedule }) {
   const [playeurClick, setPlayeurClick] = useState("");
 
   return (
-    <>  
+    <>
       <div className="schedule-card">
         <div className="header-card">
           <h2>
@@ -58,30 +57,33 @@ export default function ScheduleItemAdmin({ schedule }) {
             <p>{playedForm === "0" ? "Classique" : "Forme jouée"}</p>
           </div>
         </div>
-        <table style={{backgroundColor: convertLevelToColor(level)}}>
+        <table style={{ backgroundColor: convertLevelToColor(level) }}>
           <tbody>
             {tableData.map((item, index) => (
-              <tr key={index} style={item ? {padding: "15px 5px"} : {height: "50px"}}>
+              <tr
+                key={index}
+                style={item ? { padding: "15px 5px" } : { height: "50px" }}
+              >
                 <td
+                  className="item"
                   onClick={() =>
                     item
                       ? (setShowModal2(true), setPlayeurClick(item))
                       : setShowModal1(true)
                   }
-                  
                 >
                   {item}
                 </td>
                 {item && (
-                  <span
+                  <td
+                    className="icon"
                     onClick={() => {
                       setShowModal3(true);
                       setPlayeurClick(item);
                     }}
                   >
                     <FaTrash />
-                  </span>
-                  
+                  </td>
                 )}
               </tr>
             ))}

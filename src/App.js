@@ -12,6 +12,7 @@ import RegisterPlayeur from "./pages/inscription/RegisterPlayeur/RegisterPlayeur
 import InscriptionSchedules from "./pages/inscription/Schedules/InscriptionSchedules";
 import SecondHour from "./pages/inscription/SecondHour/SecondHour";
 import ThirdHour from "./pages/inscription/ThirdHour/ThirdHour";
+import InformationInscription from "./pages/inscription/InformationInscription/InformationInscription";
 import ThankYouPage from "./pages/inscription/ThankYouPage/ThankYouPage";
 // Admin
 import AdminLogin from "./pages/admin/connexion/AdminLogin";
@@ -52,7 +53,6 @@ function ClientRoutes() {
         </Route>
       </Route>
       <Route path="*" element={<NotFoundPage />} />
-
     </Routes>
   );
 }
@@ -78,6 +78,11 @@ export default function App() {
           <Route
             exact
             path="informations-inscription"
+            element={<InformationInscription />}
+          />
+          <Route
+            exact
+            path="informations-paiement"
             element={<ThankYouPage />}
           />
 

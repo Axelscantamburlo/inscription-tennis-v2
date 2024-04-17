@@ -8,8 +8,12 @@ import { getDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../config/firebase-config";
 // CONTEXT
 import { UidUserConnected } from "../../../context/UidUserConnected";
+//ICONS
+import { IoIosInformationCircleOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterPlayeur() {
+  const navigate = useNavigate();
   const { uid } = useContext(UidUserConnected);
 
   const [playeurInfoToMap, setPlayeurInfoToMap] = useState([]);
@@ -60,8 +64,15 @@ export default function RegisterPlayeur() {
 
   return (
     <div className="register-playeur-container">
-      <h1 className="title">Vos inscriptions</h1>
-      <LogoutButton />
+      <div className="header">
+        <IoIosInformationCircleOutline
+          className="info-icon"
+          style={{ opacity: "0" }}
+          // onClick={() => navigate("/informations-inscription")}
+        />
+        <h1 className="title">Vos inscriptions</h1>
+        <LogoutButton />
+      </div>
       <div className="card-container">
         {playeurInfoToMap?.length > 0 &&
           playeurInfoToMap.map((playeur, index) => {

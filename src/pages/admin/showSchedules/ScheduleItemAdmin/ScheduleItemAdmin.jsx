@@ -95,6 +95,7 @@ export default function ScheduleItemAdmin({ schedule }) {
           uid={uid}
           usersRegisted={usersRegisted}
           numberOfPlaces={numberOfPlaces}
+          level={level}
           setShowModal1={setShowModal1}
         />
       )}

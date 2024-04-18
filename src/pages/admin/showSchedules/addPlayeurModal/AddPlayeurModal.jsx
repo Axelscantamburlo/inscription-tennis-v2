@@ -11,17 +11,27 @@ export default function AddPlayeurModal({
   uid,
   usersRegisted,
   numberOfPlaces,
+  level,
   setShowModal1,
 }) {
   const [nameEnter, setNameEnter] = useState("");
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowModal1(false)
+    setShowModal1(false);
     if (nameEnter.trim() !== "" && usersRegisted.length < numberOfPlaces) {
       await firebaseUpdateSchedulesDb(uid, nameEnter, "arrayUnion");
-    } 
-
+      const infoPlayeurAdd = {
+        name: nameEnter.trim(),
+        level: level,
+        dateInscription: new Date(),
+        isPayed: false,
+      };
+      const userRef = doc(db, "users", "users-add-by-admin");
+      await updateDoc(userRef, {
+        playeurInfo: arrayUnion(infoPlayeurAdd),
+      });
+    }
   };
   return (
     <div className="confirmation-modal-container">
@@ -42,16 +52,10 @@ export default function AddPlayeurModal({
         </div>
         {errorMessage && <span className="error-message">{errorMessage}</span>}
         <div className="buttons">
-          <button
-          type="submit"
-            className="cancel-button"
-          >
+          <button type="submit" className="cancel-button">
             Annuler
           </button>
-          <button
-            type="submit"
-            className="confirm-button"
-          >
+          <button type="submit" className="confirm-button">
             Valider
           </button>
         </div>

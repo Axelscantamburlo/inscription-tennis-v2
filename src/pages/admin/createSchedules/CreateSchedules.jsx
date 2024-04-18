@@ -32,13 +32,12 @@ export default function CreateSchedules() {
   };
 
   const [filterData, setFilterData] = useState([]);
-  const handleFilterData = useCallback((sortedSchedules) => {
-    setFilterData(sortedSchedules);
-  }, []);
-
-  useEffect(() => {
-    handleFilterData(loadedData);
-  }, [loadedData, handleFilterData]);
+  const handleFilterData = useCallback(
+    (sortedSchedules) => {
+      setFilterData(sortedSchedules);
+    },
+    [loadedData]
+  );
 
   return (
     <div className="create-schedules-container">

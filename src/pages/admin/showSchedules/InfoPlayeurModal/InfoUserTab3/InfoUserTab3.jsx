@@ -28,23 +28,25 @@ export default function InfoUserTab3({
   } = infoPlayeurClick[0] || {};
   const [price, setPrice] = useState("");
   useEffect(() => {
-    const playExternFunction = async () => {
-      const inscriptions = await getPlayeurInscription(
-        loadedData,
-        playeurClick
-      );
-      const price = findPriceToPay(inscriptions, level);
-      setPrice(price);
-    };
-    playExternFunction();
+    if (level) {
+      const playExternFunction = async () => {
+        const inscriptions = await getPlayeurInscription(
+          loadedData,
+          playeurClick
+        );
+        const price = findPriceToPay(inscriptions, level);
+        setPrice(price);
+      };
+      playExternFunction();
+    }
   }, [infoPlayeurClick, playeurClick]);
-
   // const {closeModal2} = useModal()
   const handleConfirmPaiement = async () => {
     if (uid) {
       // Vérifie si uid existe
       const usersRef = doc(db, "users", uid);
       const userDoc = await getDoc(usersRef);
+      setShowModal2(false);
 
       if (userDoc.exists()) {
         const updatedPlayeurInfo = userDoc.data().playeurInfo.map((info) =>
@@ -63,7 +65,6 @@ export default function InfoUserTab3({
 
         await updateDoc(usersRef, { playeurInfo: updatedPlayeurInfo });
       }
-      setShowModal2(false);
     }
   };
 
@@ -78,7 +79,7 @@ export default function InfoUserTab3({
         <>
           <div className="text-container">
             <h1>Prix payé: </h1>
-            <h4>{pricePay}€</h4>
+            <h4>{pricePay ? `${pricePay}€` : "Pas renseigné"}</h4>
           </div>
           <div className="text-container">
             <h3>Moyen de paiement:</h3>
@@ -98,7 +99,7 @@ export default function InfoUserTab3({
         <>
           <h2>
             <span style={{ color: "var(--blue-color)" }}>Prix à payer:</span>{" "}
-            {price}€
+            {price ? `${price}€` : "Pas renseigné"}{" "}
           </h2>
           <div className="buttons-container">
             <h2>Moyen de paiement:</h2>

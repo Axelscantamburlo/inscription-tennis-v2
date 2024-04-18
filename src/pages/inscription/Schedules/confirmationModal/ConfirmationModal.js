@@ -44,10 +44,12 @@ export default function ConfirmationModal({ setOpenModal }) {
       }
     }
     const userRef = doc(db, "users", uid);
-    await updateDoc(userRef, {
-      playeurInfo: arrayUnion(playeurInfoState),
-      playeurNames: arrayUnion(name),
-    });
+    if (userRef) {
+      await updateDoc(userRef, {
+        playeurInfo: arrayUnion(playeurInfoState),
+        playeurNames: arrayUnion(name),
+      });
+    }
     localStorage.removeItem("persist:root");
     navigate("/informations-paiement");
   };

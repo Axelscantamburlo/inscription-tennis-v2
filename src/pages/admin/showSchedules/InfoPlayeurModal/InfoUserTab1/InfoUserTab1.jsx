@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { convertLevelToWord } from "../../../../../functions/convertLevelToWord";
 
 export default function InfoUserTab1({ infoPlayeurClick }) {
-  console.log(infoPlayeurClick);
   const formatDate = (date) => {
+    console.log(date);
     if (date) {
       const [year, month, day] = date.split("-");
       return `${day}/${month}/${year}`;

@@ -3,16 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 // COMPONENT
 import ScheduleItem from "../ScheduleItem/ScheduleItem";
-import ConfirmationModal from "../Schedules/confirmationModal/ConfirmationModal";
-import PreviousHourButtons from "./PreviousHourButton/PreviousHourButtons";
+import NavigateFooter from "./NavigateFooter/NavigateFooter";
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
 
 // REDUX
-import { useSelector, useDispatch } from "react-redux";
-
-// FUNCTIONS
-import { handleButtonClick } from "../../../functions/handleButtonClick";
+import { useSelector } from "react-redux";
 
 export default function SecondHour() {
   const navigate = useNavigate();
@@ -26,11 +22,8 @@ export default function SecondHour() {
     (state) => state.schedule
   );
 
-  const [openModal, setOpenModal] = useState(false);
-
   // naviguer à l'heure précédente: supprimer le schedule séléctionné dans redux
 
-  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
     const confirmRefresh = (event) => {
       event.preventDefault();
@@ -50,23 +43,25 @@ export default function SecondHour() {
       window.removeEventListener("beforeunload", confirmRefresh);
     };
   }, [selectedScheduleFirst, selectedScheduleSecond, navigate]);
-
+  console.log(formule);
   return (
     <div className="inscription-schedules-container">
       <div style={{ position: "relative" }}>
-        <PreviousHourButtons path="Second" urlPath="inscription" />
+        {/* <PreviousHourButtons path="Second" urlPath="inscription" /> */}
 
         <h1
           className="title"
           style={{ color: "var(--background-color)", margin: "50px 0 15px 0" }}
         >
-          Votre deuxième heure : {formule === 'Forme jouée 2h par semaine' ? "(Forme jouée)" : ""}
+          Votre deuxième heure :{" "}
+          {formule?.includes("Forme jouée 2h par semaine")
+            ? "(Forme jouée)"
+            : ""}
         </h1>
       </div>
       <div className="schedules-container">
-
-        {formule === "2 x 1h par semaine" ||
-        formule === "Forme jouée 3h par semaine" ? (
+        {formule?.includes("2 x 1h par semaine") ||
+        formule?.includes("Forme jouée 3h par semaine") ? (
           <>
             {loadedData
               .filter(
@@ -83,7 +78,7 @@ export default function SecondHour() {
                 );
               })}
           </>
-        ) : formule === "Forme jouée 2h par semaine" ? (
+        ) : formule?.includes("Forme jouée 2h par semaine") ? (
           <>
             {loadedData
               .filter((el) => el.level === level)
@@ -99,23 +94,12 @@ export default function SecondHour() {
         ) : null}
       </div>
 
-      <button
-        className="submit-btn"
-        onClick={() =>
-          handleButtonClick(
-            formule === "Forme jouée 3h par semaine" ? 1 : 2,
-            selectedScheduleSecond,
-            setOpenModal,
-            setErrorMessage,
-            navigate,
-            formule === "Forme jouée 3h par semaine" ? "troisieme-heure" : null
-          )
-        }
-      >
-        {formule === "Forme jouée 3h par semaine" ? "Suivant" : "Valider"}
-      </button>
-      {errorMessage && <span className="error-message">{errorMessage}</span>}
-      {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}
+      <NavigateFooter
+        path="Second"
+        previousPath="inscription"
+        selectedSchedule={selectedScheduleSecond}
+        nextPath="troisieme-heure"
+      />
     </div>
   );
 }

@@ -67,7 +67,7 @@ export default function CreateSchedules() {
             >
               <div className="contents">
                 <div className="content">
-                  <span>Jour: </span>
+                  <span>Jour : </span>
                   <span>{day}</span>
                 </div>
                 <div className="content">
@@ -94,7 +94,7 @@ export default function CreateSchedules() {
                   </span>
                 </div>
                 <div className="content">
-                  <span>Enseignant</span>
+                  <span>Enseignant :</span>
                   <span>{educator}</span>
                 </div>
               </div>

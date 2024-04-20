@@ -4,15 +4,14 @@ import { useNavigate } from "react-router-dom";
 // COMPONENT
 import ScheduleItem from "../ScheduleItem/ScheduleItem";
 import ConfirmationModal from "../Schedules/confirmationModal/ConfirmationModal";
-import PreviousHourButtons from "../SecondHour/PreviousHourButton/PreviousHourButtons";
+import NavigateFooter from "../SecondHour/NavigateFooter/NavigateFooter";
 
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
 // REDUX
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 //FUNCTIONS
-import { handleButtonClick } from "../../../functions/handleButtonClick";
 
 export default function ThirdHour() {
   const navigate = useNavigate();
@@ -27,12 +26,6 @@ export default function ThirdHour() {
     selectedScheduleSecond,
     selectedScheduleThird,
   } = useSelector((state) => state.schedule);
-
-  const [openModal, setOpenModal] = useState(false);
-
-
-
-  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (selectedScheduleFirst === null || selectedScheduleSecond === null) {
@@ -62,8 +55,10 @@ export default function ThirdHour() {
   return (
     <div className="inscription-schedules-container">
       <div style={{ position: "relative" }}>
-        <PreviousHourButtons path='Third' urlPath='inscription/deuxieme-heure' />
-        <h1 className="title" style={{ color: "var(--background-color)", margin: '50px 0 15px 0' }}>
+        <h1
+          className="title"
+          style={{ color: "var(--background-color)", margin: "50px 0 15px 0" }}
+        >
           Votre troisième heure : (Forme jouée)
         </h1>
       </div>
@@ -86,22 +81,12 @@ export default function ThirdHour() {
           })}
       </div>
 
-      <button
-        className="submit-btn"
-        onClick={() =>
-          handleButtonClick(
-            2,
-            selectedScheduleThird,
-            setOpenModal,
-            setErrorMessage
-          )
-        }
-      >
-        Valider
-      </button>
-      {errorMessage && <span className="error-message">{errorMessage}</span>}
-
-      {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}
+      <NavigateFooter
+        path="Third"
+        previousPath="inscription/deuxieme-heure"
+        selectedSchedule={selectedScheduleThird}
+        nextPath=""
+      />
     </div>
   );
 }

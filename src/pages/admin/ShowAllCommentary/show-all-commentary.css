@@ -1,0 +1,4 @@
+.show-all-commentary-container {
+  background-color: var(--grey-color);
+  min-height: 100vh;
+}

@@ -28,7 +28,7 @@ export default function ConfirmationModal({ setOpenModal }) {
     dateInscription: new Date(),
   });
 
-  const { name, level } = playeurInfoState;
+  const { name, level, birthDay } = playeurInfoState;
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const inscriptions = useSelector((state) => state.schedule);
 
@@ -37,7 +37,7 @@ export default function ConfirmationModal({ setOpenModal }) {
       if (inscriptions[key]) {
         const { usersRegisted, numberOfPlaces, uid } = inscriptions[key];
         if (usersRegisted.length < numberOfPlaces) {
-          await firebaseUpdateSchedulesDb(uid, name, "arrayUnion");
+          await firebaseUpdateSchedulesDb(uid, name, "arrayUnion", birthDay);
         } else {
           console.log("plus de place");
         }

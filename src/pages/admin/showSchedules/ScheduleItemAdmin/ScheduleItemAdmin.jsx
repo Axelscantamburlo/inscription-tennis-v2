@@ -64,6 +64,17 @@ export default function ScheduleItemAdmin({ schedule }) {
                 key={index}
                 style={item ? { padding: "15px 5px" } : { height: "50px" }}
               >
+                {/* <td
+                  className="item"
+                  onClick={() =>
+                    item
+                      ? (setShowModal2(true), setPlayeurClick(item))
+                      : setShowModal1(true)
+                  }
+                >
+                  {item.name}
+                  {item.birthDay ? item.birthDay.slice(0, 4) : ""}
+                </td> */}
                 <td
                   className="item"
                   onClick={() =>
@@ -72,7 +83,10 @@ export default function ScheduleItemAdmin({ schedule }) {
                       : setShowModal1(true)
                   }
                 >
-                  {item}
+                  {item.name}
+                </td>
+                <td className="birthDay">
+                  {item.birthDay ? item.birthDay.slice(0, 4) : ""}
                 </td>
                 {item && (
                   <td
@@ -101,7 +115,7 @@ export default function ScheduleItemAdmin({ schedule }) {
       )}
       {modal2 && (
         <InfoPlayeurModal
-          playeurClick={playeurClick}
+          playeurClick={playeurClick.name}
           setShowModal2={setShowModal2}
         />
       )}

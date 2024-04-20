@@ -14,6 +14,7 @@ import SecondHour from "./pages/inscription/SecondHour/SecondHour";
 import ThirdHour from "./pages/inscription/ThirdHour/ThirdHour";
 import InformationInscription from "./pages/inscription/InformationInscription/InformationInscription";
 import ThankYouPage from "./pages/inscription/ThankYouPage/ThankYouPage";
+import AddCommentary from "./pages/inscription/AddCommentary/AddCommentary";
 // Admin
 import AdminLogin from "./pages/admin/connexion/AdminLogin";
 import ShowAllSchedules from "./pages/admin/showSchedules/ShowAllSchedules";
@@ -26,6 +27,7 @@ import AdminPrivateRoute from "./pages/PrivateRoutes/AdminPrivateRoute";
 
 import { UidUserConnected } from "./context/UidUserConnected";
 import ClientPrivateRoute from "./pages/PrivateRoutes/ClientPrivateRoute";
+import NavbarTabs from "./pages/admin/showAllUsers/NavBarTabs/NavBarTabs";
 // Wrapper pour les routes nécessitant le contexte AllDataUsersProvider
 function AdminRoutes() {
   return (
@@ -33,7 +35,7 @@ function AdminRoutes() {
       <Routes>
         <Route exact path="tableaux-joueurs" element={<ShowAllSchedules />} />
         <Route exact path="ajouter-un-creneau" element={<CreateSchedules />} />
-        <Route exact path="liste-joueurs" element={<ShowAllUsers />} />
+        <Route exact path="liste-joueurs" element={<NavbarTabs />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </AllDataUsersProvider>
@@ -42,6 +44,7 @@ function AdminRoutes() {
 function ClientRoutes() {
   return (
     <Routes>
+      <Route exact path="emettre-un-souhait" element={<AddCommentary />} />
       <Route exact index element={<RegisterPlayeur />} />
       <Route path="inscription">
         <Route exact index element={<InscriptionSchedules />} />

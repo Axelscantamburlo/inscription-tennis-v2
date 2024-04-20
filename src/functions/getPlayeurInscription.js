@@ -1,6 +1,6 @@
 export const getPlayeurInscription = (loadedData, playeur) => {
   const playeurInscriptions = loadedData.filter((data) =>
-    data.usersRegisted.includes(playeur)
+    data.usersRegisted.some((user) => user.name === playeur)
   );
   return playeurInscriptions;
 };
@@ -30,7 +30,7 @@ export const findPriceToPay = (playerInscriptions, level) => {
     return "270";
   } else if (l === "12") {
     return convertHoursToMinutes(startHour, endHour) === 60 ? "270" : "317";
-  } else if (l === "13") {
+  } else if (l === "13" || l === "14") {
     return "317";
   }
 };

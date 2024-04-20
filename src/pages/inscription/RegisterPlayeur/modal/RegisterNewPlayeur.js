@@ -25,7 +25,6 @@ import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 // DATA
 import { NEW_PLAYEUR_INPUTS } from "../../../../data/inputsData";
 
-
 export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -102,7 +101,9 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
 
     const isPlayeurAlreadyRegisted =
       loadedData.some((data) =>
-        data.usersRegisted.map((user) => user.toLowerCase()).includes(cleanName)
+        data.usersRegisted
+          ?.map((user) => user.name.toLowerCase())
+          .includes(cleanName)
       ) ||
       playeursNames
         ?.map((playeur) => playeur.toLowerCase())

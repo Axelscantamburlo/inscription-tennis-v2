@@ -1,20 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // CONTEXT
 import { AllDataSchedules } from "../../../context/AllDataSchedules";
 // COMPONENT
 import ScheduleItem from "../ScheduleItem/ScheduleItem";
-import ConfirmationModal from "./confirmationModal/ConfirmationModal";
 
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
 import { setPlayeurInfo } from "../../../redux/actions";
 // FUNCTIONS
-import { handleButtonClick } from "../../../functions/handleButtonClick";
 
 // DATA
-import { FORMULES } from "../../../data/formules";
+import { findFormule } from "../../../data/formules";
+import NavigateFooter from "../SecondHour/NavigateFooter/NavigateFooter";
 
 // ///////////////////////
 export default function InscriptionSchedules() {
@@ -32,7 +31,7 @@ export default function InscriptionSchedules() {
     if (!level || !name || level === "Niveau invalide") {
       navigate("/inscrire-un-joueur");
     } else {
-      const formulesByLevel = FORMULES.find((f) => f.levels.includes(level));
+      const formulesByLevel = findFormule(level);
       setFormules(formulesByLevel ? formulesByLevel.formules : []);
     }
   }, [level, name, navigate]);
@@ -40,14 +39,15 @@ export default function InscriptionSchedules() {
   const [chooseFormule, setChooseFormule] = useState(
     level === 0 ? "50min par semaine" : "1h par semaine"
   );
+
   const handleChangeFormule = (e) => {
     const selectedFormule = e.target.value;
     setChooseFormule(selectedFormule);
     dispatch(setPlayeurInfo({ formule: selectedFormule }));
   };
 
-  const [errorMessage, setErrorMessage] = useState("");
-  const [openModal, setOpenModal] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState("");
+  // const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className="inscription-schedules-container">
@@ -76,23 +76,13 @@ export default function InscriptionSchedules() {
             );
           })}
       </div>
-      <button
-        className="submit-btn "
-        onClick={() =>
-          handleButtonClick(
-            formule === "1h par semaine" ? 2 : 1,
-            selectedScheduleFirst,
-            setOpenModal,
-            setErrorMessage,
-            navigate,
-            formule === "1h par semaine" ? null : "deuxieme-heure"
-          )
-        }
-      >
-        {formule === "1h par semaine" ? "Valider" : "Suivant"}
-      </button>
-      {errorMessage && <span className="error-message">{errorMessage}</span>}
-      {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}
+
+      <NavigateFooter
+        path=""
+        previousPath=""
+        selectedSchedule={selectedScheduleFirst}
+        nextPath="deuxieme-heure"
+      />
     </div>
   );
 }

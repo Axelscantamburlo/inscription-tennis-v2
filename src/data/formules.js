@@ -1,36 +1,45 @@
-export const FORMULES = [
+export const findFormule = (level) => {
+  const FORMULES = [
     {
-        formules: ['1h par semaine', "2 x 1h par semaine"],
-        levels: ["1", "2", "3", "4", "5", '6',]
+      formules: [
+        `1h par semaine - ${
+          level == "1" ? "170€" : level === "6" ? "185€" : "175€"
+        }`,
+        `2 x 1h par semaine - ${
+          level == "1" ? "276€" : level === "6" ? "329€" : "319€"
+        }`,
+      ],
+      levels: ["1", "2", "3", "4", "5", "6"],
     },
     {
-        formules: ['1h par semaine', "2 x 1h par semaine", "Forme jouée 2h par semaine", 'Forme jouée 3h par semaine'],
-        levels: ["7", '8']
-    },
-    {
-        formules: ['1h par semaine', "2 x 1h par semaine", "Forme jouée 2h par semaine", 'Forme jouée 3h par semaine'],
-        levels: ["9"]
+      formules: [
+        "1h par semaine - 185€",
+        "2 x 1h par semaine - 329€",
+        "Forme jouée 2h par semaine - 291€",
+        "Forme jouée 3h par semaine - 445€",
+      ],
+      levels: ["7", "8", "9"],
     },
 
     {
-        formules: ['50min par semaine'],
-        levels: ["0"]
+      formules: ["50min par semaine - 127€"],
+      levels: ["0"],
     },
     {
-        formules: ['1h par semaine'],
-        level: ["10", "11"]
+      formules: ["1h par semaine - 270€"],
+      level: ["10", "11"],
     },
     {
-        formules: ['1h par semaine', '1h30 par semaine'],
-        level: ["12"]
+      formules: ["1h par semaine 270€", "1h30 par semaine - 317€"],
+      level: ["12"],
     },
     {
-        formules: ['1h30 par semaine'],
-        level: ["13", "14"]
+      formules: ["1h30 par semaine - 317€"],
+      level: ["13", "14"],
     },
-]
-
-
+  ];
+  return FORMULES.find((f) => f.levels.includes(level));
+};
 
 // 0: "Baby",
 //       1: "Mini",

@@ -11,16 +11,7 @@ import FilterSchedules from "./filterSchedules/FilterSchedules";
 export default function ShowAllSchedules() {
   const { loadedData } = useContext(AllDataSchedules);
   const [filterData, setFilterData] = useState([]);
-  // const handleFilterData = useCallback((sortedSchedules) => {
-  //   setFilterData(sortedSchedules);
-  // }, []);
 
-  // useEffect(() => {
-  //   handleFilterData(loadedData);
-  // }, []);
-  // const handleFilterData = (sortedSchedules) => {
-  //   setFilterData(sortedSchedules);
-  // };
   const handleFilterData = useCallback(
     (sortedSchedules) => {
       setFilterData(sortedSchedules);

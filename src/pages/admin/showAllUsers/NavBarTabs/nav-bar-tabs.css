@@ -1,0 +1,9 @@
+.nav-bar-tabs-container nav ul {
+  margin-top: 50px;
+  background-color: var(--grey-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style: none;
+  padding: 20px;
+}

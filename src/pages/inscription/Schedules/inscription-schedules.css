@@ -1,85 +1,66 @@
 .inscription-schedules-container {
-    min-height: 100vh;
-    overflow: hidden ;
-    position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 
 .inscription-schedules-container .formules-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 20px;
 }
 .inscription-schedules-container .formules-container h2 {
-    font-size: 4.5vw;
+  font-size: 4.5vw;
 }
 
 .inscription-schedules-container .formules-container select {
-    border: none;
-    padding: 0.5vh 1.2vh;
-    width: 40%;
-    border-radius: 10px;
-    font-size: 3vw;
-    outline: none;
-    border: 1px solid var(--background-color)
+  border: none;
+  padding: 0.5vh 1.2vh;
+  width: 40%;
+  border-radius: 10px;
+  font-size: 3vw;
+  outline: none;
+  border: 1px solid var(--background-color);
 }
 
 .inscription-schedules-container .schedules-container {
-    height: 80%;
-    overflow: auto;
-    margin-top: 10px;
+  height: 80%;
+  overflow: auto;
+  margin-top: 10px;
 }
-
 
 @media screen and (min-width: 800px) {
-    .inscription-schedules-container .formules-container {
-        margin: 0 auto;
-    }
+  .inscription-schedules-container .formules-container {
+    margin: 0 auto;
+  }
 
-    .inscription-schedules-container .formules-container h2 {
-        font-size: 25px;
-    }
-    
-    .inscription-schedules-container .formules-container select {
-        width: 210px; 
-        padding: 5px 10px;
-        font-size: 15px;
-    }
+  .inscription-schedules-container .formules-container h2 {
+    font-size: 25px;
+  }
 
-    .inscription-schedules-container .schedules-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 200px;
+  .inscription-schedules-container .formules-container select {
+    width: 210px;
+    padding: 5px 10px;
+    font-size: 15px;
+  }
 
-        grid-gap: 10px;
-    }
+  .inscription-schedules-container .schedules-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
 
-    .inscription-schedules-container .submit-btn {
-        width: 150px;
-        position: fixed;
-        bottom: 60px;
-        right: 75px;
-        left: unset;
-        transform: unset;
-    }
-    .inscription-schedules-container .previous-btn {
-        right: unset;
-        left: 75px;
-    }
+    grid-gap: 10px;
+  }
 }
 @media screen and (min-width: 1200px) {
-
-
-    .inscription-schedules-container .schedules-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  .inscription-schedules-container .schedules-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 @media screen and (min-width: 1600px) {
-
-
-    .inscription-schedules-container .schedules-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
+  .inscription-schedules-container .schedules-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

@@ -11,7 +11,7 @@ export default function DeletePlayeurModal({
 }) {
   const handleConfirm = async () => {
     setShowModal3(false);
-    await firebaseUpdateSchedulesDb(uid, playeurToDelete, "arrayRemove");
+    await firebaseUpdateSchedulesDb(uid, playeurToDelete, "arrayRemove", null);
   };
 
   const { day, startHour, endHour } = schedule;
@@ -34,7 +34,7 @@ export default function DeletePlayeurModal({
               textTransform: "uppercase",
             }}
           >
-            {playeurToDelete}
+            {playeurToDelete.name}
           </span>{" "}
           le {day} de {startHour} à {endHour}
         </p>

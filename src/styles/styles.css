@@ -1,34 +1,37 @@
 /* main */
-@import './main.css';
+@import "./main.css";
 
 /* connexion */
 @import "../pages/connexion/WelcomePage/welcome-page.css";
-@import '../pages/connexion/Login/login.css';
-@import '../pages/connexion/SignUp/sign-up.css';
-@import '../pages/connexion/Logout/logout.css';
+@import "../pages/connexion/Login/login.css";
+@import "../pages/connexion/SignUp/sign-up.css";
+@import "../pages/connexion/Logout/logout.css";
 
 /* INSCRIPTION */
 
-@import '../pages/inscription/RegisterPlayeur/register-playeur.css';
-@import '../pages/inscription/RegisterPlayeur/playeur-registed-info.css';
-@import '../pages/inscription/RegisterPlayeur/modal/register-playeur-modal.css';
-@import '../pages/inscription/Schedules/inscription-schedules.css';
-@import '../pages/inscription/ScheduleItem/schedule-item.css';
-@import '../pages/inscription/Schedules/confirmationModal/confirmation-modal.css';
-@import '../pages/inscription/ThankYouPage/thank-you-page.css';
-@import '../pages/inscription/InformationInscription/informations-inscription.css';
+@import "../pages/inscription/RegisterPlayeur/register-playeur.css";
+@import "../pages/inscription/RegisterPlayeur/playeur-registed-info.css";
+@import "../pages/inscription/RegisterPlayeur/modal/register-playeur-modal.css";
+@import "../pages/inscription/Schedules/inscription-schedules.css";
+@import "../pages/inscription/ScheduleItem/schedule-item.css";
+@import "../pages/inscription/Schedules/confirmationModal/confirmation-modal.css";
+@import "../pages/inscription/ThankYouPage/thank-you-page.css";
+@import "../pages/inscription/InformationInscription/informations-inscription.css";
+@import "../pages/inscription/SecondHour/NavigateFooter/navigation-footer.css";
+@import "../pages/inscription/AddCommentary/add-commentary.css";
 
 /* Admin */
 /* NavBar */
-@import '../pages/admin/navBar/nav-bar.css';
-@import '../pages/admin/showSchedules/show-all-schedules.css';
-@import '../pages/admin/showSchedules/ScheduleItemAdmin/schedule-item-admin.css';
-@import '../pages/admin/showSchedules/addPlayeurModal/add-playeur-modal.css';
-@import '../pages/admin/showSchedules/InfoPlayeurModal/info-user-modal.css';
-@import '../pages/admin/createSchedules/create-schedules.css';
-@import '../pages/admin/createSchedules/CreateScheduleModal/create-schedule-modal.css';
-@import '../pages/admin/showAllUsers/show-all-users.css';
+@import "../pages/admin/navBar/nav-bar.css";
+@import "../pages/admin/showSchedules/show-all-schedules.css";
+@import "../pages/admin/showSchedules/ScheduleItemAdmin/schedule-item-admin.css";
+@import "../pages/admin/showSchedules/addPlayeurModal/add-playeur-modal.css";
+@import "../pages/admin/showSchedules/InfoPlayeurModal/info-user-modal.css";
+@import "../pages/admin/createSchedules/create-schedules.css";
+@import "../pages/admin/createSchedules/CreateScheduleModal/create-schedule-modal.css";
+@import "../pages/admin/showAllUsers/show-all-users.css";
+@import "../pages/admin/ShowAllCommentary/show-all-commentary.css";
+@import "../pages/admin/showAllUsers/NavBarTabs/nav-bar-tabs.css";
 
 /* NOT FOUND PAGE */
-@import '../pages/not-found-page/not-found-page.css'
-
+@import "../pages/not-found-page/not-found-page.css";

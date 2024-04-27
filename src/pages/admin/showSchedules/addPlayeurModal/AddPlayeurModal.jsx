@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 
 // FIREBASE
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
 
 // FUNCTIONS
@@ -23,14 +30,19 @@ export default function AddPlayeurModal({
     if (nameEnter.trim() !== "" && usersRegisted.length < numberOfPlaces) {
       await firebaseUpdateSchedulesDb(uid, nameEnter, "arrayUnion", birthDay);
       const infoPlayeurAdd = {
-        name: nameEnter.trim(),
+        name: nameEnter.trim().toLowerCase(),
         level: level,
         dateInscription: new Date(),
         isPayed: false,
       };
-      const userRef = doc(db, "users", "users-add-by-admin");
-      await updateDoc(userRef, {
-        playeurInfo: arrayUnion(infoPlayeurAdd),
+      // const userRef = doc(db, "users", "users-add-by-admin");
+      // await updateDoc(userRef, {
+      //   playeurInfo: arrayUnion(infoPlayeurAdd),
+      // });
+
+      const docRef = await addDoc(collection(db, "users"), {
+        playeurInfo: [infoPlayeurAdd],
+        playeurNames: [infoPlayeurAdd.name],
       });
     }
   };

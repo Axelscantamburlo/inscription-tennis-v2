@@ -15,13 +15,23 @@ export default function ScheduleItem({ schedule, path }) {
     dispatch(selectSchedule(schedule, path));
     // setIsSelected(true);
   };
-  const { selectedScheduleFirst, selectedScheduleSecond, selectedScheduleThird } = useSelector((state) => state.schedule);
+  const {
+    selectedScheduleFirst,
+    selectedScheduleSecond,
+    selectedScheduleThird,
+  } = useSelector((state) => state.schedule);
   const isSelected = (selectedSchedule, uid) => {
     return selectedSchedule !== null && selectedSchedule.uid === uid;
   };
   return (
     <div
-    style={isSelected(selectedScheduleFirst, uid) || isSelected(selectedScheduleSecond, uid) || isSelected(selectedScheduleThird, uid) ? { border: "4px solid green" } : null}
+      style={
+        isSelected(selectedScheduleFirst, uid) ||
+        isSelected(selectedScheduleSecond, uid) ||
+        isSelected(selectedScheduleThird, uid)
+          ? { border: "4px solid green" }
+          : null
+      }
       className="schedule-card"
     >
       <h2>
@@ -34,8 +44,18 @@ export default function ScheduleItem({ schedule, path }) {
         ></div>
       </div>
       <div className="bottom-card">
-        <p>{numberOfPlaces - usersRegisted.length} places disponibles</p>
-        <button style={numberOfPlaces - usersRegisted.length === 0 ? {opacity: '0.5'} : null} onClick={() => numberOfPlaces - usersRegisted.length !== 0 && handleChooseSchedule()}>
+        <p>{numberOfPlaces - usersRegisted.length} place(s) disponible(s)</p>
+        <button
+          style={
+            numberOfPlaces - usersRegisted.length === 0
+              ? { opacity: "0.5" }
+              : null
+          }
+          onClick={() =>
+            numberOfPlaces - usersRegisted.length !== 0 &&
+            handleChooseSchedule()
+          }
+        >
           Choisir cette heure
         </button>
       </div>

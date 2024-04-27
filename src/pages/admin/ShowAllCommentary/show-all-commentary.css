@@ -2,3 +2,23 @@
   background-color: var(--grey-color);
   min-height: 100vh;
 }
+
+@media screen and (min-width: 800px) {
+  .show-all-commentary-container .commentary-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+    overflow: auto;
+    grid-gap: 10px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .show-all-commentary-container .commentary-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1600px) {
+  .show-all-commentary-container .commentary-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

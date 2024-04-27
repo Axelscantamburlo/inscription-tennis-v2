@@ -2,8 +2,12 @@ import React, { useState, useEffect, use } from "react";
 import NavBar from "../navBar/NavBar";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "../../../config/firebase-config";
+import { useLocation } from "react-router-dom";
 
 export default function ShowAllCommentary() {
+  const location = useLocation();
+  // const { selectedSchedule } = location.state;
+
   const [commentary, setCommentary] = useState([]);
   const getCommentary = async () => {
     const dataArr = [];
@@ -26,12 +30,12 @@ export default function ShowAllCommentary() {
   return (
     <div className="show-all-commentary-container">
       <NavBar toggleClassName={3} />
-      <div className="users-container">
+      <div className="commentary-container">
         {commentary?.map((el) => {
           return (
-            <div className="user-card">
-              {el.name}
-              {el.commentary}
+            <div className="commentary-card">
+              <h2 style={{ textTransform: "uppercase" }}>{el.name}</h2>
+              <p>{el.commentary}</p>
             </div>
           );
         })}

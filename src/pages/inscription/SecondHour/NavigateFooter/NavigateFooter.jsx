@@ -65,7 +65,7 @@ const PreviousHourButtons = ({
           Précédent
         </button>
       )}
-      <NavLink to={{ pathname: "emettre un souhait" }}>
+      <NavLink to={"/emettre-un-souhait"}>
         <p>Emetrre un souhait</p>
       </NavLink>
       {errorMessage && <span className="error-message">{errorMessage}</span>}

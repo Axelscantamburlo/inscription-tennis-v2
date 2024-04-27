@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 // CONTEXT
 import { AllDataSchedules } from "../../../../../context/AllDataSchedules";
-
+import { usePlayeurInscription } from "../../../../../hooks/usePlayeurInscription";
 // FUNCTIONS
 import {
   getPlayeurInscription,
@@ -12,18 +12,20 @@ import { formatDate } from "../../../../../functions/formatDate";
 
 export default function InfoUserTab2({ playeurClick, dateInscription }) {
   // Appel d'une fonction externe pour récupérer les horaires d'inscriptions du joueur et les afficher
-  const { loadedData } = useContext(AllDataSchedules);
-  const [playeurInscription, setPlayeurInscription] = useState([]);
-  useEffect(() => {
-    const playExternFunction = async () => {
-      const inscriptions = await getPlayeurInscription(
-        loadedData,
-        playeurClick
-      );
-      setPlayeurInscription(inscriptions);
-    };
-    playExternFunction();
-  }, []);
+  // const { loadedData } = useContext(AllDataSchedules);
+  // const [playeurInscription, setPlayeurInscription] = useState([]);
+  // useEffect(() => {
+  //   const playExternFunction = async () => {
+  //     const inscriptions = await getPlayeurInscription(
+  //       loadedData,
+  //       playeurClick
+  //     );
+  //     setPlayeurInscription(inscriptions);
+  //   };
+  //   playExternFunction();
+  // }, []);
+  const playeurInscription = usePlayeurInscription(playeurClick);
+
   return (
     <div className="tab-container">
       <div className="text-container">
@@ -36,7 +38,11 @@ export default function InfoUserTab2({ playeurClick, dateInscription }) {
       </div>
       <div className="text-container">
         <h3>Date inscription :</h3>
-        {dateInscription ? <h4>{formatDate(dateInscription)}</h4> : <h4>Pas renseigné</h4>}
+        {dateInscription ? (
+          <h4>{formatDate(dateInscription)}</h4>
+        ) : (
+          <h4>Pas renseigné</h4>
+        )}
       </div>
       <div className="text-container">
         <h3>Inscription(s) : </h3>

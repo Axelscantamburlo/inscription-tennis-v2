@@ -10,13 +10,14 @@ import {
   getPlayeurInscription,
   findPriceToPay,
 } from "../../../../../functions/getPlayeurInscription";
+import { usePlayeurInscription } from "../../../../../hooks/usePlayeurInscription";
 
 export default function InfoUserTab3({
   infoPlayeurClick,
   playeurClick,
   setShowModal2,
 }) {
-  const { loadedData } = useContext(AllDataSchedules);
+  // const { loadedData } = useContext(AllDataSchedules);
   const {
     name,
     uid,
@@ -27,17 +28,25 @@ export default function InfoUserTab3({
     typePaiement,
   } = infoPlayeurClick[0] || {};
   const [price, setPrice] = useState("");
+  // useEffect(() => {
+  //   if (level) {
+  //     const playExternFunction = async () => {
+  //       const inscriptions = await getPlayeurInscription(
+  //         loadedData,
+  //         playeurClick
+  //       );
+  //       const price = findPriceToPay(inscriptions, level);
+  //       setPrice(price);
+  //     };
+  //     playExternFunction();
+  //   }
+  // }, [infoPlayeurClick, playeurClick]);
+  const playeurInscriptions = usePlayeurInscription(playeurClick);
+
   useEffect(() => {
     if (level) {
-      const playExternFunction = async () => {
-        const inscriptions = await getPlayeurInscription(
-          loadedData,
-          playeurClick
-        );
-        const price = findPriceToPay(inscriptions, level);
-        setPrice(price);
-      };
-      playExternFunction();
+      const price = findPriceToPay(playeurInscriptions, level);
+      setPrice(price);
     }
   }, [infoPlayeurClick, playeurClick]);
   // const {closeModal2} = useModal()

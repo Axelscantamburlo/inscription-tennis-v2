@@ -15,6 +15,8 @@ import ThirdHour from "./pages/inscription/ThirdHour/ThirdHour";
 import InformationInscription from "./pages/inscription/InformationInscription/InformationInscription";
 import ThankYouPage from "./pages/inscription/ThankYouPage/ThankYouPage";
 import AddCommentary from "./pages/inscription/AddCommentary/AddCommentary";
+import PriorityInscription from "./pages/inscription/PriorityInscription/PriorityInscription";
+
 // Admin
 import AdminLogin from "./pages/admin/connexion/AdminLogin";
 import ShowAllSchedules from "./pages/admin/showSchedules/ShowAllSchedules";
@@ -44,12 +46,18 @@ function AdminRoutes() {
 function ClientRoutes() {
   return (
     <Routes>
-      <Route exact path="emettre-un-souhait" element={<AddCommentary />} />
+      <Route
+        exact
+        path="priorite-inscription"
+        element={<PriorityInscription />}
+      />
+
       <Route exact index element={<RegisterPlayeur />} />
       <Route path="inscription">
         <Route exact index element={<InscriptionSchedules />} />
         <Route path="deuxieme-heure">
           <Route exact index element={<SecondHour />} />
+
           <Route path="troisieme-heure">
             <Route index element={<ThirdHour />} />
           </Route>
@@ -88,6 +96,7 @@ export default function App() {
             path="informations-paiement"
             element={<ThankYouPage />}
           />
+          <Route path="emettre-un-souhait" element={<AddCommentary />} />
 
           {/* Partie Admin */}
           <Route exact path="/connexion-admin" element={<AdminLogin />} />

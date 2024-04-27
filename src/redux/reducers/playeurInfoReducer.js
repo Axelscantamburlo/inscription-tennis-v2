@@ -1,29 +1,30 @@
 import { SET_PLAYEUR_INFO } from "../actions";
 
 const initialState = {
-    name: '',
-    email: '',
-    phone: '',
-    level: null,
-    birthDay: '',
-    sexe: '',
-    formule: '1h par semaine',
-    job: '',
-    nationality: '',
-    adress: ''
-}
+  name: "",
+  email: "",
+  phone: "",
+  level: null,
+  birthDay: "",
+  sexe: "",
+  formule: "1h par semaine",
+  job: "",
+  nationality: "",
+  adress: "",
+  isRegisted: false,
+};
 
 const playeurInfoReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case SET_PLAYEUR_INFO: 
-        return {
-            ...state,
-            ...action.payload
-        };
-        default: {
-            return state
-        }
+  switch (action.type) {
+    case SET_PLAYEUR_INFO:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    default: {
+      return state;
     }
-}
+  }
+};
 
 export default playeurInfoReducer;

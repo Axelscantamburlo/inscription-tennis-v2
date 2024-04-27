@@ -46,6 +46,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
 
   const [registerPlayeurInfo, setRegisterPlayeurInfo] = useState({
     name: "",
+    firstName: "",
     phone: "",
     email: "",
     birthDay: "",
@@ -55,7 +56,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     adress: "",
   });
 
-  const { name, phone, email, birthDay, nationality, adress } =
+  const { name, firstName, phone, email, birthDay, nationality, adress } =
     registerPlayeurInfo;
 
   const handleInputChange = (e) => {
@@ -72,7 +73,10 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const cleanName = name.trim().replace(/\s+/g, " ").toLowerCase();
+    const cleanName = `${name.trim()} ${firstName.trim()}`
+      .replace(/\s+/g, " ")
+      .toLowerCase();
+    console.log(cleanName);
 
     if (
       !cleanName ||
@@ -94,7 +98,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
 
     if (!playeur) {
       setErrorMessage(
-        "Le joueur n'a pas été trouvé (entrer le prénom puis le nom)"
+        "Le joueur n'a pas été trouvé (entrer le nom puis le prénom)"
       );
       return;
     }
@@ -109,7 +113,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
         ?.map((playeur) => playeur.toLowerCase())
         .includes(cleanName);
 
-    if (isPlayeurAlreadyRegisted) {
+    if (isPlayeurAlreadyRegisted && !playeur.isPriority) {
       setErrorMessage("Le joueur est déjà inscrit");
       return;
     }
@@ -129,6 +133,9 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     };
     dispatch(setPlayeurInfo(updatedRegisterPlayeurInfo));
 
+    if (playeur.isPriority) {
+      return navigate("priorite-inscription");
+    }
     navigate("inscription");
   };
 

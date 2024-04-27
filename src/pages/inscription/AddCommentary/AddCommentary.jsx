@@ -4,13 +4,17 @@ import { useSelector } from "react-redux";
 // FIREBASE
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../config/firebase-config";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AddCommentary = () => {
-  // const location = useLocation();
-  // const customPropValue = location.state.customProp;
-  // console.log(customPropValue);
+  const navigate = useNavigate();
   const { name } = useSelector((state) => state.user);
+
+  const {
+    selectedScheduleFirst,
+    selectedScheduleSecond,
+    selectedScheduleThird,
+  } = useSelector((state) => state.schedule);
 
   const [comment, setComment] = useState("");
 
@@ -21,6 +25,24 @@ const AddCommentary = () => {
         name: name,
         commentary: comment,
       });
+    }
+    if (window.location.pathname === "/emettre-un-souhait") {
+      // Faire une condition spécifique si l'URL est '/emettre-un-souhait'
+      navigate("/informations-paiement");
+    } else {
+      if (!selectedScheduleSecond && !selectedScheduleThird) {
+        navigate("/inscrire-un-joueur/inscription");
+        console.log("heree");
+      } else if (selectedScheduleFirst && !selectedScheduleThird) {
+        navigate("/inscrire-un-joueur/inscription/deuxieme-heure");
+      } else {
+        if (selectedScheduleFirst && selectedScheduleSecond) {
+          navigate(
+            "/inscrire-un-joueur/inscription/deuxieme-heure/troisieme-heure"
+          );
+        }
+      }
+      // Faire une autre condition si l'URL est différente de '/emettre-un-souhait'
     }
   };
 

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // REDUX
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPlayeurInfo } from "../../../../redux/actions";
 
 //FIREBASE
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
@@ -9,14 +10,17 @@ import { db } from "../../../../config/firebase-config";
 
 //CONTEXT
 import { UidUserConnected } from "../../../../context/UidUserConnected";
+import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 
 // FUNCTIONS
 import { firebaseUpdateSchedulesDb } from "../../../../functions/firebaseUpdateSchedulesdb";
 
 export default function ConfirmationModal({ setOpenModal }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // Récupérer l'uid de l'utilisateur connecté
   const { uid } = useContext(UidUserConnected);
+  const { loadedData } = useContext(AllDataSchedules);
 
   // récucpérer les infos de l'utilisateur (son niveau)
   const playeurInfo = useSelector((state) => state.user);
@@ -32,26 +36,34 @@ export default function ConfirmationModal({ setOpenModal }) {
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const inscriptions = useSelector((state) => state.schedule);
 
+  const isPlayeurAlreadyRegisted = loadedData.some((data) =>
+    data.usersRegisted?.map((user) => user.name.toLowerCase()).includes(name)
+  );
+
   const handleConfirm = async () => {
     for (const key in inscriptions) {
       if (inscriptions[key]) {
         const { usersRegisted, numberOfPlaces, uid } = inscriptions[key];
-        if (usersRegisted.length < numberOfPlaces) {
+        if (
+          usersRegisted.length < numberOfPlaces &&
+          !isPlayeurAlreadyRegisted
+        ) {
           await firebaseUpdateSchedulesDb(uid, name, "arrayUnion", birthDay);
         } else {
-          console.log("plus de place");
+          navigate("/inscrire-un-joueur");
         }
       }
     }
     const userRef = doc(db, "users", uid);
-    if (userRef) {
+    if (userRef && !isPlayeurAlreadyRegisted) {
       await updateDoc(userRef, {
         playeurInfo: arrayUnion(playeurInfoState),
         playeurNames: arrayUnion(name),
       });
+      navigate("/emettre-un-souhait");
+      dispatch(setPlayeurInfo({}));
     }
     localStorage.removeItem("persist:root");
-    navigate("/informations-paiement");
   };
 
   const [schedulesChoose, setSchedulesChoose] = useState([]);

@@ -1,80 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&display=swap");
 
 *,
 ::after,
 ::before {
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Heebo', sans-serif;
-    font-weight: 500;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Heebo", sans-serif;
+  font-weight: 500;
 }
 
 :root {
-    --blue-color: #2274a5;
-    --grey-color: #E5E6E4;
-    --background-color: #242d34;
-    --red-color: #f15656;
-    --linear-gradient: linear-gradient(90deg, rgba(34, 116, 165, 1) 14%, rgba(36, 122, 204, 1) 49%, rgba(9, 102, 191, 1) 84%);
-    --box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
-    --background-transparent: rgba(0, 0, 0, 0.5);
-
+  --blue-color: #2274a5;
+  --grey-color: #e5e6e4;
+  --background-color: #242d34;
+  --red-color: #f15656;
+  --linear-gradient: linear-gradient(
+    90deg,
+    rgba(34, 116, 165, 1) 14%,
+    rgba(36, 122, 204, 1) 49%,
+    rgba(9, 102, 191, 1) 84%
+  );
+  --box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+  --background-transparent: rgba(0, 0, 0, 0.5);
 }
 
 .submit-btn {
-    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
-    color: white;
-    background: var(--linear-gradient);
-    border: none;
-    padding: 10px 15px;
-    /* padding: 12px 0; */
-    border-radius: 10px;
-    font-size: 20px;
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    cursor: pointer;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+  color: white;
+  background: var(--linear-gradient);
+  border: none;
+  padding: 10px 15px;
+  /* padding: 12px 0; */
+  border-radius: 10px;
+  font-size: 20px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  cursor: pointer;
 }
-
-
-
 
 .close-modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 5vw;
-    top: 2vh;
-    width: 25px; /* Taille du bouton en fonction de la largeur de l'écran */
-    height: 25px; /* Taille du bouton en fonction de la largeur de l'écran */
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    background-color: var(--red-color);
-    color: var(--grey-color);
-    font-size: 3.5vw;
-    z-index: 300;
-
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 5vw;
+  top: 2vh;
+  width: 25px; /* Taille du bouton en fonction de la largeur de l'écran */
+  height: 25px; /* Taille du bouton en fonction de la largeur de l'écran */
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: var(--red-color);
+  color: var(--grey-color);
+  font-size: 3.5vw;
+  z-index: 300;
 }
 .error-message {
-    color: var(--red-color); 
-    max-width: 70%;
-    text-align: center;
-    position: fixed;
-    left: 50%;
-    bottom: 60px;
-    transform: translateX(-50%);
+  color: var(--red-color);
+  max-width: 70%;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  bottom: 60px;
+  transform: translateX(-50%);
 }
 
 .title {
-    text-align: center;
-    margin: 4vh 0;
-    color: var(--grey-color);
-    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
-    font-size: 6vw;
+  text-align: center;
+  margin: 4vh 0;
+  color: var(--grey-color);
+  text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+  font-size: 6vw;
 }
 
 /* .button {
@@ -89,93 +88,87 @@
 } */
 
 .buttons {
-
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .buttons button {
-    cursor: pointer;
-    border: none;
-    padding: 15px 20px;
-    box-shadow: 4px 4px 15px rgba(0,0,0,0.2);
-    border-radius: 20px;
-    color: var(--grey-color);
-    font-size: 3vw;
+  cursor: pointer;
+  border: none;
+  padding: 15px 20px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: var(--grey-color);
+  font-size: 3vw;
 }
- button:hover {
-    opacity: 0.9;
+button:hover {
+  opacity: 0.9;
 }
- .confirm-button {
-    background: var(--linear-gradient);
+.confirm-button {
+  background: var(--linear-gradient);
 }
- .cancel-button {
-    background: var(--red-color);
-}
-
-.inputs input, .inputs select {
-    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
-    border: none;
-    padding: 15px 0px 15px 12.5px;
-    background-color: #eaeaea;
-    border-radius: 8px;
-    outline: none;
-    margin-bottom: 20px;
-    color: var(--background-color)
+.cancel-button {
+  background: var(--red-color);
 }
 
-input[type='time'] {
-   padding-right: 10px; 
+.inputs input,
+.inputs select {
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+  border: none;
+  padding: 15px 0px 15px 12.5px;
+  background-color: #eaeaea;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 20px;
+  color: var(--background-color);
 }
 
-
+input[type="time"] {
+  padding-right: 10px;
+}
 
 @media screen and (min-width: 700px) {
-
-
-    .title {
+  .title {
     margin: 50px 0;
     font-size: 30px;
-    }
+  }
 
+  .buttons button {
+    font-size: 15px;
+  }
 
+  *::-webkit-scrollbar {
+    width: 10px; /* Largeur de la barre de défilement */
+  }
 
-    .buttons button {
-        font-size: 15px;
-    }
+  *::-webkit-scrollbar-thumb {
+    background-color: #888; /* Couleur du fond de la barre de défilement */
+    border-radius: 5px; /* Arrondi des coins de la barre de défilement */
+  }
 
-    *::-webkit-scrollbar {
-        width: 10px; /* Largeur de la barre de défilement */
-    }
-    
-    *::-webkit-scrollbar-thumb {
-        background-color: #888; /* Couleur du fond de la barre de défilement */
-        border-radius: 5px; /* Arrondi des coins de la barre de défilement */
-    }
-    
-    *::-webkit-scrollbar-track {
-        background-color: #f1f1f1; /* Couleur de fond de la zone de la barre de défilement */
-    }
-    *::-webkit-scrollbar-thumb:horizontal {
-        background-color: initial; /* Remise à la couleur par défaut */
-        border-radius: initial; /* Remise au rayon initial */
-    }
-    
-    *::-webkit-scrollbar-track:horizontal {
-        background-color: initial; /* Remise à la couleur de fond par défaut */
-    }
+  *::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Couleur de fond de la zone de la barre de défilement */
+  }
+  *::-webkit-scrollbar-thumb:horizontal {
+    background-color: initial; /* Remise à la couleur par défaut */
+    border-radius: initial; /* Remise au rayon initial */
+  }
 
-    .close-modal {
-        height: 20px;
-        width: 20px;
-        right: 20px;
-        top: 15px;
-        font-size: 15px;
-        background-color: var(--red-color);
-        color: var(--grey-color);
-    }
-    .error-message {
-        bottom: 40px
-    }
+  *::-webkit-scrollbar-track:horizontal {
+    background-color: initial; /* Remise à la couleur de fond par défaut */
+  }
+
+  .close-modal {
+    height: 20px;
+    width: 20px;
+    right: 20px;
+    top: 15px;
+    font-size: 15px;
+    background-color: var(--red-color);
+    color: var(--grey-color);
+  }
+  .error-message {
+    bottom: 40px;
+  }
 }

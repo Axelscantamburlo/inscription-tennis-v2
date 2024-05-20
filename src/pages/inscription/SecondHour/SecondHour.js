@@ -43,7 +43,6 @@ export default function SecondHour() {
       window.removeEventListener("beforeunload", confirmRefresh);
     };
   }, [selectedScheduleFirst, selectedScheduleSecond, navigate]);
-  console.log(formule);
   return (
     <div className="inscription-schedules-container">
       <div style={{ position: "relative" }}>

@@ -1,9 +1,9 @@
-export const getPlayeurInscription = (loadedData, playeur) => {
-  const playeurInscriptions = loadedData.filter((data) =>
-    data.usersRegisted.some((user) => user.name === playeur)
-  );
-  return playeurInscriptions;
-};
+// export const getPlayeurInscription = (loadedData, playeur) => {
+//   const playeurInscriptions = loadedData.filter((data) =>
+//     data.usersRegisted.some((user) => user.name === playeur)
+//   );
+//   return playeurInscriptions;
+// };
 
 export const findPriceToPay = (playerInscriptions, level) => {
   const l = level || playerInscriptions[0].level || null;

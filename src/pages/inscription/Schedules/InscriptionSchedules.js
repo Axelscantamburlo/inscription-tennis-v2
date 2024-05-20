@@ -53,6 +53,7 @@ export default function InscriptionSchedules() {
     <div className="inscription-schedules-container">
       <div className="formules-container">
         <h2>Sélectionner votre formule</h2>
+
         <select
           name="formules"
           id=""

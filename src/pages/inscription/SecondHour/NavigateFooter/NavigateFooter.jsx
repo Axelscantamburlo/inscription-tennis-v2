@@ -57,6 +57,9 @@ const PreviousHourButtons = ({
           ? "Valider"
           : "Suivant"}
       </button>
+      <NavLink to={"/emettre-un-souhait"}>
+        <p style={{ marginLeft: "300px" }}>Emettre un souhait</p>
+      </NavLink>
       {path !== "" && (
         <button
           className="validate-button previous-btn"
@@ -65,9 +68,7 @@ const PreviousHourButtons = ({
           Précédent
         </button>
       )}
-      <NavLink to={"/emettre-un-souhait"}>
-        <p>Emetrre un souhait</p>
-      </NavLink>
+
       {errorMessage && <span className="error-message">{errorMessage}</span>}
       {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}
     </div>

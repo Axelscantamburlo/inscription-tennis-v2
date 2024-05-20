@@ -96,7 +96,7 @@ export default function App() {
             path="informations-paiement"
             element={<ThankYouPage />}
           />
-          <Route path="emettre-un-souhait" element={<AddCommentary />} />
+          <Route exact path="/emettre-un-souhait" element={<AddCommentary />} />
 
           {/* Partie Admin */}
           <Route exact path="/connexion-admin" element={<AdminLogin />} />

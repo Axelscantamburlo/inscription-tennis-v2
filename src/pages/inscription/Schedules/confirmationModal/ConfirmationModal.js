@@ -15,7 +15,7 @@ import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 // FUNCTIONS
 import { firebaseUpdateSchedulesDb } from "../../../../functions/firebaseUpdateSchedulesdb";
 
-export default function ConfirmationModal({ setOpenModal }) {
+export default function ConfirmationModal({ setOpenModal, isPriority }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // Récupérer l'uid de l'utilisateur connecté
@@ -33,9 +33,9 @@ export default function ConfirmationModal({ setOpenModal }) {
   });
 
   const { name, level, birthDay } = playeurInfoState;
+  console.log(birthDay);
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const inscriptions = useSelector((state) => state.schedule);
-
   const isPlayeurAlreadyRegisted = loadedData.some((data) =>
     data.usersRegisted?.map((user) => user.name.toLowerCase()).includes(name)
   );
@@ -46,22 +46,23 @@ export default function ConfirmationModal({ setOpenModal }) {
         const { usersRegisted, numberOfPlaces, uid } = inscriptions[key];
         if (
           usersRegisted.length < numberOfPlaces &&
-          !isPlayeurAlreadyRegisted
+          !isPlayeurAlreadyRegisted &&
+          !isPriority
         ) {
           await firebaseUpdateSchedulesDb(uid, name, "arrayUnion", birthDay);
-        } else {
+        } else if (!isPriority) {
           navigate("/inscrire-un-joueur");
         }
       }
     }
     const userRef = doc(db, "users", uid);
-    if (userRef && !isPlayeurAlreadyRegisted) {
+    if ((userRef && !isPlayeurAlreadyRegisted) || isPriority) {
       await updateDoc(userRef, {
         playeurInfo: arrayUnion(playeurInfoState),
         playeurNames: arrayUnion(name),
       });
-      navigate("/emettre-un-souhait");
       dispatch(setPlayeurInfo({}));
+      return navigate("/emettre-un-souhait", { state: { isRegisted: true } });
     }
     localStorage.removeItem("persist:root");
   };

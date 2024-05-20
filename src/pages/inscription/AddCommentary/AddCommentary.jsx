@@ -9,7 +9,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 const AddCommentary = () => {
   const navigate = useNavigate();
   const { name } = useSelector((state) => state.user);
-
+  const location = useLocation();
+  const isRegisted = location.state?.isRegisted;
   const {
     selectedScheduleFirst,
     selectedScheduleSecond,
@@ -26,23 +27,18 @@ const AddCommentary = () => {
         commentary: comment,
       });
     }
-    if (window.location.pathname === "/emettre-un-souhait") {
-      // Faire une condition spécifique si l'URL est '/emettre-un-souhait'
+    if (isRegisted) {
       navigate("/informations-paiement");
     } else {
-      if (!selectedScheduleSecond && !selectedScheduleThird) {
+      if (!selectedScheduleFirst) {
         navigate("/inscrire-un-joueur/inscription");
-        console.log("heree");
-      } else if (selectedScheduleFirst && !selectedScheduleThird) {
+      } else if (!selectedScheduleThird) {
         navigate("/inscrire-un-joueur/inscription/deuxieme-heure");
-      } else {
-        if (selectedScheduleFirst && selectedScheduleSecond) {
-          navigate(
-            "/inscrire-un-joueur/inscription/deuxieme-heure/troisieme-heure"
-          );
-        }
+      } else if (selectedScheduleSecond) {
+        navigate(
+          "/inscrire-un-joueur/inscription/deuxieme-heure/troisieme-heure"
+        );
       }
-      // Faire une autre condition si l'URL est différente de '/emettre-un-souhait'
     }
   };
 

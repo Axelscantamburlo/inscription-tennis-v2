@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // FIREBASE
 import {
@@ -6,8 +6,12 @@ import {
   arrayUnion,
   collection,
   doc,
+  getDocs,
+  limit,
+  query,
   setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
 
@@ -23,6 +27,8 @@ export default function AddPlayeurModal({
 }) {
   const [nameEnter, setNameEnter] = useState("");
   const [birthDay, setBirthDay] = useState("");
+  const [priority, setPriority] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,17 +41,54 @@ export default function AddPlayeurModal({
         dateInscription: new Date(),
         isPayed: false,
       };
-      // const userRef = doc(db, "users", "users-add-by-admin");
-      // await updateDoc(userRef, {
-      //   playeurInfo: arrayUnion(infoPlayeurAdd),
-      // });
-
-      const docRef = await addDoc(collection(db, "users"), {
-        playeurInfo: [infoPlayeurAdd],
-        playeurNames: [infoPlayeurAdd.name],
-      });
+      if (!priority) {
+        const docRef = await addDoc(collection(db, "users"), {
+          playeurInfo: [infoPlayeurAdd],
+          playeurNames: [infoPlayeurAdd.name],
+        });
+      }
     }
   };
+
+  // Ajoutez ces états dans votre composant
+  const [inputValue, setInputValue] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  // Gestionnaire pour mettre à jour l'entrée et réinitialiser les suggestions
+  const handleInputChange = async (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    if (value.length > 2) {
+      // Commence à chercher après 2 caractères
+      fetchSuggestions(value);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  // Fonction pour récupérer les suggestions
+  const fetchSuggestions = async (input) => {
+    const usersRef = collection(db, "excel-users");
+    const q = query(
+      usersRef,
+      where("name", ">=", input),
+      where("name", "<=", input + "\uf8ff"),
+      limit(4)
+    );
+    const querySnapshot = await getDocs(q);
+    const fetchedSuggestions = [];
+    querySnapshot.forEach((doc) => {
+      fetchedSuggestions.push(doc.data().name); // Assurez-vous que les documents ont un champ 'name'
+    });
+    setSuggestions(fetchedSuggestions);
+  };
+
+  // Ajoutez un useEffect pour nettoyer les suggestions lors de la fermeture du modal ou un autre événement
+  useEffect(() => {
+    return () => {
+      setSuggestions([]);
+    };
+  }, []);
   return (
     <div className="confirmation-modal-container">
       <form className="card responsive-card" onSubmit={handleSubmit}>
@@ -63,7 +106,7 @@ export default function AddPlayeurModal({
             style={{ width: "100%" }}
             type="text"
             name=""
-            onChange={(e) => setNameEnter(e.target.value)}
+            onChange={handleInputChange}
             placeholder="Nom et prénom"
           />
           <input
@@ -73,7 +116,20 @@ export default function AddPlayeurModal({
             onChange={(e) => setBirthDay(e.target.value)}
             placeholder="Année de naissance"
           />
+          <label htmlFor="priority">Prioriété adulte</label>
+          <input
+            type="checkbox"
+            name="priority"
+            onChange={() => setPriority(!priority)}
+          />
         </div>
+        {suggestions.length > 0 && (
+          <ul>
+            {suggestions.map((suggestion, index) => (
+              <li key={index}>{suggestion}</li>
+            ))}
+          </ul>
+        )}
         {errorMessage && <span className="error-message">{errorMessage}</span>}
         <div className="buttons">
           <button type="submit" className="cancel-button">

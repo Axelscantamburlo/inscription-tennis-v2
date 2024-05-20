@@ -1,0 +1,13 @@
+.priority-inscription-container {
+  background-color: var(--background-color);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.priority-inscription-container .card {
+  margin-top: unset;
+  /* width: 80%; */
+}

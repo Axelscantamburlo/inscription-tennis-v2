@@ -1,29 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 
 // CONTEXT
-import { AllDataSchedules } from "../../../../../context/AllDataSchedules";
 import { usePlayeurInscription } from "../../../../../hooks/usePlayeurInscription";
 // FUNCTIONS
-import {
-  getPlayeurInscription,
-  findPriceToPay,
-} from "../../../../../functions/getPlayeurInscription";
+
 import { formatDate } from "../../../../../functions/formatDate";
 
 export default function InfoUserTab2({ playeurClick, dateInscription }) {
-  // Appel d'une fonction externe pour récupérer les horaires d'inscriptions du joueur et les afficher
-  // const { loadedData } = useContext(AllDataSchedules);
-  // const [playeurInscription, setPlayeurInscription] = useState([]);
-  // useEffect(() => {
-  //   const playExternFunction = async () => {
-  //     const inscriptions = await getPlayeurInscription(
-  //       loadedData,
-  //       playeurClick
-  //     );
-  //     setPlayeurInscription(inscriptions);
-  //   };
-  //   playExternFunction();
-  // }, []);
   const playeurInscription = usePlayeurInscription(playeurClick);
 
   return (

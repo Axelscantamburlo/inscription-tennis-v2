@@ -6,10 +6,7 @@ import { db } from "../../../../../config/firebase-config";
 // CONTEXT
 import { AllDataSchedules } from "../../../../../context/AllDataSchedules";
 // FUNCTIONS
-import {
-  getPlayeurInscription,
-  findPriceToPay,
-} from "../../../../../functions/getPlayeurInscription";
+import { findPriceToPay } from "../../../../../functions/getPlayeurInscription";
 import { usePlayeurInscription } from "../../../../../hooks/usePlayeurInscription";
 
 export default function InfoUserTab3({
@@ -28,19 +25,7 @@ export default function InfoUserTab3({
     typePaiement,
   } = infoPlayeurClick[0] || {};
   const [price, setPrice] = useState("");
-  // useEffect(() => {
-  //   if (level) {
-  //     const playExternFunction = async () => {
-  //       const inscriptions = await getPlayeurInscription(
-  //         loadedData,
-  //         playeurClick
-  //       );
-  //       const price = findPriceToPay(inscriptions, level);
-  //       setPrice(price);
-  //     };
-  //     playExternFunction();
-  //   }
-  // }, [infoPlayeurClick, playeurClick]);
+
   const playeurInscriptions = usePlayeurInscription(playeurClick);
 
   useEffect(() => {

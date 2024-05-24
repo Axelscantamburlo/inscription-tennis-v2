@@ -23,6 +23,7 @@ export default function InscriptionSchedules() {
   const { loadedData } = useContext(AllDataSchedules);
   // récucpérer les infos de l'utilisateur (son niveau)
   const { level, formule, name } = useSelector((state) => state.user);
+  console.log(level, name);
   const { selectedScheduleFirst } = useSelector((state) => state.schedule);
   // GESTION FORMULES
   const [formules, setFormules] = useState([]);

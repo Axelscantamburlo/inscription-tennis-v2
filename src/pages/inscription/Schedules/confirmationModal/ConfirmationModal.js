@@ -24,7 +24,7 @@ export default function ConfirmationModal({ setOpenModal, isPriority }) {
 
   // récucpérer les infos de l'utilisateur (son niveau)
   const playeurInfo = useSelector((state) => state.user);
-  //  const [playeurInfoState, setPlayeurInfoState] = useState({...playeurInfo, inscriptions: [], priceToPay: '', isStillRegisted: true})
+  console.log(playeurInfo);
   const [playeurInfoState, setPlayeurInfoState] = useState({
     ...playeurInfo,
     isPayed: false,

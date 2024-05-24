@@ -27,15 +27,15 @@ export const findFormule = (level) => {
     },
     {
       formules: ["1h par semaine - 270€"],
-      level: ["10", "11"],
+      levels: ["10", "11"],
     },
     {
       formules: ["1h par semaine 270€", "1h30 par semaine - 317€"],
-      level: ["12"],
+      levels: ["12"],
     },
     {
       formules: ["1h30 par semaine - 317€"],
-      level: ["13", "14"],
+      levels: ["13", "14"],
     },
   ];
   return FORMULES.find((f) => f.levels.includes(level));

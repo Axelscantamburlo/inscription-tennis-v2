@@ -51,7 +51,7 @@ export default function PlayeurRegistedInfo({ playeurInfo }) {
       {isPayed ? (
         <p style={{ color: "green", fontWeight: "bold" }}>Payé</p>
       ) : (
-        <p>Prix à payer: {priceToPay}€</p>
+        <p>Prix à payer: {priceToPay}€ + adhésion</p>
       )}
     </div>
   );

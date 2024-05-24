@@ -20,6 +20,7 @@
 @import "../pages/inscription/SecondHour/NavigateFooter/navigation-footer.css";
 @import "../pages/inscription/AddCommentary/add-commentary.css";
 @import "../pages/inscription/PriorityInscription/priority-inscription.css";
+@import '../pages/inscription/RegisterPlayeur/modal/NewInscriptionModal/ChooseLevel/choose-level.css';
 
 /* Admin */
 /* NavBar */

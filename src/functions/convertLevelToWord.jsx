@@ -1,7 +1,7 @@
 export const convertLevelToWord = (level) => {
   const levelMap = {
-    0: "Baby",
-    1: "Mini",
+    0: "Baby Tennis",
+    1: "Mini Tennis",
     2: "Violet",
     3: "Rouge",
     4: "Orange",

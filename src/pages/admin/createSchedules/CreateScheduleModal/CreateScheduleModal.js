@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 
 // FIREBASE
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
-import { db } from "../../../../config/firebase-config";
-
-// COMPOSANT
+import { collection, addDoc, updateDoc, doc } from "firebase/firestore";import { db } from "../../../../config/firebase-config";import nputFields from "./InputsFields/InputsFields";
 import InputFields from "./InputsFields/InputsFields";
 
 export default function CreateScheduleModal({ setOpenModal0 }) {
@@ -17,7 +14,6 @@ export default function CreateScheduleModal({ setOpenModal0 }) {
     playedForm: "0",
     educator: "",
   });
-  console.log(scheduleCreate);
   const {
     day,
     startHour,
@@ -43,8 +39,7 @@ export default function CreateScheduleModal({ setOpenModal0 }) {
       endHour &&
       numberOfPlaces &&
       level &&
-      playedForm &&
-      educator
+      playedForm
     ) {
       setOpenModal0(false);
       const docRef = await addDoc(collection(db, "schedules"), {

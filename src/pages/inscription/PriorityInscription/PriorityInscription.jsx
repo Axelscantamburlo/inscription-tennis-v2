@@ -9,7 +9,7 @@ import ConfirmationModal from "../Schedules/confirmationModal/ConfirmationModal"
 import RefusePriority from "./RefusePriority";
 
 export default function PriorityInscription() {
-  const { name } = useSelector((state) => state.user);
+  const { name, birthDay } = useSelector((state) => state.user);
   const playeurInscription = usePlayeurInscription(name);
   const [schedulesRegisted, setSchedulesRegisted] = useState([]);
 
@@ -36,7 +36,7 @@ export default function PriorityInscription() {
   };
   const dataPlayeur = {
     name: name,
-    birthDay: "",
+    birthDay: birthDay.slice(0,4),
   };
   return (
     <div className="priority-inscription-container">
@@ -76,7 +76,7 @@ export default function PriorityInscription() {
       {openModal2 && (
         <RefusePriority
           setOpenModal2={setOpenModal2}
-          name={dataPlayeur}
+          dataPlayeur={dataPlayeur}
           uid={playeurInscription[0].uid}
         />
       )}

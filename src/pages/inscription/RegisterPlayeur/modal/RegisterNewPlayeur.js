@@ -24,6 +24,8 @@ import { AllDataSchedules } from "../../../../context/AllDataSchedules";
 
 // DATA
 import { NEW_PLAYEUR_INPUTS } from "../../../../data/inputsData";
+// COMPONENTS
+import NewInscriptionModal from "./NewInscriptionModal/NewInscriptionModal";
 
 export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   const navigate = useNavigate();
@@ -47,18 +49,17 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   const [registerPlayeurInfo, setRegisterPlayeurInfo] = useState({
     name: "",
     firstName: "",
-    phone: "",
-    email: "",
+    // phone: "",
+    // email: "",
     birthDay: "",
     level: null,
-    job: "",
-    nationality: "",
-    adress: "",
+    // job: "",
+    // nationality: "",
+    // adress: "",
   });
 
   const { name, firstName, phone, email, birthDay, nationality, adress } =
     registerPlayeurInfo;
-
   const handleInputChange = (e) => {
     const { value, name } = e.target;
 
@@ -76,18 +77,15 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     const cleanName = `${name.trim()} ${firstName.trim()}`
       .replace(/\s+/g, " ")
       .toLowerCase();
-    console.log(cleanName);
 
     if (
-      !cleanName ||
-      !phone ||
-      !email ||
-      !birthDay ||
-      !nationality ||
-      !adress
+      !name || !firstName ||
+      !birthDay 
+      // !nationality ||
+      // !adress
     ) {
-      setErrorMessage("Veuillez remplir tous les champs");
-      return;
+      return setErrorMessage("Veuillez remplir tous les champs");
+      
     }
 
     // const playeur = loadedExcelData.find(
@@ -171,8 +169,9 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
             </li>
           </ul>
         </div>
-        <h2>Joueur</h2>
-        <form onSubmit={handleFormSubmit}>
+        {toggleClassName === 0 ? (
+          <form onSubmit={handleFormSubmit}>
+            <h2>Joueur</h2>
           {NEW_PLAYEUR_INPUTS.map((input) => {
             const { id, label, type, maxLength } = input;
             return (
@@ -194,6 +193,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
             Valider
           </button>
         </form>
+        ) : <NewInscriptionModal />}
       </div>
       {errorMessage && <span className="error-message">{errorMessage}</span>}
     </div>

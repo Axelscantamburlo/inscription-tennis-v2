@@ -51,13 +51,11 @@ export default function AddPlayeurModal({
   };
 
   // Ajoutez ces états dans votre composant
-  const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-
   // Gestionnaire pour mettre à jour l'entrée et réinitialiser les suggestions
   const handleInputChange = async (e) => {
     const value = e.target.value;
-    setInputValue(value);
+    setNameEnter(value);
     if (value.length > 2) {
       // Commence à chercher après 2 caractères
       fetchSuggestions(value);
@@ -78,13 +76,15 @@ export default function AddPlayeurModal({
     const querySnapshot = await getDocs(q);
     const fetchedSuggestions = [];
     querySnapshot.forEach((doc) => {
-      fetchedSuggestions.push(doc.data().name); // Assurez-vous que les documents ont un champ 'name'
+      const { name, birthDay } = doc.data(); // Déstructuration pour obtenir seulement name et birthDay
+      fetchedSuggestions.push({ name, birthDay }); // Ajoutez ces propriétés à l'array
     });
     setSuggestions(fetchedSuggestions);
   };
 
   // Ajoutez un useEffect pour nettoyer les suggestions lors de la fermeture du modal ou un autre événement
   useEffect(() => {
+    
     return () => {
       setSuggestions([]);
     };
@@ -108,6 +108,7 @@ export default function AddPlayeurModal({
             name=""
             onChange={handleInputChange}
             placeholder="Nom et prénom"
+            value={nameEnter}
           />
           <input
             style={{ width: "100%" }}
@@ -115,6 +116,7 @@ export default function AddPlayeurModal({
             name=""
             onChange={(e) => setBirthDay(e.target.value)}
             placeholder="Année de naissance"
+            value={birthDay}
           />
           <label htmlFor="priority">Prioriété adulte</label>
           <input
@@ -124,9 +126,12 @@ export default function AddPlayeurModal({
           />
         </div>
         {suggestions.length > 0 && (
-          <ul>
+          <ul style={{cursor: 'pointer'}}>
             {suggestions.map((suggestion, index) => (
-              <li key={index}>{suggestion}</li>
+              <li onClick={() => {
+      setNameEnter(suggestion.name);
+      setBirthDay(suggestion.birthDay.slice(0,4));
+    }}  key={index}>{suggestion.name}</li>
             ))}
           </ul>
         )}

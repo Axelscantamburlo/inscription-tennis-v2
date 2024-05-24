@@ -11,11 +11,12 @@ import { UidUserConnected } from "../../../context/UidUserConnected";
 //ICONS
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function RegisterPlayeur() {
   const navigate = useNavigate();
   const { uid } = useContext(UidUserConnected);
-
+ 
   const [playeurInfoToMap, setPlayeurInfoToMap] = useState([]);
 
   const [propsToPass, setPropsToPass] = useState([]);

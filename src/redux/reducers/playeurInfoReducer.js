@@ -2,16 +2,8 @@ import { SET_PLAYEUR_INFO } from "../actions";
 
 const initialState = {
   name: "",
-  email: "",
-  phone: "",
   level: null,
-  birthDay: "",
-  sexe: "",
   formule: "1h par semaine",
-  job: "",
-  nationality: "",
-  adress: "",
-  isRegisted: false,
 };
 
 const playeurInfoReducer = (state = initialState, action) => {

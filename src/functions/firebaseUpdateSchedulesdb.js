@@ -12,7 +12,6 @@ export async function firebaseUpdateSchedulesDb(
     name: data,
     birthDay: birthDay,
   };
-  console.log(data);
   const schedulesRef = doc(db, "schedules", uid);
   const operationMap = {
     arrayUnion: arrayUnion,

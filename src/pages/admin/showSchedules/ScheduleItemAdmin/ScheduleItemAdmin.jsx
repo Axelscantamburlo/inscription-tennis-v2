@@ -60,10 +60,7 @@ export default function ScheduleItemAdmin({ schedule }) {
         <table style={{ backgroundColor: convertLevelToColor(level) }}>
           <tbody>
             {tableData.map((item, index) => (
-              <tr
-                key={index}
-                style={item ? { padding: "15px 5px" } : { height: "50px" }}
-              >
+              <tr key={index} style={{ height: "50px" }}>
                 {/* <td
                   className="item"
                   onClick={() =>

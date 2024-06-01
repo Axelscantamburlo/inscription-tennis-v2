@@ -30,13 +30,16 @@ import AdminPrivateRoute from "./pages/PrivateRoutes/AdminPrivateRoute";
 import { UidUserConnected } from "./context/UidUserConnected";
 import ClientPrivateRoute from "./pages/PrivateRoutes/ClientPrivateRoute";
 import NavbarTabs from "./pages/admin/showAllUsers/NavBarTabs/NavBarTabs";
+import NavbarTabs2 from "./pages/admin/createSchedules/NavBarTabs2/NavBarTabs2";
+import NavbarTabs3 from "./pages/admin/showSchedules/NavbarTabs3/NavbarTabs3";
+import ChooseTest from "./pages/inscription/RegisterPlayeur/modal/NewInscriptionModal/ChooseTest/ChooseTest";
 // Wrapper pour les routes nécessitant le contexte AllDataUsersProvider
 function AdminRoutes() {
   return (
     <AllDataUsersProvider>
       <Routes>
-        <Route exact path="tableaux-joueurs" element={<ShowAllSchedules />} />
-        <Route exact path="ajouter-un-creneau" element={<CreateSchedules />} />
+        <Route exact path="tableaux-joueurs" element={<NavbarTabs3 />} />
+        <Route exact path="ajouter-un-creneau" element={<NavbarTabs2 />} />
         <Route exact path="liste-joueurs" element={<NavbarTabs />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
@@ -51,6 +54,7 @@ function ClientRoutes() {
         path="priorite-inscription"
         element={<PriorityInscription />}
       />
+      <Route exact path="choisir-un-test" element={<ChooseTest />} />
 
       <Route exact index element={<RegisterPlayeur />} />
       <Route path="inscription">

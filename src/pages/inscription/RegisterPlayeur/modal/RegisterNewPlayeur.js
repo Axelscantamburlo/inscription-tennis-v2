@@ -79,13 +79,13 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
       .toLowerCase();
 
     if (
-      !name || !firstName ||
-      !birthDay 
+      !name ||
+      !firstName ||
+      !birthDay
       // !nationality ||
       // !adress
     ) {
       return setErrorMessage("Veuillez remplir tous les champs");
-      
     }
 
     // const playeur = loadedExcelData.find(
@@ -172,28 +172,30 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
         {toggleClassName === 0 ? (
           <form onSubmit={handleFormSubmit}>
             <h2>Joueur</h2>
-          {NEW_PLAYEUR_INPUTS.map((input) => {
-            const { id, label, type, maxLength } = input;
-            return (
-              <div className="inputs" key={id}>
-                <label>{label}</label>
-                <input
-                  type={type}
-                  name={id}
-                  id={id}
-                  maxLength={maxLength}
-                  autoComplete="off"
-                  onChange={handleInputChange}
-                />
-              </div>
-            );
-          })}
+            {NEW_PLAYEUR_INPUTS.map((input) => {
+              const { id, label, type, maxLength } = input;
+              return (
+                <div className="inputs" key={id}>
+                  <label>{label}</label>
+                  <input
+                    type={type}
+                    name={id}
+                    id={id}
+                    maxLength={maxLength}
+                    autoComplete="off"
+                    onChange={handleInputChange}
+                  />
+                </div>
+              );
+            })}
 
-          <button type="submit" className="submit-btn">
-            Valider
-          </button>
-        </form>
-        ) : <NewInscriptionModal />}
+            <button type="submit" className="submit-btn">
+              Valider
+            </button>
+          </form>
+        ) : (
+          <NewInscriptionModal playeursNames={playeursNames} />
+        )}
       </div>
       {errorMessage && <span className="error-message">{errorMessage}</span>}
     </div>

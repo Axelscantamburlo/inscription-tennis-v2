@@ -1,17 +1,15 @@
 .choose-level-container {
-    overflow: auto;
-    max-height: 80%;
-    }
+  overflow: auto;
+  max-height: 80%;
+}
 
-
-.choose-level-container .levels div  {
-    background: yellow;
-    padding: 10px;
-    margin: 20px;
-    border-radius: 10px;
-    cursor: pointer;
+.choose-level-container .levels div {
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .choose-level-container .levels div h3 {
-    color: var(--background-color);
+  color: var(--background-color);
 }

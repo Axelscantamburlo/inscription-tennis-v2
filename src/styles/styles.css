@@ -20,7 +20,7 @@
 @import "../pages/inscription/SecondHour/NavigateFooter/navigation-footer.css";
 @import "../pages/inscription/AddCommentary/add-commentary.css";
 @import "../pages/inscription/PriorityInscription/priority-inscription.css";
-@import '../pages/inscription/RegisterPlayeur/modal/NewInscriptionModal/ChooseLevel/choose-level.css';
+@import "../pages/inscription/RegisterPlayeur/modal/NewInscriptionModal/ChooseLevel/choose-level.css";
 
 /* Admin */
 /* NavBar */
@@ -32,7 +32,7 @@
 @import "../pages/admin/createSchedules/create-schedules.css";
 @import "../pages/admin/createSchedules/CreateScheduleModal/create-schedule-modal.css";
 @import "../pages/admin/showAllUsers/show-all-users.css";
-@import "../pages/admin/ShowAllCommentary/show-all-commentary.css";
+@import "../pages/admin/showAllUsers/ShowAllCommentary/show-all-commentary.css";
 @import "../pages/admin/showAllUsers/NavBarTabs/nav-bar-tabs.css";
 
 /* NOT FOUND PAGE */

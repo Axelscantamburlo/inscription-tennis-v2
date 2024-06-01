@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
 // FIREBASE
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore";import { db } from "../../../../config/firebase-config";import nputFields from "./InputsFields/InputsFields";
+import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import { db } from "../../../../config/firebase-config";
+import nputFields from "./InputsFields/InputsFields";
 import InputFields from "./InputsFields/InputsFields";
 
-export default function CreateScheduleModal({ setOpenModal0 }) {
+export default function CreateScheduleModal({ path, setOpenModal0 }) {
   const [scheduleCreate, setScheduleCreate] = useState({
     day: "Lundi",
     startHour: "10:00",
@@ -33,16 +35,9 @@ export default function CreateScheduleModal({ setOpenModal0 }) {
 
   const handleSumbit = async (e) => {
     e.preventDefault();
-    if (
-      day &&
-      startHour &&
-      endHour &&
-      numberOfPlaces &&
-      level &&
-      playedForm
-    ) {
+    if (day && startHour && endHour && numberOfPlaces && level && playedForm) {
       setOpenModal0(false);
-      const docRef = await addDoc(collection(db, "schedules"), {
+      const docRef = await addDoc(collection(db, path), {
         ...scheduleCreate,
         usersRegisted: [],
       });
@@ -54,23 +49,23 @@ export default function CreateScheduleModal({ setOpenModal0 }) {
   return (
     <div className="create-schedule-modal-container">
       <div className="responsive-container">
-      <h1 className="title">
-        Ajouter un créneau
-      </h1>
+        <h1 className="title">Ajouter un créneau</h1>
 
-      <button className="close-modal" onClick={() => setOpenModal0(false)}>
-        &times;
-      </button>
-      <form onSubmit={handleSumbit}>
-        <InputFields
-          scheduleCreate={scheduleCreate}
-          handleInputChange={handleInputChange}
-        />
-        <button className="submit-btn" type="submit">
-          Valider
+        <button className="close-modal" onClick={() => setOpenModal0(false)}>
+          &times;
         </button>
-        {errorMessage && <span className="error-message">{errorMessage}</span>}
-      </form>
+        <form onSubmit={handleSumbit}>
+          <InputFields
+            scheduleCreate={scheduleCreate}
+            handleInputChange={handleInputChange}
+          />
+          <button className="submit-btn" type="submit">
+            Valider
+          </button>
+          {errorMessage && (
+            <span className="error-message">{errorMessage}</span>
+          )}
+        </form>
       </div>
     </div>
   );

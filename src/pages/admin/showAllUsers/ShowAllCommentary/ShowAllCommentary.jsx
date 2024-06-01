@@ -1,8 +1,8 @@
 import React, { useState, useEffect, use } from "react";
-import NavBar from "../navBar/NavBar";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
-import { db } from "../../../config/firebase-config";
+import { db } from "../../../../config/firebase-config";
 import { useLocation } from "react-router-dom";
+import NavBar from "../../navBar/NavBar";
 
 export default function ShowAllCommentary() {
   const location = useLocation();

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ShowAllUsers from "../ShowAllUsers";
-import ShowAllCommentary from "../../ShowAllCommentary/ShowAllCommentary";
+import ShowAllCommentary from "../ShowAllCommentary/ShowAllCommentary";
 
 const NavbarTabs = () => {
   const [activeTab, setActiveTab] = useState("users");

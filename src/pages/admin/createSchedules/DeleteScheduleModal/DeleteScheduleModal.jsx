@@ -5,11 +5,15 @@ import { db } from "../../../../config/firebase-config";
 
 // CONTEXT
 
-export default function DeleteScheduleModal({ scheduleClick, setOpenModal2 }) {
+export default function DeleteScheduleModal({
+  scheduleClick,
+  setOpenModal2,
+  path,
+}) {
   const { day, startHour, endHour, uid } = scheduleClick;
   const handleSubmit = async () => {
-    setOpenModal2(false)
-    await deleteDoc(doc(db, "schedules", uid));
+    setOpenModal2(false);
+    await deleteDoc(doc(db, path, uid));
   };
 
   return (
@@ -27,7 +31,10 @@ export default function DeleteScheduleModal({ scheduleClick, setOpenModal2 }) {
         </p>
 
         <div className="buttons">
-          <button className="cancel-button" onClick={() => setOpenModal2(false)}>
+          <button
+            className="cancel-button"
+            onClick={() => setOpenModal2(false)}
+          >
             Annuler
           </button>
           <button className="confirm-button" onClick={handleSubmit}>

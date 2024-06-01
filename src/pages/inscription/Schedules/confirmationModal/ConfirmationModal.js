@@ -24,7 +24,6 @@ export default function ConfirmationModal({ setOpenModal, isPriority }) {
 
   // récucpérer les infos de l'utilisateur (son niveau)
   const playeurInfo = useSelector((state) => state.user);
-  console.log(playeurInfo);
   const [playeurInfoState, setPlayeurInfoState] = useState({
     ...playeurInfo,
     isPayed: false,
@@ -33,7 +32,6 @@ export default function ConfirmationModal({ setOpenModal, isPriority }) {
   });
 
   const { name, level, birthDay } = playeurInfoState;
-  console.log(birthDay);
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
   const inscriptions = useSelector((state) => state.schedule);
   const isPlayeurAlreadyRegisted = loadedData.some((data) =>

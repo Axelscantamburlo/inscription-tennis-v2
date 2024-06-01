@@ -120,7 +120,9 @@ export default function CreateSchedules() {
       <button className="submit-btn" onClick={() => setOpenModal0(true)}>
         Ajouter un créneau
       </button>
-      {openModal0 && <CreateScheduleModal setOpenModal0={setOpenModal0} />}
+      {openModal0 && (
+        <CreateScheduleModal path="schedules" setOpenModal0={setOpenModal0} />
+      )}
       {openModal1 && (
         <EditScheduleModal
           scheduleClick={scheduleClick}
@@ -131,6 +133,7 @@ export default function CreateSchedules() {
         <DeleteScheduleModal
           scheduleClick={scheduleClick}
           setOpenModal2={setOpenModal2}
+          path="schedules"
         />
       )}
     </div>

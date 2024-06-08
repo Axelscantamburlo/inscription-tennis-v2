@@ -13,19 +13,9 @@ import { usePlayeurInscription } from "../../../hooks/usePlayeurInscription";
 export default function PlayeurRegistedInfo({ playeurInfo }) {
   const { name, birthDay, level, isPayed } = playeurInfo;
 
-  // const { loadedData } = useContext(AllDataSchedules);
-  // // Appel d'une fonction externe pour récupérer les horaires d'inscriptions du joueur et les affichées
   const [playeurInscription, setPlayeurInscription] = useState([]);
   const [priceToPay, setPriceToPay] = useState("");
-  // useEffect(() => {
-  //   const playExternFunction = async () => {
-  //     const inscriptions = await getPlayeurInscription(loadedData, name);
-  //     const price = findPriceToPay(inscriptions, level);
-  //     setPlayeurInscription(inscriptions);
-  //     setPriceToPay(price);
-  //   };
-  //   playExternFunction();
-  // }, []);
+
   const playeurInscriptions = usePlayeurInscription(name);
   const price = findPriceToPay(playeurInscriptions, level);
 

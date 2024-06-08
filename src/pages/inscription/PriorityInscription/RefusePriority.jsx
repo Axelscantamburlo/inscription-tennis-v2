@@ -9,17 +9,20 @@ export default function RefusePriority({ setOpenModal2, dataPlayeur, uid }) {
     await firebaseUpdateSchedulesDb(uid, dataPlayeur, "arrayRemove");
   };
   return (
-    <div className="confirmation-modal-container" style={{backgroundColor: 'white'}}>
-      <div className="card">
-        <p>Etes vous sur de vouloir refuser ce créneau ?</p>
-      </div>
-      <div className="buttons">
-        <button className="cancel-button" onClick={() => setOpenModal2(false)}>
-          Annuler
-        </button>
-        <button className="confirm-button" onClick={handleConfirm}>
-          Confirmer
-        </button>
+    <div className="confirmation-modal-container">
+      <div className="card" style={{ padding: "50px" }}>
+        <p>Etes vous certain de vouloir refuser ce créneau ?</p>
+        <div className="buttons" style={{ marginTop: "30px" }}>
+          <button
+            className="cancel-button"
+            onClick={() => setOpenModal2(false)}
+          >
+            Annuler
+          </button>
+          <button className="confirm-button" onClick={handleConfirm}>
+            Oui, refuser
+          </button>
+        </div>
       </div>
     </div>
   );

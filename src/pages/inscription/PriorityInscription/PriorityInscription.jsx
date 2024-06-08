@@ -36,7 +36,7 @@ export default function PriorityInscription() {
   };
   const dataPlayeur = {
     name: name,
-    birthDay: birthDay.slice(0,4),
+    birthDay: birthDay.slice(0, 4),
   };
   return (
     <div className="priority-inscription-container">
@@ -59,16 +59,21 @@ export default function PriorityInscription() {
         <p>
           Vous avez la possibilité d'accepter ou de refuser ce créneau qui vous
           était attribué l'année précédente. En cas de refus, votre inscription
-          à un autre créneau ne sera possible qu'à partir du ?? juin.
+          à un autre créneau ne sera possible qu'à partir du 24 juin.
         </p>
-        <div className="buttons">
-          <button className="cancel-button" onClick={() => setOpenModal2(true)}>
-            Refuser
-          </button>
-          <button className="confirm-button" onClick={handleAccept}>
-            Accepter
-          </button>
-        </div>
+        {schedulesRegisted.length !== 0 ? (
+          <div className="buttons">
+            <button
+              className="cancel-button"
+              onClick={() => setOpenModal2(true)}
+            >
+              Refuser
+            </button>
+            <button className="confirm-button" onClick={handleAccept}>
+              Accepter
+            </button>
+          </div>
+        ) : null}
       </div>
       {openModal && (
         <ConfirmationModal setOpenModal={setOpenModal} isPriority={true} />

@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 export default function RegisterPlayeur() {
   const navigate = useNavigate();
   const { uid } = useContext(UidUserConnected);
- 
+
   const [playeurInfoToMap, setPlayeurInfoToMap] = useState([]);
 
   const [propsToPass, setPropsToPass] = useState([]);
@@ -71,7 +71,7 @@ export default function RegisterPlayeur() {
           style={{ opacity: "0" }}
           // onClick={() => navigate("/informations-inscription")}
         />
-        <h1 className="title">Vos inscriptions</h1>
+        <h1 className="title">Vos pré-inscriptions</h1>
         <LogoutButton />
       </div>
       <div className="card-container">
@@ -80,6 +80,11 @@ export default function RegisterPlayeur() {
             return <PlayeurRegistedInfo key={index} playeurInfo={playeur} />;
           })}
       </div>
+      <h3>
+        Merci de venir au club dans les 7 jours suivants votre pré-inscription
+        afin de finaliser votre dossier par le paiement. Hors ce délai de 7
+        jours, votre pré-inscription sera automatiquement annulée.
+      </h3>
       <div
         className="add-playeur-button"
         onClick={() =>
@@ -91,7 +96,7 @@ export default function RegisterPlayeur() {
         <button
           style={!endInscription ? {} : { opacity: "0.5", cursor: "no-drop" }}
         >
-          Ajouter
+          Ajouter un membre
         </button>
       </div>
 

@@ -1,67 +1,73 @@
 .register-playeur-container {
-    overflow: hidden;
-    min-height: 100vh;
-    background-color: var(--background-color);
-
-
+  overflow: hidden;
+  min-height: 100vh;
+  background-color: var(--background-color);
 }
 
 .register-playeur-container .header {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    width: 90%;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
 }
 
+.register-playeur-container h3 {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--red-color);
+  text-align: center;
+  width: 50%;
+}
 
 .register-playeur-container .add-playeur-button {
-    width: 40%;
-    margin: 0 auto ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    bottom: 5vh;
-    right: 5vh;
+  width: 40%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 5vh;
+  right: 5vh;
 }
 
 .register-playeur-container .add-playeur-button button {
-    border: none;
-    padding: 1.5vh 0;
-    width: 100%;
-    border-radius: 5px;
-    font-size: 4vw;
-    outline: none;
-    cursor: pointer;
-    color: white;
-    background: var(--linear-gradient);
+  border: none;
+  padding: 1.5vh 0;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 4vw;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  background: var(--linear-gradient);
 }
 
-.register-playeur-container .card-container  {
-    display: flex;
-    flex-direction: column;
+.register-playeur-container .card-container {
+  display: flex;
+  flex-direction: column;
 }
-
 
 @media screen and (min-width: 700px) {
-    .register-playeur-container h1 {
-        font-size: 40px;
-    }
-    .register-playeur-container .card-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 10px;
-    }
-    .register-playeur-container .add-playeur-button {
-        width: 150px;
-        height: 50px;
-        bottom: 50px;
-        right: 50px;
-    }
+  .register-playeur-container h1 {
+    font-size: 40px;
+  }
+  .register-playeur-container .card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
+  .register-playeur-container .add-playeur-button {
+    width: 250px;
+    height: 50px;
+    bottom: 50px;
+    right: 50px;
+  }
 
-    .register-playeur-container .add-playeur-button button {
-        padding: 20px;
-        font-size: 20px;
-    }
+  .register-playeur-container .add-playeur-button button {
+    padding: 20px;
+    font-size: 20px;
+  }
 }

@@ -56,7 +56,7 @@ export default function NewInscriptionModal({ playeursNames }) {
 
   const renderForm = () => (
     <form onSubmit={handleSubmit}>
-      <h2>Joueur</h2>
+      <h2>Joueur / Joueuse</h2>
 
       {NEW_PLAYEUR_INPUTS.map((input) => {
         const { id, label, type, maxLength } = input;

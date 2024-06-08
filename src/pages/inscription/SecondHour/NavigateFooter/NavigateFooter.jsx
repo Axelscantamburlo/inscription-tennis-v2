@@ -58,7 +58,9 @@ const PreviousHourButtons = ({
           : "Suivant"}
       </button>
       <NavLink to={"/emettre-un-souhait"}>
-        <p style={{ marginLeft: "300px" }}>Emettre un souhait</p>
+        <p style={{ marginLeft: "300px" }}>
+          Emettre un souhait si aucun créneau ne vous convient
+        </p>
       </NavLink>
       {path !== "" && (
         <button

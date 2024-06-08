@@ -93,10 +93,9 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     // );
 
     const playeur = await loadExcelUsers(cleanName);
-
     if (!playeur) {
       setErrorMessage(
-        "Le joueur n'a pas été trouvé (entrer le nom puis le prénom)"
+        "Le joueur n'a pas été trouvé (entrer le nom et le prénom sans accent)"
       );
       return;
     }
@@ -111,7 +110,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
         ?.map((playeur) => playeur.toLowerCase())
         .includes(cleanName);
 
-    if (isPlayeurAlreadyRegisted && !playeur.isPriority) {
+    if (isPlayeurAlreadyRegisted && !playeur.priority) {
       setErrorMessage("Le joueur est déjà inscrit");
       return;
     }
@@ -126,12 +125,14 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
     const updatedRegisterPlayeurInfo = {
       ...registerPlayeurInfo,
       name: cleanName,
-      level: playeur.level,
-      sexe: playeur.sexe,
+      level: playeur.level.toString(),
     };
     dispatch(setPlayeurInfo(updatedRegisterPlayeurInfo));
 
-    if (playeur.isPriority) {
+    const currentDate = new Date();
+    const limitDate = new Date(currentDate.getFullYear(), 5, 24); // 24 juin
+
+    if (playeur.priority && currentDate < limitDate) {
       return navigate("priorite-inscription");
     }
     navigate("inscription");
@@ -145,7 +146,18 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
   }
 
   const [toggleClassName, setToggleClassName] = useState(0);
-  const [countrySelected, setCountrySelected] = useState("");
+
+  const handleDateCheck = () => {
+    const currentDate = new Date();
+    const registrationDate = new Date(currentDate.getFullYear(), 5, 26); // Juin est le mois 5 en JavaScript (0-indexé)
+
+    if (currentDate < registrationDate) {
+      setToggleClassName(2);
+    } else {
+      setToggleClassName(1);
+      setErrorMessage(""); // Effacer le message d'erreur si la condition est remplie
+    }
+  };
   return (
     <div className="register-playeur-modal-container">
       <div className="box">
@@ -154,6 +166,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
         </button>
         {/* A mapper */}
         <div className="tab-buttons">
+          <p>Choisissez votre type d'inscription</p>
           <ul>
             <li
               onClick={() => setToggleClassName(0)}
@@ -163,7 +176,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
             </li>
             <li
               className={toggleClassName === 1 ? "underlign" : null}
-              onClick={() => setToggleClassName(1)}
+              onClick={handleDateCheck}
             >
               Nouvelle inscription
             </li>
@@ -171,7 +184,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
         </div>
         {toggleClassName === 0 ? (
           <form onSubmit={handleFormSubmit}>
-            <h2>Joueur</h2>
+            <h2>Joueur / Joueuse</h2>
             {NEW_PLAYEUR_INPUTS.map((input) => {
               const { id, label, type, maxLength } = input;
               return (
@@ -193,9 +206,11 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
               Valider
             </button>
           </form>
-        ) : (
+        ) : toggleClassName === 1 ? (
           <NewInscriptionModal playeursNames={playeursNames} />
-        )}
+        ) : toggleClassName === 2 ? (
+          <h2>Vous ne pourrez vous inscrire qu'à partir du 25 juin.</h2>
+        ) : null}
       </div>
       {errorMessage && <span className="error-message">{errorMessage}</span>}
     </div>

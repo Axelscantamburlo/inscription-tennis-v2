@@ -97,6 +97,12 @@ export default function ChooseLevel({ birthDay }) {
   return (
     <div className="choose-level-container">
       <h2>Indiquez nous votre niveau</h2>
+      {levelToPropose.length === 0 && (
+        <h2>
+          Malheureusement, votre date de naissance ne correspond pas aux
+          critères d'âge requis pour l'inscription.
+        </h2>
+      )}
       {levelToPropose?.map((level, index) => {
         return (
           <div

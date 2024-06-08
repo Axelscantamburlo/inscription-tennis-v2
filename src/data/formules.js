@@ -30,7 +30,7 @@ export const findFormule = (level) => {
       levels: ["10", "11"],
     },
     {
-      formules: ["1h par semaine 270€", "1h30 par semaine - 317€"],
+      formules: ["1h par semaine - 270€", "1h30 par semaine - 317€"],
       levels: ["12"],
     },
     {

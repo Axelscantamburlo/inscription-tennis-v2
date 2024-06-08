@@ -26,10 +26,11 @@ export default function ConfirmationModal({ setOpenModal, isPriority }) {
   const playeurInfo = useSelector((state) => state.user);
   const [playeurInfoState, setPlayeurInfoState] = useState({
     ...playeurInfo,
-    isPayed: false,
+    // isPayed: false,
 
     dateInscription: new Date(),
   });
+  console.log(playeurInfoState);
 
   const { name, level, birthDay } = playeurInfoState;
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
@@ -54,7 +55,7 @@ export default function ConfirmationModal({ setOpenModal, isPriority }) {
       }
     }
     const userRef = doc(db, "users", uid);
-    if ((userRef && !isPlayeurAlreadyRegisted) || isPriority) {
+    if (userRef || isPriority) {
       await updateDoc(userRef, {
         playeurInfo: arrayUnion(playeurInfoState),
         playeurNames: arrayUnion(name),

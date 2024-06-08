@@ -27,6 +27,10 @@ const AddCommentary = () => {
         commentary: comment,
       });
     }
+    closeModal();
+  };
+
+  const closeModal = () => {
     if (isRegisted) {
       navigate("/informations-paiement");
     } else {
@@ -48,11 +52,16 @@ const AddCommentary = () => {
       <textarea
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-        placeholder="Entrez votre souhait ici"
+        placeholder="Type de souhaits possible: Être avec un ou une amie en cours, un professeur en particulier. Nous essayerons d'en tenir compte mais nous ne vous le garantissons pas."
       />
-      <button className="submit-btn" type="submit" onClick={handleSubmit}>
-        Valider
-      </button>
+      <div className="buttons">
+        <button className="cancel-button" onClick={() => closeModal()}>
+          Annuler
+        </button>
+        <button className="submit-btn" type="submit" onClick={handleSubmit}>
+          Valider
+        </button>
+      </div>
     </div>
   );
 };

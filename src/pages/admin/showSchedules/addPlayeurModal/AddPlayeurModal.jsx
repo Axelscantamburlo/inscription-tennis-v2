@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 // FIREBASE
 import {
@@ -17,6 +17,7 @@ import { db } from "../../../../config/firebase-config";
 
 // FUNCTIONS
 import { firebaseUpdateSchedulesDb } from "../../../../functions/firebaseUpdateSchedulesdb";
+import { AllDataUsers } from "../../../../context/AllDataUsers";
 
 export default function AddPlayeurModal({
   uid,
@@ -28,6 +29,8 @@ export default function AddPlayeurModal({
   const [nameEnter, setNameEnter] = useState("");
   const [birthDay, setBirthDay] = useState("");
   const [priority, setPriority] = useState(false);
+
+  const { usersData } = useContext(AllDataUsers);
 
   const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (e) => {
@@ -41,7 +44,10 @@ export default function AddPlayeurModal({
         dateInscription: new Date(),
         isPayed: false,
       };
-      if (!priority) {
+
+      const info = usersData.filter((user) => user.name == nameEnter);
+
+      if (!priority && !info) {
         const docRef = await addDoc(collection(db, "users"), {
           playeurInfo: [infoPlayeurAdd],
           playeurNames: [infoPlayeurAdd.name],
@@ -84,7 +90,6 @@ export default function AddPlayeurModal({
 
   // Ajoutez un useEffect pour nettoyer les suggestions lors de la fermeture du modal ou un autre événement
   useEffect(() => {
-    
     return () => {
       setSuggestions([]);
     };
@@ -126,12 +131,17 @@ export default function AddPlayeurModal({
           />
         </div>
         {suggestions.length > 0 && (
-          <ul style={{cursor: 'pointer'}}>
+          <ul style={{ cursor: "pointer" }}>
             {suggestions.map((suggestion, index) => (
-              <li onClick={() => {
-      setNameEnter(suggestion.name);
-      setBirthDay(suggestion.birthDay.slice(0,4));
-    }}  key={index}>{suggestion.name}</li>
+              <li
+                onClick={() => {
+                  setNameEnter(suggestion.name);
+                  setBirthDay(suggestion.birthDay.slice(0, 4));
+                }}
+                key={index}
+              >
+                {suggestion.name}
+              </li>
             ))}
           </ul>
         )}

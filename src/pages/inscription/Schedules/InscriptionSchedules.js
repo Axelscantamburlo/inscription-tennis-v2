@@ -71,6 +71,21 @@ export default function InscriptionSchedules() {
         {loadedData
           .filter((el) => el.level === level)
           .filter((el) => el.playedForm === "0")
+          .sort((a, b) => {
+            const order = [
+              "lundi",
+              "mardi",
+              "mercredi",
+              "jeudi",
+              "vendredi",
+              "samedi",
+              "dimanche",
+            ];
+            return (
+              order.indexOf(a.day.toLowerCase()) -
+              order.indexOf(b.day.toLowerCase())
+            );
+          })
           .map((schedule, index) => {
             return (
               <ScheduleItem schedule={schedule} path="First" key={index} />

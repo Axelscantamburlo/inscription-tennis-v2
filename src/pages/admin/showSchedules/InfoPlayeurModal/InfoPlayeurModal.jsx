@@ -18,44 +18,52 @@ import { AllDataUsers } from "../../../../context/AllDataUsers";
 
 export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
   const [activeTab, setActiveTab] = useState(0);
-  
+
   const { usersData } = useContext(AllDataUsers);
   const [infoPlayeurClick, setInfoPlayeurClick] = useState([]);
-  
+
   useEffect(() => {
     const info = usersData.filter((user) => user.name == playeurClick);
     if (info) {
       setInfoPlayeurClick(info);
     }
   }, []);
+  console.log(infoPlayeurClick);
 
   return (
     <div className="register-playeur-modal-container responsive-container">
       <div className="box responsive-box">
-      <button className="close-modal" onClick={() => setShowModal2(false)}>
-        x
-      </button>
+        <button className="close-modal" onClick={() => setShowModal2(false)}>
+          x
+        </button>
         <div className="tab-buttons">
           <ul>
-            {['Renseignements', 'Inscriptions', 'Paiement'].map((tab, index) => (
-              <li
-                className={activeTab === index ? "underlign" : null}
-                key={tab}
-                onClick={() => setActiveTab(index)}
-              >
-                {tab}
-              </li>
-            ))}
+            {["Renseignements", "Inscriptions", "Paiement"].map(
+              (tab, index) => (
+                <li
+                  className={activeTab === index ? "underlign" : null}
+                  key={tab}
+                  onClick={() => setActiveTab(index)}
+                >
+                  {tab}
+                </li>
+              )
+            )}
           </ul>
         </div>
         {activeTab === 0 && (
           <InfoUserTab1 infoPlayeurClick={infoPlayeurClick} />
         )}
-        {activeTab === 1 && <InfoUserTab2 playeurClick={playeurClick} dateInscription={infoPlayeurClick[0]?.dateInscription} />}
+        {activeTab === 1 && (
+          <InfoUserTab2
+            playeurClick={playeurClick}
+            dateInscription={infoPlayeurClick[0]?.dateInscription}
+          />
+        )}
         {activeTab === 2 && (
           <InfoUserTab3
             infoPlayeurClick={infoPlayeurClick}
-            playeurClick={playeurClick} 
+            playeurClick={playeurClick}
             setShowModal2={setShowModal2}
           />
         )}

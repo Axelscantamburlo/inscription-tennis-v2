@@ -95,7 +95,7 @@ export default function InfoUserTab3({
             <span style={{ color: "var(--blue-color)" }}>Prix à payer:</span>{" "}
             {price ? `${price}€` : "Pas renseigné"}{" "}
           </h2>
-          <div className="buttons-container">
+          {/* <div className="buttons-container">
             <h2>Moyen de paiement:</h2>
             <div className="buttons">
               {["CB", "Chèque", "Autre"].map((item, index) => (
@@ -115,8 +115,8 @@ export default function InfoUserTab3({
                 </button>
               ))}
             </div>
-          </div>
-          <div className="buttons-container">
+          </div> */}
+          {/* <div className="buttons-container">
             <h2>Paiement en:</h2>
             <div className="buttons">
               {["1x", "3x", "10x"].map((item, index) => (
@@ -136,7 +136,7 @@ export default function InfoUserTab3({
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
           <button className="submit-btn" onClick={handleConfirmPaiement}>
             Valider le paiement
           </button>

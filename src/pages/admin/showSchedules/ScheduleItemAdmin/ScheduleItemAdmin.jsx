@@ -73,6 +73,7 @@ export default function ScheduleItemAdmin({ schedule }) {
                   {item.birthDay ? item.birthDay.slice(0, 4) : ""}
                 </td> */}
                 <td
+                  style={item.priorityAccepted ? { color: "green" } : {}}
                   className="item"
                   onClick={() =>
                     item

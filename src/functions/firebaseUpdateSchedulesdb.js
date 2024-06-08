@@ -11,6 +11,7 @@ export async function firebaseUpdateSchedulesDb(
   const cc = {
     name: data,
     birthDay: birthDay,
+    priorityAccepted: true,
   };
   const schedulesRef = doc(db, "schedules", uid);
   const operationMap = {

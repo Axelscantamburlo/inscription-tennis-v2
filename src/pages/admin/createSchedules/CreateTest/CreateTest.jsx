@@ -4,9 +4,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";
 // COMPONENTS
 import NavBar from "../../navBar/NavBar";
-import CreateScheduleModal from "../CreateScheduleModal/CreateScheduleModal";
-import { convertLevelToWord } from "../../../../functions/convertLevelToWord";
-import DeleteScheduleModal from "../DeleteScheduleModal/DeleteScheduleModal";
 
 export default function CreateTest() {
   const [testSchedules, setTestSchedules] = useState([]);
@@ -22,7 +19,6 @@ export default function CreateTest() {
     getSchedulesTest();
   }, []);
 
-  const [openModal0, setOpenModal0] = useState(false);
   const [openModal2, setOpenModal2] = useState(false);
 
   const [scheduleClick, setScheduleClick] = useState({});
@@ -33,49 +29,30 @@ export default function CreateTest() {
       <div className="schedules-container">
         {testSchedules.map((schedule, index) => {
           const {
-            day,
-            startHour,
-            endHour,
-            level,
-            numberOfPlaces,
-            educator,
-            playedForm,
-            uid,
+           date, 
+           level,
+           numberOfPlaces
+  
           } = schedule;
           return (
             <div className="schedule-card" key={index}>
               <h3 style={{ textAlign: "center" }}>Test</h3>
               <div className="contents">
                 <div className="content">
-                  <span>Jour : </span>
-                  <span>{day}</span>
-                </div>
-                <div className="content">
-                  <span>Horaires :</span>
-                  <span>
-                    De {startHour} à {endHour}
-                  </span>
+                  <span>Date : </span>
+                  <span>{date}</span>
                 </div>
                 <div className="content">
                   <span>Niveau : </span>
-                  <span> {convertLevelToWord(level)}</span>
+                  <span>{level}</span>
                 </div>
                 <div className="content">
                   <span>Nombre de places :</span>
                   <span>{numberOfPlaces}</span>
                 </div>
-                <div className="content">
-                  <span>Formule : </span>
-                  <span>
-                    {playedForm === "0" ? "Classique" : "Forme jouée"}
-                  </span>
-                </div>
-                <div className="content">
-                  <span>Enseignant :</span>
-                  <span>{educator}</span>
-                </div>
+              
               </div>
-              <div className="buttons">
+              {/* <div className="buttons">
                 <button
                   className="cancel-button"
                   onClick={() => {
@@ -85,27 +62,22 @@ export default function CreateTest() {
                 >
                   Supprimer
                 </button>
-              </div>
+              </div> */}
             </div>
           );
         })}
       </div>
-      <button className="submit-btn" onClick={() => setOpenModal0(true)}>
+      {/* <button className="submit-btn" onClick={() => setOpenModal0(true)}>
         Ajouter un créneau
-      </button>
-      {openModal0 && (
-        <CreateScheduleModal
-          path="test-schedules"
-          setOpenModal0={setOpenModal0}
-        />
-      )}
-      {openModal2 && (
+      </button> */}
+
+      {/* {openModal2 && (
         <DeleteScheduleModal
           scheduleClick={scheduleClick}
           setOpenModal2={setOpenModal2}
           path="test-schedules"
         />
-      )}
+      )} */}
     </div>
   );
 }

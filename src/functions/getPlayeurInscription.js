@@ -1,9 +1,4 @@
-// export const getPlayeurInscription = (loadedData, playeur) => {
-//   const playeurInscriptions = loadedData.filter((data) =>
-//     data.usersRegisted.some((user) => user.name === playeur)
-//   );
-//   return playeurInscriptions;
-// };
+
 
 export const findPriceToPay = (playerInscriptions, level) => {
   const l = level || playerInscriptions[0].level || null;
@@ -41,18 +36,3 @@ const convertHoursToMinutes = (startHour, endHour) => {
   return hour2 * 60 + minute2 - (hour1 * 60 + minute1);
 };
 
-// 0: "Baby",
-//       1: "Mini",
-//       2: "Violet",
-//       3: "Rouge",
-//       4: "Orange",
-//       5: "Vert",
-//       6: 'Jaune 1',
-//       7: 'Jaune 2',
-//       8: 'Jaune 3',
-//       9: 'Jaune 4',
-//       10: 'Adulte Niveau 1',
-//       11: 'Adulte Niveau 2',
-//       12: 'Adulte Niveau 3',
-//       13: 'Adulte Niveau 4',
-//       14: 'Adulte Niveau 5',

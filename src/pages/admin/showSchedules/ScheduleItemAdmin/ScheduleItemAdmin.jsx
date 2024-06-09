@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 // COMPONENT
 import AddPlayeurModal from "../addPlayeurModal/AddPlayeurModal";
@@ -14,6 +14,7 @@ import {
 
 // ICONS
 import { FaTrash } from "react-icons/fa";
+import { AllDataUsers } from "../../../../context/AllDataUsers";
 
 export default function ScheduleItemAdmin({ schedule }) {
   const {
@@ -26,6 +27,7 @@ export default function ScheduleItemAdmin({ schedule }) {
     playedForm,
     usersRegisted,
     uid,
+    acceptProposition
   } = schedule;
 
   // Calculer le nombre de places restantes
@@ -44,6 +46,7 @@ export default function ScheduleItemAdmin({ schedule }) {
   // console.log(showInfoPlayeurModal);
   const [playeurClick, setPlayeurClick] = useState("");
 
+
   return (
     <>
       <div className="schedule-card">
@@ -59,21 +62,17 @@ export default function ScheduleItemAdmin({ schedule }) {
         </div>
         <table style={{ backgroundColor: convertLevelToColor(level) }}>
           <tbody>
-            {tableData.map((item, index) => (
-              <tr key={index} style={{ height: "50px" }}>
-                {/* <td
-                  className="item"
-                  onClick={() =>
-                    item
-                      ? (setShowModal2(true), setPlayeurClick(item))
-                      : setShowModal1(true)
-                  }
-                >
-                  {item.name}
-                  {item.birthDay ? item.birthDay.slice(0, 4) : ""}
-                </td> */}
+             
+            {tableData.map((item, index) => {
+             
+             console.log(item.name);
+              return(
+                <tr key={index} style={{ height: "50px" }}>
+                
                 <td
-                  style={item.priorityAccepted ? { color: "green" } : {}}
+               style={{
+                color: acceptProposition.includes(item.name) ? 'green' : 'red'
+              }}
                   className="item"
                   onClick={() =>
                     item
@@ -98,7 +97,8 @@ export default function ScheduleItemAdmin({ schedule }) {
                   </td>
                 )}
               </tr>
-            ))}
+              )
+            })}
           </tbody>
         </table>
       </div>
@@ -128,3 +128,4 @@ export default function ScheduleItemAdmin({ schedule }) {
     </>
   );
 }
+

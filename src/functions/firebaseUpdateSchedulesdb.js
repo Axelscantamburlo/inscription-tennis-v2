@@ -8,11 +8,7 @@ export async function firebaseUpdateSchedulesDb(
   operationType,
   birthDay
 ) {
-  const cc = {
-    name: data,
-    birthDay: birthDay,
-    priorityAccepted: true,
-  };
+  
   const schedulesRef = doc(db, "schedules", uid);
   const operationMap = {
     arrayUnion: arrayUnion,
@@ -21,15 +17,29 @@ export async function firebaseUpdateSchedulesDb(
   };
   const operationFunction = operationMap[operationType];
 
-  if (operationType === "arrayUnion" || operationType === "arrayRemove")
-    await updateDoc(schedulesRef, {
+  if (operationType === "acceptInscription") {
+    // Mise à jour du nom à un index spécifique
+    return await updateDoc(schedulesRef, {
+      acceptProposition: arrayUnion(data)
+    });
+  }
+
+   else if (operationType === "arrayUnion" || operationType === "arrayRemove") {
+    const cc = {
+      name: data,
+      birthDay: birthDay,
+      priorityAccepted: true,
+    };
+    return await updateDoc(schedulesRef, {
       usersRegisted: operationFunction(
         operationType === "arrayUnion" ? cc : data
       ),
-    });
+    });}
   else {
-    await updateDoc(schedulesRef, {
+    return await updateDoc(schedulesRef, {
       ...data,
     });
   }
 }
+
+

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 // HOOK
-import { useFetchTestSchedules } from "../../../../../../hooks/useFetchTestSchedules";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../../../config/firebase-config";
 import { useLocation } from "react-router-dom";

@@ -30,7 +30,6 @@ export default function ConfirmationModal({ setOpenModal, isPriority }) {
 
     dateInscription: new Date(),
   });
-  console.log(playeurInfoState);
 
   const { name, level, birthDay } = playeurInfoState;
   // récupérer le store redux pour vérifier si l'utilisateur à bien choisi une horaire
@@ -43,19 +42,28 @@ export default function ConfirmationModal({ setOpenModal, isPriority }) {
     for (const key in inscriptions) {
       if (inscriptions[key]) {
         const { usersRegisted, numberOfPlaces, uid } = inscriptions[key];
+        console.log(uid);
         if (
           usersRegisted.length < numberOfPlaces &&
           !isPlayeurAlreadyRegisted &&
           !isPriority
         ) {
-          await firebaseUpdateSchedulesDb(uid, name, "arrayUnion", birthDay);
-        } else if (!isPriority) {
-          navigate("/inscrire-un-joueur");
+          console.log('je rentre ici ');
+           await firebaseUpdateSchedulesDb(uid, name, "arrayUnion", birthDay);
+        } else if (isPriority) {
+          console.log('je dois aller ici');
+           await firebaseUpdateSchedulesDb(uid, name, 'acceptInscription', null);
+
+        } else {
+           navigate("/inscrire-un-joueur");
+
         }
       }
+      
     }
     const userRef = doc(db, "users", uid);
     if (userRef || isPriority) {
+      console.log('je passe ici');
       await updateDoc(userRef, {
         playeurInfo: arrayUnion(playeurInfoState),
         playeurNames: arrayUnion(name),

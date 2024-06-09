@@ -40,6 +40,7 @@ export default function CreateScheduleModal({ path, setOpenModal0 }) {
       const docRef = await addDoc(collection(db, path), {
         ...scheduleCreate,
         usersRegisted: [],
+        acceptProposition: [],
       });
     } else {
       setErrorMessage("Veuillez remplir tous les champs");

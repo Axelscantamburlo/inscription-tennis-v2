@@ -37,34 +37,31 @@ export default function ShowAllUsers() {
   };
 
   // DOWNLAND TO Excel
-  const downloadExcelFile = () => {
-    const editUsersDataArray = usersData.map(
-      ({
-        birthDay,
-        email,
-        name,
-        sexe,
-        nationality,
-        job,
-        adress,
-        typePaiement,
-      }) => ({
-        "date de naiss": birthDay,
-        email,
-        "nom et prénom": name,
-        sexe,
-        nationaité: nationality,
-        profession: job,
-        adresse: adress,
-        "paiement en": typePaiement,
-      })
-    );
+  // const downloadExcelFile = () => {
+  //   const editUsersDataArray = usersData.map(
+  //     ({
+  //       birthDay,
+  //       name,
+      
+  //       adress,
+  //       typePaiement,
+  //     }) => ({
+  //       "date de naiss": birthDay,
+  //       email,
+  //       "nom et prénom": name,
+  //       sexe,
+  //       nationaité: nationality,
+  //       profession: job,
+  //       adresse: adress,
+  //       "paiement en": typePaiement,
+  //     })
+  //   );
 
-    const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.json_to_sheet(editUsersDataArray);
-    XLSX.utils.book_append_sheet(wb, ws, "MySheet1");
-    XLSX.writeFile(wb, "info-adhérents.xlsx");
-  };
+  //   const wb = XLSX.utils.book_new();
+  //   const ws = XLSX.utils.json_to_sheet(editUsersDataArray);
+  //   XLSX.utils.book_append_sheet(wb, ws, "MySheet1");
+  //   XLSX.writeFile(wb, "info-adhérents.xlsx");
+  // };
 
   const currentTimestamp = new Date().getTime();
   const [showModal2, setShowModal2] = useState(false);
@@ -81,11 +78,11 @@ export default function ShowAllUsers() {
             placeholder="Rechercher par nom"
           />
         </div>
-        <RiFileDownloadLine
+        {/* <RiFileDownloadLine
           title="Télécharger le fichier excel"
           className="icon"
           onClick={downloadExcelFile}
-        />
+        /> */}
       </div>
 
       <div className="users-container">
@@ -104,7 +101,6 @@ export default function ShowAllUsers() {
                   setShowModal2(true);
                   setPlayeurClick(name);
                 }}
-                // style={isPayed ? {border: '3px solid #2E933C'} : {border: '3px solid var(--red-color)'}}
                 style={
                   isPayed
                     ? { border: "3px solid #2E933C" }

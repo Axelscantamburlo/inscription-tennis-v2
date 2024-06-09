@@ -3,14 +3,10 @@ import React, { useState, useEffect, useContext } from "react";
 // FIREBASE
 import {
   addDoc,
-  arrayUnion,
   collection,
-  doc,
   getDocs,
   limit,
   query,
-  setDoc,
-  updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "../../../../config/firebase-config";

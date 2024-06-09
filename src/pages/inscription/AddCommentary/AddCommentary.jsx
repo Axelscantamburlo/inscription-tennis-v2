@@ -52,7 +52,11 @@ const AddCommentary = () => {
       <textarea
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-        placeholder="Type de souhaits possible: Être avec un ou une amie en cours, un professeur en particulier. Nous essayerons d'en tenir compte mais nous ne vous le garantissons pas."
+        placeholder={
+          isRegisted
+            ? "Exemple : Être avec un ou une amie en cours, un professeur en particulier, nous essayerons d'en tenir compte mais nous ne vous le garantissons pas"
+            : "Indiquez-nous une ou plusieurs horaires qui vous conviendraient, nous essayerons d'en tenir compte mais nous ne vous le garantissons pas"
+        }
       />
       <div className="buttons">
         <button className="cancel-button" onClick={() => closeModal()}>

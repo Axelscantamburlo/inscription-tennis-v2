@@ -80,8 +80,6 @@ export default function AdminLogin() {
         </form>
       </div>
       {errorMessage && <span className="error-message">{errorMessage}</span>}
-    </div>
+    </div>  
   );
 }
-
-// name: Scantamburlo Alain     key: 4frd34GZr

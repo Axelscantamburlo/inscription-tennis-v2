@@ -20,11 +20,7 @@ export default function NavBar({toggleClassName}) {
             style: 3,
             text: 'Liste joueurs'
         },
-        // {
-        //     link: '/admin/renseignements-joueurs',
-        //     style: 4,
-        //     text: 'Renseignements joueurs'
-        // }
+
     ]
 
     // li style

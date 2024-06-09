@@ -70,7 +70,6 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
 
   // Récupérer les infos des users pour véirifer si il n'est pas déjà inscrit
   const { loadedData } = useContext(AllDataSchedules);
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 

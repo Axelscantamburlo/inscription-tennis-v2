@@ -80,10 +80,11 @@ export default function SecondHour() {
         ) : formule?.includes("Forme jouée 2h par semaine") ? (
           <>
             {loadedData
-              .filter((el) => el.level === level)
+              .filter((el) =>
+                level === "4" ? el.level === "5" : level === '7' || level === '9' ? el.level === '8': el.level === level
+              )
               .filter((el) => el.playedForm === "1")
 
-              // .filter(el => el.numberOfPlaces - el.usersRegisted.length !== 0)TODO: je sais pas si je met
               .map((schedule, index) => {
                 return (
                   <ScheduleItem schedule={schedule} path="Second" key={index} />

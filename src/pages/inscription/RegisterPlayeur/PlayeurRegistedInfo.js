@@ -12,7 +12,7 @@ import { usePlayeurInscription } from "../../../hooks/usePlayeurInscription";
 
 export default function PlayeurRegistedInfo({ playeurInfo }) {
   const { name, birthDay, level, isPayed } = playeurInfo;
-
+console.log(level);
   const [playeurInscription, setPlayeurInscription] = useState([]);
   const [priceToPay, setPriceToPay] = useState("");
 
@@ -23,6 +23,12 @@ export default function PlayeurRegistedInfo({ playeurInfo }) {
     setPlayeurInscription(playeurInscriptions);
     setPriceToPay(price);
   }, []);
+
+  function extractBeforeSlash(inputString) {
+    const parts = inputString.split('/');
+    return parts[0]; // Retourne la partie de la chaîne avant le '/'
+  }
+  
 
   return (
     <div className="playeur-card">
@@ -41,7 +47,7 @@ export default function PlayeurRegistedInfo({ playeurInfo }) {
       {isPayed ? (
         <p style={{ color: "green", fontWeight: "bold" }}>Payé</p>
       ) : (
-        <p>Prix à payer: {priceToPay}€ + adhésion</p>
+        <p>Prix à payer: {extractBeforeSlash(priceToPay)}€ + adhésion</p>
       )}
     </div>
   );

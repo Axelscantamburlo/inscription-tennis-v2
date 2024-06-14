@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function RefusePriority({ setOpenModal2, dataPlayeur, uid }) {
   const navigate = useNavigate();
   const handleConfirm = async () => {
-    navigate("/inscrire-un-joueur");
+    navigate("/emettre-un-souhait");
     await firebaseUpdateSchedulesDb(uid, dataPlayeur, "arrayRemove");
   };
   return (

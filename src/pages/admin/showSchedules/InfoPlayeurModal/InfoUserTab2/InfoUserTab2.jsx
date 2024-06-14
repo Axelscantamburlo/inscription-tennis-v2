@@ -5,19 +5,34 @@ import { usePlayeurInscription } from "../../../../../hooks/usePlayeurInscriptio
 // FUNCTIONS
 
 import { formatDate } from "../../../../../functions/formatDate";
+import { findPriceToPay } from "../../../../../functions/getPlayeurInscription";
 
-export default function InfoUserTab2({ playeurClick, dateInscription }) {
-  const playeurInscription = usePlayeurInscription(playeurClick);
+export default function InfoUserTab2({ infoPlayeurClick, playeurClick}) {
+  const {name, level, dateInscription} = infoPlayeurClick[0] || {};
+  const playeurInscriptions = usePlayeurInscription(playeurClick);
+  const [formule, setFormule] = useState("");
+  useEffect(() => {
+    if(level || playeurInscriptions.length > 0) {
+      const formule = findPriceToPay(playeurInscriptions, level);
+      setFormule(formule);
+    }
+  }, [infoPlayeurClick]);
 
+  function extractAfterSlash(inputString) {
+    if(inputString) {
+      const parts = inputString.split('/');
+      if (parts.length > 1) {
+        return parts[1]; // Retourne la partie de la chaîne après le '/'
+      }
+      return 'Erreur'; 
+    }
+
+  }
   return (
     <div className="tab-container">
       <div className="text-container">
         <h3>Formule : </h3>
-        {playeurInscription.length === 0 ? (
-          <h3>Pas inscrit</h3>
-        ) : (
-          <h4>{playeurInscription.length} entrainement(s) par semaine</h4>
-        )}
+        <h4>{extractAfterSlash(formule)}</h4>
       </div>
       <div className="text-container">
         <h3>Date inscription :</h3>
@@ -29,7 +44,8 @@ export default function InfoUserTab2({ playeurClick, dateInscription }) {
       </div>
       <div className="text-container">
         <h3>Inscription(s) : </h3>
-        {playeurInscription?.map((inscription, index) => {
+        {playeurInscriptions.length === 0 && <h4>Pas inscrit</h4>}
+        {playeurInscriptions?.map((inscription, index) => {
           const { startHour, endHour, day } = inscription;
           return (
             <h4 key={index}>

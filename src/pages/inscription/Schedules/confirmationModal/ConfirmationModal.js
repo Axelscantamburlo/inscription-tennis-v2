@@ -42,16 +42,13 @@ export default function ConfirmationModal({ setOpenModal, isPriority }) {
     for (const key in inscriptions) {
       if (inscriptions[key]) {
         const { usersRegisted, numberOfPlaces, uid } = inscriptions[key];
-        console.log(uid);
         if (
           usersRegisted.length < numberOfPlaces &&
           !isPlayeurAlreadyRegisted &&
           !isPriority
         ) {
-          console.log('je rentre ici ');
            await firebaseUpdateSchedulesDb(uid, name, "arrayUnion", birthDay);
-        } else if (isPriority) {
-          console.log('je dois aller ici');
+        } else if (isPriority && usersRegisted.length <= numberOfPlaces) {
            await firebaseUpdateSchedulesDb(uid, name, 'acceptInscription', null);
 
         } else {
@@ -63,7 +60,6 @@ export default function ConfirmationModal({ setOpenModal, isPriority }) {
     }
     const userRef = doc(db, "users", uid);
     if (userRef || isPriority) {
-      console.log('je passe ici');
       await updateDoc(userRef, {
         playeurInfo: arrayUnion(playeurInfoState),
         playeurNames: arrayUnion(name),

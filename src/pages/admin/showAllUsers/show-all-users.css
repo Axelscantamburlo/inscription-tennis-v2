@@ -4,6 +4,12 @@
   background-color: var(--grey-color);
 }
 
+.show-all-users-container .stats-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
 .show-all-users-container .header-container {
   display: grid;
   grid-template-columns: 95% 5%;
@@ -38,7 +44,7 @@
   color: var(--grey-color);
   padding: 15px;
   cursor: pointer;
-  overflow: auto;
+  overflow: none;
 }
 
 .show-all-users-container .users-container .user-card h2 {

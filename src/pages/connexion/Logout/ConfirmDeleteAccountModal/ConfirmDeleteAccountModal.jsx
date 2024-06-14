@@ -17,7 +17,6 @@ const ConfirmDeleteAccountModal = ({ setOpenModal2 }) => {
   const handleDeleteAccount = () => {
     const auth = getAuth();
     const user = auth.currentUser;
-    console.log(user);
     if (user) {
       deleteUser(user)
         .then(() => {
@@ -36,24 +35,6 @@ const ConfirmDeleteAccountModal = ({ setOpenModal2 }) => {
       // Rediriger l'utilisateur vers la page de connexion ou afficher un message d'erreur
     }
   };
-
-  // const handleDeleteAccount = async () => {
-  //   const docRef = doc(db, "users", uid);
-  //   const docSnap = await getDoc(docRef);
-
-  //   if (docSnap.exists()) {
-  //     cc(docSnap.data().playeurNames)
-  //   } else {
-  //     // docSnap.data() will be undefined in this case
-  //     console.log("No such document!");
-  //   }
-  // };
-
-  // const {loadedData} = useContext(AllDataSchedules)
-  // const cc = playeurNames => {
-  //   const outt = loadedData.forEach((data) => data.usersRegisted.filter(el => playeurNames.includes(el)))
-  //   console.log(playeurNames);
-  // }
 
   return (
     <div className="confirmation-modal-container">

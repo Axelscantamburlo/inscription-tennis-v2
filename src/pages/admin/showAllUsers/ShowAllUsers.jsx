@@ -12,14 +12,15 @@ import { formatDate } from "../../../functions/formatDate";
 
 // DEPENDENCIE
 
-import * as XLSX from "xlsx";
+// import * as XLSX from "xlsx";
 
-// ICONS
-import { RiFileDownloadLine } from "react-icons/ri";
+// // ICONS
+// import { RiFileDownloadLine } from "react-icons/ri";
 
 export default function ShowAllUsers() {
   // Récupérer et stocker tous les joueurs INSCRITS
   const { usersData } = useContext(AllDataUsers);
+
 
   // filtrer les joueurs lorsque on cherche dans la searchBar
   const [searchBar, setSearchBar] = useState("");
@@ -35,7 +36,12 @@ export default function ShowAllUsers() {
     );
     setFilteredPlayeursInfos(filteredUsers);
   };
+   
 
+
+useEffect(() => {
+  filterName(searchBar)
+}, [usersData])
   // DOWNLAND TO Excel
   // const downloadExcelFile = () => {
   //   const editUsersDataArray = usersData.map(
@@ -63,13 +69,19 @@ export default function ShowAllUsers() {
   //   XLSX.writeFile(wb, "info-adhérents.xlsx");
   // };
 
+
   const currentTimestamp = new Date().getTime();
   const [showModal2, setShowModal2] = useState(false);
   const [playeurClick, setPlayeurClick] = useState("");
   return (
     <div className="show-all-users-container">
       <NavBar toggleClassName={3} />
+      <div className="stats-container">
+      <h3>Nombre de pré-inscriptions: {usersData.length}</h3>
+        <h3>Nombre de paiements: {usersData.filter(da => da.isPayed === true).length} </h3>
+      </div>
       <div className="header-container">
+
         <div className="inputs">
           <input
             type="text"
@@ -86,13 +98,16 @@ export default function ShowAllUsers() {
       </div>
 
       <div className="users-container">
-        {(searchBar.length >= 2 ? filteredPlayeursInfos : usersData).map(
+        {(searchBar.length >= 2 ? filteredPlayeursInfos : usersData)
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map(
           (playeurInfo, index) => {
             const { name, isPayed, dateInscription } = playeurInfo;
             const limitePaiement =
               dateInscription?.seconds * 1000 +
               dateInscription?.nanoseconds / 1000000 +
               604800000;
+    
             return (
               <div
                 className="user-card"
@@ -102,11 +117,11 @@ export default function ShowAllUsers() {
                   setPlayeurClick(name);
                 }}
                 style={
-                  isPayed
-                    ? { border: "3px solid #2E933C" }
+                  isPayed 
+                    ? { border: "5px solid #2E933C" }
                     : currentTimestamp > limitePaiement
-                    ? { border: "3px solid var(--red-color)" }
-                    : { border: " 3px solid orange" }
+                    ? { border: "5px solid var(--red-color)" }
+                    : { border: " 5px solid orange" }
                 }
               >
                 <h2>{name}</h2>

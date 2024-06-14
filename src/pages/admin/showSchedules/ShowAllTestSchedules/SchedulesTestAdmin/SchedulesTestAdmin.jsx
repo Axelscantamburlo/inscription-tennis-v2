@@ -14,7 +14,6 @@ export default function SchedulesTestAdmin({ schedule }) {
     Array(remainingPlaces).fill("")
   );
 
-  console.log(tableData);
   return (
     <div className="schedule-card">
       <div className="header-card">

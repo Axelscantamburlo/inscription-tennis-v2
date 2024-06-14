@@ -18,18 +18,24 @@
   outline: none;
 }
 
+.add-commentary-container .buttons {
+  position: absolute;
+  bottom: 100px;
+
+}
+.add-commentary-container .buttons button {
+  width: 250px;
+}
+
+.add-commentary-container .buttons .submit-button {
+  background: var(--linear-gradient);
+}
+
 @media screen and (min-width: 800px) {
   .add-commentary-container textarea {
     width: 40%;
     height: 40vh;
   }
 
-  .add-commentary-container .submit-btn {
-    width: 250px;
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
-    left: unset;
-    transform: unset;
-  }
+
 }

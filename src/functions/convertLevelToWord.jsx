@@ -32,7 +32,7 @@ export const convertLevelToColor = (level) => {
     7: "yellow",
     8: "yellow",
     9: "yellow",
-    10: "#FFD400",
+    10: "#FFE66D",
     11: "#FFE66D",
     12: "#FFE66D",
     13: "#FFE66D",

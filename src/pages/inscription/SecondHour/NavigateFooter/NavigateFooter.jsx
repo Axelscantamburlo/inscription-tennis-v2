@@ -71,7 +71,7 @@ const PreviousHourButtons = ({
         </button>
       )}
 
-      {errorMessage && <span className="error-message">{errorMessage}</span>}
+      {errorMessage && <span style={{marginBottom: '20px', fontSize: '20px'}} className="error-message">{errorMessage}</span>}
       {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}
     </div>
   );

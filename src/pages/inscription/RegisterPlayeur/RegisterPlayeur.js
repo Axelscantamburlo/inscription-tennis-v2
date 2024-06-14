@@ -20,7 +20,6 @@ export default function RegisterPlayeur() {
   const [playeurInfoToMap, setPlayeurInfoToMap] = useState([]);
 
   const [propsToPass, setPropsToPass] = useState([]);
-
   const [endInscription, setEndInscription] = useState(true);
 
   const [errorMessage, setErrorMesage] = useState("");
@@ -102,7 +101,7 @@ export default function RegisterPlayeur() {
 
       {openModal && (
         <RegisterNewPlayer
-          playeursNames={propsToPass}
+          playeurNames={propsToPass}
           setOpenModal={setOpenModal}
         />
       )}

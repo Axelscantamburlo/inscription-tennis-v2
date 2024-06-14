@@ -4,30 +4,40 @@ export const findPriceToPay = (playerInscriptions, level) => {
   const l = level || playerInscriptions[0].level || null;
   const { startHour, endHour, playedForm } = playerInscriptions[0] || [];
   if (playerInscriptions.length === 0 || level === null) {
-    return "0";
+    return "0/Pas inscrit";
   } else if (l === "0") {
-    return "127";
+    return "130/50min par semaine";
   } else if (l === "1") {
-    return playerInscriptions.length === 1 ? "170" : "276";
-  } else if (["2", "3", "4", "5"].includes(l)) {
-    return playerInscriptions.length === 1 ? "175" : "319";
-  } else if (["6", "7", "8", "9"].includes(l)) {
+    return playerInscriptions.length === 1 ? "175/1h par semaine" : "280/2x 1h par semaine";
+  } else if (["2", "3"].includes(l)) {
+    return playerInscriptions.length === 1 ? "180/1h par semaine" : "325/2x 1h par semaine";
+  } else if (["4", "5"].includes(l)) {
     if (playerInscriptions.length === 1) {
-      return "185";
-    } else if (playerInscriptions.length === 2 && playedForm === "0") {
-      return "329";
-    } else if (playerInscriptions.length === 2 && playedForm === "1") {
-      return "291";
+      return "180/1h par semaine";
+    } else if (playerInscriptions.length === 2 && playedForm === "0" && playerInscriptions[1].playedForm === "0") {
+      return "325/2x 1h par semaine";
+    } else if (playerInscriptions.length === 2 && (playedForm === "1" || playerInscriptions[1].playedForm === "1")) {
+      return "285/Forme jouée 2h par semaine";
+    }
+  }
+  
+  else if (["6", "7", "8", "9"].includes(l)) {
+    if (playerInscriptions.length === 1) {
+      return "190/1h par semaine";
+    } else if (playerInscriptions.length === 2 && playedForm === "0" && playerInscriptions[1].playedForm === "0") {
+      return "335/2x 1h par semaine";
+    } else if (playerInscriptions.length === 2 && (playedForm === "1" || playerInscriptions[1].playedForm === "1")) {
+      return "300/Forme jouée 2h par semaine";
     } else {
-      return "445";
+      return "450/Forme jouée 3h par semaine";
     }
   } else if (["10", "11"].includes(l)) {
-    return "270";
+    return "280/1h par semaine";
   } else if (l === "12") {
-    return convertHoursToMinutes(startHour, endHour) === 60 ? "270" : "317";
+    return convertHoursToMinutes(startHour, endHour) === 60 ? "280/1h par semaine" : "330/1h30 par semaine";
   } else if (l === "13" || l === "14") {
-    return "317";
-  }
+    return "330/1h30 par semaine";
+  }  else return 'Erreur/Erreur'
 };
 
 const convertHoursToMinutes = (startHour, endHour) => {

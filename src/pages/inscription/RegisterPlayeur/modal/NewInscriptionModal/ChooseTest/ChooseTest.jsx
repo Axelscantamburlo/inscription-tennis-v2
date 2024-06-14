@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 export default function ChooseTest() {
   const { name, level } = useSelector((state) => state.user);
-  console.log(level);
   const [testSchedules, setTestSchedules] = useState([]);
   const getSchedulesTest = async () => {
     const dataArr = [];

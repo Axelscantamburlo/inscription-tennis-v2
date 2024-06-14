@@ -49,7 +49,6 @@ export default function CreateAccount() {
       };
 
       setErrorMessage(errorMessages[error.code] || errorMessages.default);
-      console.log(error.code);
     }
   };
 

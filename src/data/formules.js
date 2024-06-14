@@ -3,56 +3,48 @@ export const findFormule = (level) => {
     {
       formules: [
         `1h par semaine - ${
-          level == "1" ? "170€" : level === "6" ? "185€" : "175€"
-        }`,
+          level == "1" ? "175€" : level === "6" ? "190€" : "180€"
+        } + adhésion`,
         `2 x 1h par semaine - ${
-          level == "1" ? "276€" : level === "6" ? "329€" : "319€"
-        }`,
+          level == "1" ? "280€" : level === "6" ? "335€" : "325€"
+        } + adhésion`,
       ],
-      levels: ["1", "2", "3", "4", "5", "6"],
+      levels: ["1", "2", "3", "6"],
+    },{
+      formules: [
+        '1h par semaine - 180€ + adhésion',
+        '2 x 1h par semaine - 325€ + adhésion',
+        `Forme jouée 2h par semaine - 285€ + adhésion`,
+        
+      ],
+      levels: ["4", "5"],
     },
     {
       formules: [
-        "1h par semaine - 185€",
-        "2 x 1h par semaine - 329€",
-        "Forme jouée 2h par semaine - 291€",
-        "Forme jouée 3h par semaine - 445€",
+        "1h par semaine - 190€ + adhésion",
+        "2 x 1h par semaine - 335€ + adhésion",
+        "Forme jouée 2h par semaine - 300€ + adhésion",
+        "Forme jouée 3h par semaine - 450€ + adhésion",
       ],
       levels: ["7", "8", "9"],
     },
 
     {
-      formules: ["50min par semaine - 127€"],
+      formules: ["50min par semaine - 130€ + adhésion"],
       levels: ["0"],
     },
     {
-      formules: ["1h par semaine - 270€"],
+      formules: ["1h par semaine - 280€ + adhésion"],
       levels: ["10", "11"],
     },
     {
-      formules: ["1h par semaine - 270€", "1h30 par semaine - 317€"],
+      formules: ["1h par semaine - 280€", "1h30 par semaine - 330€ + adhésion"],
       levels: ["12"],
     },
     {
-      formules: ["1h30 par semaine - 317€"],
+      formules: ["1h30 par semaine - 330€ + adhésion"],
       levels: ["13", "14"],
     },
   ];
   return FORMULES.find((f) => f.levels.includes(level));
 };
-
-// 0: "Baby",
-//       1: "Mini",
-//       2: "Violet",
-//       3: "Rouge",
-//       4: "Orange",
-//       5: "Vert",
-//       6: 'Jaune 1',
-//       7: 'Jaune 2',
-//       8: 'Jaune 3',
-//       9: 'Jaune 4',
-//       10: 'Adulte Niveau 1',
-//       11: 'Adulte Niveau 2',
-//       12: 'Adulte Niveau 3',
-//       13: 'Adulte Niveau 4',
-//       14: 'Adulte Niveau 5',

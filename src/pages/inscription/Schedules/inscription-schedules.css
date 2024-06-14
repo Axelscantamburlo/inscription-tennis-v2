@@ -8,7 +8,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding-top: 20px;
 }
 .inscription-schedules-container .formules-container h2 {
@@ -23,6 +22,7 @@
   font-size: 3vw;
   outline: none;
   border: 1px solid var(--background-color);
+  
 }
 
 .inscription-schedules-container .schedules-container {
@@ -42,7 +42,7 @@
   }
 
   .inscription-schedules-container .formules-container select {
-    width: 210px;
+    width: 310px;
     padding: 5px 10px;
     font-size: 15px;
   }

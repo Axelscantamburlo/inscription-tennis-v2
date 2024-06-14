@@ -21,15 +21,13 @@ export default function InfoUserTab3({
     level,
     isPayed,
     pricePay,
-    howManyTimePaiement,
-    typePaiement,
   } = infoPlayeurClick[0] || {};
+  console.log(infoPlayeurClick[0]);
   const [price, setPrice] = useState("");
-
+  console.log(price);
   const playeurInscriptions = usePlayeurInscription(playeurClick);
-
   useEffect(() => {
-    if (level) {
+    if (level || playeurInscriptions.length > 0) {
       const price = findPriceToPay(playeurInscriptions, level);
       setPrice(price);
     }
@@ -48,11 +46,7 @@ export default function InfoUserTab3({
             ? {
                 ...info,
                 isPayed: !info.isPayed,
-                typePaiement:
-                  info.isPayed === false ? selectedMethodPaiement : null,
-                howManyTimePaiement:
-                  info.isPayed === false ? selectedHowManyTimePaiement : null,
-                pricePay: info.isPayed === false ? price : null,
+                pricePay: info.isPayed === true ? null : price,
               }
             : info
         );
@@ -62,10 +56,13 @@ export default function InfoUserTab3({
     }
   };
 
-  // toggle style
-  const [selectedMethodPaiement, setSelectedMethodPaiement] = useState(null);
-  const [selectedHowManyTimePaiement, setSelectedHowManyTimePaiement] =
-    useState(null);
+
+  function extractBeforeSlash(inputString) {
+    const parts = inputString.split('/');
+    return parts[0]; // Retourne la partie de la chaîne avant le '/'
+  }
+  
+ 
 
   return (
     <div className="tab-container tab-container-3">
@@ -73,18 +70,9 @@ export default function InfoUserTab3({
         <>
           <div className="text-container">
             <h1>Prix payé: </h1>
-            <h4>{pricePay ? `${pricePay}€` : "Pas renseigné"}</h4>
+            <h4>{pricePay ? `${extractBeforeSlash(pricePay)}€` : "Pas renseigné"}</h4>
           </div>
-          <div className="text-container">
-            <h3>Moyen de paiement:</h3>
-            <h4>{typePaiement ? typePaiement : "Pas renseigné"}</h4>
-          </div>
-          <div className="text-container">
-            <h3>Paiement en: </h3>
-            <h4>
-              {howManyTimePaiement ? howManyTimePaiement : "Pas renseigné"}
-            </h4>
-          </div>
+          
           <button className="submit-btn" onClick={handleConfirmPaiement}>
             Annuler le paiement
           </button>
@@ -93,50 +81,8 @@ export default function InfoUserTab3({
         <>
           <h2>
             <span style={{ color: "var(--blue-color)" }}>Prix à payer:</span>{" "}
-            {price ? `${price}€` : "Pas renseigné"}{" "}
+            {price ? `${extractBeforeSlash(price)}€` : "Pas renseigné"}{" "}
           </h2>
-          {/* <div className="buttons-container">
-            <h2>Moyen de paiement:</h2>
-            <div className="buttons">
-              {["CB", "Chèque", "Autre"].map((item, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedMethodPaiement(item)}
-                  style={
-                    selectedMethodPaiement === item
-                      ? {
-                          background: "var(--background-color)",
-                          color: "var(--grey-color)",
-                        }
-                      : null
-                  }
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </div> */}
-          {/* <div className="buttons-container">
-            <h2>Paiement en:</h2>
-            <div className="buttons">
-              {["1x", "3x", "10x"].map((item, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedHowManyTimePaiement(item)}
-                  style={
-                    selectedHowManyTimePaiement === item
-                      ? {
-                          background: "var(--background-color)",
-                          color: "var(--grey-color)",
-                        }
-                      : null
-                  }
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </div> */}
           <button className="submit-btn" onClick={handleConfirmPaiement}>
             Valider le paiement
           </button>

@@ -20,6 +20,7 @@ export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
   const [activeTab, setActiveTab] = useState(0);
 
   const { usersData } = useContext(AllDataUsers);
+
   const [infoPlayeurClick, setInfoPlayeurClick] = useState([]);
 
   useEffect(() => {
@@ -28,7 +29,6 @@ export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
       setInfoPlayeurClick(info);
     }
   }, []);
-  console.log(infoPlayeurClick);
 
   return (
     <div className="register-playeur-modal-container responsive-container">
@@ -56,8 +56,10 @@ export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
         )}
         {activeTab === 1 && (
           <InfoUserTab2
+            // playeurClick={playeurClick}
+            // dateInscription={infoPlayeurClick[0]?.dateInscription}
+            infoPlayeurClick={infoPlayeurClick}
             playeurClick={playeurClick}
-            dateInscription={infoPlayeurClick[0]?.dateInscription}
           />
         )}
         {activeTab === 2 && (

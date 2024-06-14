@@ -9,9 +9,7 @@ TODO: J'aimerais bien que au moment d'inscrire les champs se préremplissent ave
 TODO: Faire un filter dans CreateSchedules.js
 TODO: Faire une page si pas de connexion
 TODO: Vérifier le pricing hosting firebase
-TODO: Vider le store redux lors d'une inscription car je pense que si on revient par l'url sur
- les inscription on est pas bloqué alors qu'on est inscrit
- TODO: 
+
 
 Quasiment do:
 TODO: Faire tous les messages d'erreurs
@@ -35,3 +33,10 @@ TODO: vérifier le style dans login et CreateAccount
 TODO: lorsque on clique sur un schedule mette une border green pour que l'utilisateur voit ce qu'il sélectionne 
 TODO: regarder dans AddPlayeur au niveau du message d'erreur ( en mettre un ???)
 TODO: Mettre la date d'inscription dans firebase et l'afficher (aussi dans show all users faire un calcul ta capté)
+
+
+
+TODO: vérifier tarifs
+vérifier les formules
+cacher clé api 
+changer boutton AddCommentary + réfléchir si on redirige vers la page d'inscription amrès un souhait

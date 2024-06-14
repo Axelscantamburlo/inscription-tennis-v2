@@ -42,8 +42,7 @@ export default function ScheduleItemAdmin({ schedule }) {
   const [modal1, setShowModal1] = useState(false);
   const [modal2, setShowModal2] = useState(false);
   const [modal3, setShowModal3] = useState(false);
-  // const {modal1, modal2, modal3, openModal1, openModal2, openModal3} = useModal()
-  // console.log(showInfoPlayeurModal);
+  
   const [playeurClick, setPlayeurClick] = useState("");
 
 
@@ -65,13 +64,12 @@ export default function ScheduleItemAdmin({ schedule }) {
              
             {tableData.map((item, index) => {
              
-             console.log(item.name);
               return(
                 <tr key={index} style={{ height: "50px" }}>
                 
                 <td
                style={{
-                color: acceptProposition.includes(item.name) ? 'green' : 'red'
+                color: acceptProposition.includes(item.name) ? 'green' : null
               }}
                   className="item"
                   onClick={() =>

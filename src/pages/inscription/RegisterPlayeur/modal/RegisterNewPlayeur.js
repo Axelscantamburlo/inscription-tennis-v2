@@ -16,7 +16,7 @@ import {
 import { db } from "../../../../config/firebase-config";
 
 // REDUX
-import { setPlayeurInfo } from "../../../../redux/actions";
+import { selectSchedule, setPlayeurInfo } from "../../../../redux/actions";
 import { useDispatch } from "react-redux";
 
 // CONTEXT
@@ -27,7 +27,7 @@ import { NEW_PLAYEUR_INPUTS } from "../../../../data/inputsData";
 // COMPONENTS
 import NewInscriptionModal from "./NewInscriptionModal/NewInscriptionModal";
 
-export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
+export default function RegisterNewPlayer({ playeurNames, setOpenModal }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -70,6 +70,11 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
 
   // Récupérer les infos des users pour véirifer si il n'est pas déjà inscrit
   const { loadedData } = useContext(AllDataSchedules);
+
+  const currentDate = new Date();
+
+  const limitDate = new Date(currentDate.getFullYear(), 5, 24); // 24 juin
+  
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -81,15 +86,12 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
       !name ||
       !firstName ||
       !birthDay
-      // !nationality ||
-      // !adress
+ 
     ) {
       return setErrorMessage("Veuillez remplir tous les champs");
     }
 
-    // const playeur = loadedExcelData.find(
-    //   (data) => data.name.trim().replace(/\s+/g, " ").toLowerCase() === cleanName
-    // );
+  
 
     const playeur = await loadExcelUsers(cleanName);
     if (!playeur) {
@@ -105,9 +107,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
           ?.map((user) => user.name.toLowerCase())
           .includes(cleanName)
       ) ||
-      playeursNames
-        ?.map((playeur) => playeur.toLowerCase())
-        .includes(cleanName);
+      playeurNames?.map((playeur) => playeur.toLowerCase()).includes(cleanName);
 
     if (isPlayeurAlreadyRegisted && !playeur.priority) {
       setErrorMessage("Le joueur est déjà inscrit");
@@ -125,14 +125,32 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
       ...registerPlayeurInfo,
       name: cleanName,
       level: playeur.level.toString(),
+      formule: playeur.level.toString() === 0 ? '50min par semaine' : '1h par semaine'
     };
     dispatch(setPlayeurInfo(updatedRegisterPlayeurInfo));
+
+    
+
+
 
     const currentDate = new Date();
     const limitDate = new Date(currentDate.getFullYear(), 5, 24); // 24 juin
 
-    if (playeur.priority && currentDate < limitDate) {
+    const isPlayeurAlreadyAcceptProposition = playeurNames
+      ?.map((playeur) => playeur.toLowerCase())
+      .includes(cleanName);
+
+
+    if (
+      playeur.priority &&
+      currentDate < limitDate &&
+      !isPlayeurAlreadyAcceptProposition
+    ) {
       return navigate("priorite-inscription");
+    } else if (isPlayeurAlreadyAcceptProposition) {
+      return setErrorMessage("Le joueur est déjà inscrit");
+    } else if(playeur.priority && currentDate > limitDate) {
+      return setErrorMessage('Erreur')
     }
     navigate("inscription");
   };
@@ -148,13 +166,13 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
 
   const handleDateCheck = () => {
     const currentDate = new Date();
-    const registrationDate = new Date(currentDate.getFullYear(), 5, 26); // Juin est le mois 5 en JavaScript (0-indexé)
+    const registrationDate = new Date(currentDate.getFullYear(), 5, 25, 9, 0, 0); // 25 juin à 9h00
 
-    if (currentDate < registrationDate) {
-      setToggleClassName(2);
-    } else {
+    if (currentDate >= registrationDate) {
       setToggleClassName(1);
       setErrorMessage(""); // Effacer le message d'erreur si la condition est remplie
+    } else {
+      setToggleClassName(2);
     }
   };
   return (
@@ -206,7 +224,7 @@ export default function RegisterNewPlayer({ playeursNames, setOpenModal }) {
             </button>
           </form>
         ) : toggleClassName === 1 ? (
-          <NewInscriptionModal playeursNames={playeursNames} />
+          <NewInscriptionModal playeurNames={playeurNames} />
         ) : toggleClassName === 2 ? (
           <h2>Vous ne pourrez vous inscrire qu'à partir du 25 juin.</h2>
         ) : null}

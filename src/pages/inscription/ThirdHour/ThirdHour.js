@@ -66,7 +66,7 @@ export default function ThirdHour() {
         {loadedData
           .filter(
             (el) =>
-              el.level === level &&
+              el.level === '8' &&
               el.uid !== selectedScheduleFirst?.uid &&
               el.uid !== selectedScheduleSecond?.uid
           )

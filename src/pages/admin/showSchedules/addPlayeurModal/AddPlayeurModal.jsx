@@ -28,7 +28,6 @@ export default function AddPlayeurModal({
 
   const { usersData } = useContext(AllDataUsers);
 
-  const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     setShowModal1(false);
@@ -42,8 +41,7 @@ export default function AddPlayeurModal({
       };
 
       const info = usersData.filter((user) => user.name == nameEnter);
-
-      if (!priority && !info) {
+      if (!priority && info.length === 0) {
         const docRef = await addDoc(collection(db, "users"), {
           playeurInfo: [infoPlayeurAdd],
           playeurNames: [infoPlayeurAdd.name],
@@ -60,7 +58,7 @@ export default function AddPlayeurModal({
     setNameEnter(value);
     if (value.length > 2) {
       // Commence à chercher après 2 caractères
-      fetchSuggestions(value);
+      fetchSuggestions(value.toLowerCase().trim());
     } else {
       setSuggestions([]);
     }
@@ -141,7 +139,6 @@ export default function AddPlayeurModal({
             ))}
           </ul>
         )}
-        {errorMessage && <span className="error-message">{errorMessage}</span>}
         <div className="buttons">
           <button type="submit" className="cancel-button">
             Annuler

@@ -4,7 +4,6 @@ import { convertLevelToWord } from "../../../../../functions/convertLevelToWord"
 
 export default function InfoUserTab1({ infoPlayeurClick }) {
   const formatDate = (date) => {
-    console.log(date);
     if (date) {
       const [year, month, day] = date.split("-");
       return `${day}/${month}/${year}`;
@@ -14,6 +13,7 @@ export default function InfoUserTab1({ infoPlayeurClick }) {
     <>
       {infoPlayeurClick?.length === 0 && <h2>Pas d'informations</h2>}
       {infoPlayeurClick?.map((user, index) => {
+        if (index !== 0) return null; // Ignore tous les éléments sauf le premier
         const { name, birthDay, level } = user;
         return (
           <div key={index} className="tab-container">

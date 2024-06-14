@@ -25,6 +25,7 @@ const AddCommentary = () => {
       const docRef = await addDoc(collection(db, "commentary"), {
         name: name,
         commentary: comment,
+        status: false
       });
     }
     closeModal();
@@ -32,17 +33,18 @@ const AddCommentary = () => {
 
   const closeModal = () => {
     if (isRegisted) {
-      navigate("/informations-paiement");
+      return navigate("/informations-paiement");
     } else {
-      if (!selectedScheduleFirst) {
-        navigate("/inscrire-un-joueur/inscription");
-      } else if (!selectedScheduleThird) {
-        navigate("/inscrire-un-joueur/inscription/deuxieme-heure");
-      } else if (selectedScheduleSecond) {
-        navigate(
-          "/inscrire-un-joueur/inscription/deuxieme-heure/troisieme-heure"
-        );
-      }
+      // if (!selectedScheduleFirst) {
+      //   navigate("/inscrire-un-joueur/inscription");
+      // } else if (!selectedScheduleThird) {
+      //   navigate("/inscrire-un-joueur/inscription/deuxieme-heure");
+      // } else if (selectedScheduleSecond) {
+      //   navigate(
+      //     "/inscrire-un-joueur/inscription/deuxieme-heure/troisieme-heure"
+      //   );
+      // }
+      return navigate("/inscrire-un-joueur");
     }
   };
 
@@ -54,15 +56,15 @@ const AddCommentary = () => {
         onChange={(e) => setComment(e.target.value)}
         placeholder={
           isRegisted
-            ? "Exemple : Être avec un ou une amie en cours, un professeur en particulier, nous essayerons d'en tenir compte mais nous ne vous le garantissons pas"
-            : "Indiquez-nous une ou plusieurs horaires qui vous conviendraient, nous essayerons d'en tenir compte mais nous ne vous le garantissons pas"
+            ? "Exemple : Être avec un ou une amie en cours, un professeur en particulier, nous essayerons d'en tenir compte mais nous ne vous le garantissons pas."
+            : "Indiquez-nous une ou plusieurs horaires (dans les créneaux proposés pour votre niveau) qui vous conviendraient, nous essayerons d'en tenir compte mais nous ne vous le garantissons pas."
         }
       />
       <div className="buttons">
-        <button className="cancel-button" onClick={() => closeModal()}>
-          Annuler
+        <button className="cancel-button" style={{ backgroundColor: "green" }} onClick={() => closeModal()}>
+          Passer
         </button>
-        <button className="submit-btn" type="submit" onClick={handleSubmit}>
+        <button className="submit-button" type="submit" onClick={handleSubmit}>
           Valider
         </button>
       </div>

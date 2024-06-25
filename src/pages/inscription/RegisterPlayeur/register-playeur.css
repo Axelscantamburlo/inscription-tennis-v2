@@ -12,7 +12,7 @@
   margin: 0 auto;
 }
 
-.register-playeur-container h3 {
+.register-playeur-container .warning-message {
   position: fixed;
   bottom: 20px;
   left: 50%;

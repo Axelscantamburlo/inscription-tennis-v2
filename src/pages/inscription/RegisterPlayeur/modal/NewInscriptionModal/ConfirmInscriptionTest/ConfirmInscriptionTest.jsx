@@ -18,9 +18,9 @@ export default function ConfirmInscriptionTest({
       await updateDoc(docRef, {
         usersRegisted: arrayUnion(name),
       });
-    } else {
+    } 
       navigate("/inscrire-un-joueur");
-    }
+    
   };
   return (
     <div className="confirmation-modal-container">

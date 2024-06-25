@@ -12,7 +12,6 @@ import { usePlayeurInscription } from "../../../hooks/usePlayeurInscription";
 
 export default function PlayeurRegistedInfo({ playeurInfo }) {
   const { name, birthDay, level, isPayed } = playeurInfo;
-console.log(level);
   const [playeurInscription, setPlayeurInscription] = useState([]);
   const [priceToPay, setPriceToPay] = useState("");
 
@@ -25,8 +24,10 @@ console.log(level);
   }, []);
 
   function extractBeforeSlash(inputString) {
-    const parts = inputString.split('/');
-    return parts[0]; // Retourne la partie de la chaîne avant le '/'
+    if(inputString) {
+      const parts = inputString.split('/');
+    return parts[0]; // Retourne la partie de la chaîne avant le '/
+    }
   }
   
 

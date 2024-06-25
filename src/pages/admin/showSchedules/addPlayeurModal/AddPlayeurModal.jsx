@@ -40,7 +40,7 @@ export default function AddPlayeurModal({
         isPayed: false,
       };
 
-      const info = usersData.filter((user) => user.name == nameEnter);
+      const info = usersData.filter((user) => user.name == nameEnter.trim().toLowerCase());
       if (!priority && info.length === 0) {
         const docRef = await addDoc(collection(db, "users"), {
           playeurInfo: [infoPlayeurAdd],

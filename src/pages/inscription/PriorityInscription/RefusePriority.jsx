@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { firebaseUpdateSchedulesDb } from "../../../functions/firebaseUpdateSchedulesdb";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setPlayeurInfo } from "../../../redux/actions";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { db } from "../../../config/firebase-config";
+import { UidUserConnected } from "../../../context/UidUserConnected";
 
-export default function RefusePriority({ setOpenModal2, dataPlayeur, uid }) {
+export default function RefusePriority({ setOpenModal2, dataPlayeur, uidSchedule }) {
   const navigate = useNavigate();
+const dispatch = useDispatch()
+  const playeurInfo = useSelector((state) => state.user);
+  const { uid } = useContext(UidUserConnected);
+
+  const [playeurInfoState, setPlayeurInfoState] = useState({
+    ...playeurInfo,
+    // isPayed: false,
+
+    dateInscription: new Date(),
+  });
+  console.log(dataPlayeur);
   const handleConfirm = async () => {
     navigate("/emettre-un-souhait");
-    await firebaseUpdateSchedulesDb(uid, dataPlayeur, "arrayRemove");
+    await firebaseUpdateSchedulesDb(uidSchedule, dataPlayeur, "arrayRemove");
+    // const userRef = doc(db, "users", uid);
+    // if (userRef) {
+    //   await updateDoc(userRef, {
+    //     playeurInfo: arrayUnion(playeurInfoState),
+    //     playeurNames: arrayUnion(playeurInfoState.name),
+    //   });
+    //   dispatch(setPlayeurInfo({}));
+    //   return navigate("/emettre-un-souhait", { state: { isRegisted: true } });
+    // }
+    // localStorage.removeItem("persist:root");
   };
   return (
     <div className="confirmation-modal-container">

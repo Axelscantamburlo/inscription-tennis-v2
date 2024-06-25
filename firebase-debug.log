@@ -1,0 +1,57 @@
+[debug] [2024-06-25T18:55:18.737Z] ----------------------------------------------------------------------
+[debug] [2024-06-25T18:55:18.739Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2024-06-25T18:55:18.740Z] CLI Version:   13.11.2
+[debug] [2024-06-25T18:55:18.740Z] Platform:      darwin
+[debug] [2024-06-25T18:55:18.740Z] Node Version:  v20.14.0
+[debug] [2024-06-25T18:55:18.740Z] Time:          Tue Jun 25 2024 20:55:18 GMT+0200 (Central European Summer Time)
+[debug] [2024-06-25T18:55:18.740Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-06-25T18:55:18.800Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-25T18:55:18.801Z] > authorizing via signed-in user (axel.scantamburlo31770@gmail.com)
+[debug] [2024-06-25T18:55:18.801Z] [iam] checking project inscription-tennis-bis for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-06-25T18:55:18.802Z] > refreshing access token with scopes: []
+[debug] [2024-06-25T18:55:18.803Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-06-25T18:55:18.803Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-06-25T18:55:19.019Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-06-25T18:55:19.020Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-06-25T18:55:19.031Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/inscription-tennis-bis:testIamPermissions [none]
+[debug] [2024-06-25T18:55:19.032Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/inscription-tennis-bis:testIamPermissions x-goog-quota-user=projects/inscription-tennis-bis
+[debug] [2024-06-25T18:55:19.032Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/inscription-tennis-bis:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-06-25T18:55:19.769Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/inscription-tennis-bis:testIamPermissions 200
+[debug] [2024-06-25T18:55:19.769Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/inscription-tennis-bis:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-06-25T18:55:19.771Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/inscription-tennis-bis [none]
+[debug] [2024-06-25T18:55:20.097Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/inscription-tennis-bis 200
+[debug] [2024-06-25T18:55:20.098Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/inscription-tennis-bis {"projectId":"inscription-tennis-bis","projectNumber":"978024570582","displayName":"inscription-tennis-bis","name":"projects/inscription-tennis-bis","resources":{"hostingSite":"inscription-tennis-bis"},"state":"ACTIVE","etag":"1_d12cc45c-815c-441f-b78a-05a4fd350829"}
+[info] 
+[info] === Deploying to 'inscription-tennis-bis'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2024-06-25T18:55:20.102Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/inscription-tennis-bis/versions [none]
+[debug] [2024-06-25T18:55:20.102Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/inscription-tennis-bis/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2024-06-25T18:55:21.525Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/inscription-tennis-bis/versions 200
+[debug] [2024-06-25T18:55:21.525Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/inscription-tennis-bis/versions {"name":"projects/978024570582/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[inscription-tennis-bis]: beginning deploy... 
+[info] i  hosting[inscription-tennis-bis]: found 9 files in build 
+[debug] [2024-06-25T18:55:21.535Z] [hosting] uploading with 200 concurrency
+[debug] [2024-06-25T18:55:21.944Z] [hosting] hash cache [YnVpbGQ] stored for 9 files
+[debug] [2024-06-25T18:55:21.944Z] [hosting][hash queue][FINAL] {"max":403,"min":4,"avg":52,"active":0,"complete":9,"success":9,"errored":0,"retried":0,"total":9,"elapsed":407}
+[debug] [2024-06-25T18:55:21.945Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/978024570582/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d:populateFiles [none]
+[debug] [2024-06-25T18:55:21.945Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/978024570582/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d:populateFiles {"files":{"/asset-manifest.json":"5bdd08d0a07790c4d5b60edceb8822da22c03f74de36e3f1e379b83884a887c8","/image.jpg":"919d96b701c8c0775f31b596f11db09d30f9ab51c8e62c292fda73f71fd27858","/index.html":"84e2a4e09ac55cdd90ee9bb59a3feeed717c13e3ea6ec092b1e8906ae51ecf42","/static/js/main.c623ba16.js.LICENSE.txt":"a26e07d38e9c03d70ff09fae9a33b7f31b6dde43993f689a6e01a2e40d4403ea","/static/css/main.9143b4cf.css":"9998b05e65d4f95d8be7ec83084c8657d9e2d24cbcb1697ea330910da7b11ef2","/maintenance.html":"8e52577fdeaf1807949961fbea2f56940889ab764b97dc9463c20ffe39b748f4","/static/css/main.9143b4cf.css.map":"2019e9c713ae175e238f1c10634626058bab6fe5a548966d191651109b19651f","/static/js/main.c623ba16.js":"4848322e70e31b358cc3747d75894aa9fd881d6d4538a3bfefe9ec5fb338813e","/static/js/main.c623ba16.js.map":"6242f083d2bdcd9670ca54757339f804532a1967255471dfbbdcefaa7233154b"}}
+[debug] [2024-06-25T18:55:22.325Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/978024570582/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d:populateFiles 200
+[debug] [2024-06-25T18:55:22.326Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/978024570582/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d:populateFiles {"uploadRequiredHashes":["4848322e70e31b358cc3747d75894aa9fd881d6d4538a3bfefe9ec5fb338813e","6242f083d2bdcd9670ca54757339f804532a1967255471dfbbdcefaa7233154b","5bdd08d0a07790c4d5b60edceb8822da22c03f74de36e3f1e379b83884a887c8","84e2a4e09ac55cdd90ee9bb59a3feeed717c13e3ea6ec092b1e8906ae51ecf42"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files"}
+[debug] [2024-06-25T18:55:22.328Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/4848322e70e31b358cc3747d75894aa9fd881d6d4538a3bfefe9ec5fb338813e [none]
+[debug] [2024-06-25T18:55:22.328Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/4848322e70e31b358cc3747d75894aa9fd881d6d4538a3bfefe9ec5fb338813e [stream]
+[debug] [2024-06-25T18:55:22.330Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/6242f083d2bdcd9670ca54757339f804532a1967255471dfbbdcefaa7233154b [none]
+[debug] [2024-06-25T18:55:22.330Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/6242f083d2bdcd9670ca54757339f804532a1967255471dfbbdcefaa7233154b [stream]
+[debug] [2024-06-25T18:55:22.332Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/5bdd08d0a07790c4d5b60edceb8822da22c03f74de36e3f1e379b83884a887c8 [none]
+[debug] [2024-06-25T18:55:22.332Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/5bdd08d0a07790c4d5b60edceb8822da22c03f74de36e3f1e379b83884a887c8 [stream]
+[debug] [2024-06-25T18:55:22.333Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/84e2a4e09ac55cdd90ee9bb59a3feeed717c13e3ea6ec092b1e8906ae51ecf42 [none]
+[debug] [2024-06-25T18:55:22.333Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/84e2a4e09ac55cdd90ee9bb59a3feeed717c13e3ea6ec092b1e8906ae51ecf42 [stream]
+[debug] [2024-06-25T18:55:22.335Z] [hosting][populate queue][FINAL] {"max":385,"min":385,"avg":385,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":392}
+[debug] [2024-06-25T18:55:22.335Z] [hosting] uploads queued: 4
+[debug] [2024-06-25T18:55:23.924Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/84e2a4e09ac55cdd90ee9bb59a3feeed717c13e3ea6ec092b1e8906ae51ecf42 200
+[debug] [2024-06-25T18:55:23.924Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/84e2a4e09ac55cdd90ee9bb59a3feeed717c13e3ea6ec092b1e8906ae51ecf42 [stream]
+[debug] [2024-06-25T18:55:23.990Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/5bdd08d0a07790c4d5b60edceb8822da22c03f74de36e3f1e379b83884a887c8 200
+[debug] [2024-06-25T18:55:23.990Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/5bdd08d0a07790c4d5b60edceb8822da22c03f74de36e3f1e379b83884a887c8 [stream]
+[debug] [2024-06-25T18:55:28.228Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/4848322e70e31b358cc3747d75894aa9fd881d6d4538a3bfefe9ec5fb338813e 200
+[debug] [2024-06-25T18:55:28.229Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/inscription-tennis-bis/versions/e7049e23e93d0a2d/files/4848322e70e31b358cc3747d75894aa9fd881d6d4538a3bfefe9ec5fb338813e [stream]

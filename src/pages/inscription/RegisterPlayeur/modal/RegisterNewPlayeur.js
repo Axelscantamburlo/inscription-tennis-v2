@@ -149,9 +149,7 @@ export default function RegisterNewPlayer({ playeurNames, setOpenModal }) {
       return navigate("priorite-inscription");
     } else if (isPlayeurAlreadyAcceptProposition) {
       return setErrorMessage("Le joueur est déjà inscrit");
-    } else if(playeur.priority && currentDate > limitDate) {
-      return setErrorMessage('Erreur')
-    }
+    } 
     navigate("inscription");
   };
 

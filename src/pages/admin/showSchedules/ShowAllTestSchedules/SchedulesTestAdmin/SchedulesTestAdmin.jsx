@@ -2,10 +2,10 @@ import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../../../../config/firebase-config";
 import { convertLevelToWord } from "../../../../../functions/convertLevelToWord";
+import AddPlayeurInTest from "./AddPlayeurInTest";
 
 export default function SchedulesTestAdmin({ schedule }) {
-  const { date, level, usersRegisted, numberOfPlaces } = schedule;
-
+  const { date, level, usersRegisted, numberOfPlaces, uid } = schedule;
   // Calculer le nombre de places restantes
   const remainingPlaces = numberOfPlaces - usersRegisted.length;
 
@@ -13,7 +13,7 @@ export default function SchedulesTestAdmin({ schedule }) {
   const tableData = Array.from(usersRegisted).concat(
     Array(remainingPlaces).fill("")
   );
-
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div className="schedule-card">
       <div className="header-card">
@@ -25,7 +25,15 @@ export default function SchedulesTestAdmin({ schedule }) {
       <table>
         <tbody style={{ backgroundColor: "var(--grey-color)" }}>
           {tableData.map((item, index) => (
-            <tr key={index} style={{ height: "50px" }}>
+            <tr
+              key={index}
+              style={{ height: "50px" }}
+              onClick={() => {
+                item === "" && setOpenModal(true)
+                
+              }}
+            >
+              {" "}
               <td className="item" style={{ justifyContent: "center" }}>
                 {item}
               </td>
@@ -33,6 +41,7 @@ export default function SchedulesTestAdmin({ schedule }) {
           ))}
         </tbody>
       </table>
+      {openModal && <AddPlayeurInTest uid={uid} setOpenModal={setOpenModal}/>}
     </div>
   );
 }

@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPlayeurInfo } from "../../../../../../redux/actions";
 
 export default function ChooseLevel({ birthDay }) {
+  console.log(birthDay);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [levelToPropose, setLevelToPropose] = useState([]);
-
+console.log(levelToPropose);
   const levelInFonctionOfAge = {
     2018: "2",
     2017: "3",

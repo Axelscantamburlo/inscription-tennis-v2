@@ -51,6 +51,7 @@ export default function RegisterPlayeur() {
         }
       }
     };
+    
 
     const fetchData = async () => {
       await loadDataUser();
@@ -79,7 +80,7 @@ export default function RegisterPlayeur() {
             return <PlayeurRegistedInfo key={index} playeurInfo={playeur} />;
           })}
       </div>
-      <h3>
+      <h3 className="warning-message">
         Merci de venir au club dans les 7 jours suivants votre pré-inscription
         afin de finaliser votre dossier par le paiement. Hors ce délai de 7
         jours, votre pré-inscription sera automatiquement annulée.

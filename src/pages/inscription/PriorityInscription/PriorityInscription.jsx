@@ -82,7 +82,7 @@ export default function PriorityInscription() {
         <RefusePriority
           setOpenModal2={setOpenModal2}
           dataPlayeur={dataPlayeur}
-          uid={playeurInscription[0].uid}
+          uidSchedule={playeurInscription[0].uid}
         />
       )}
     </div>

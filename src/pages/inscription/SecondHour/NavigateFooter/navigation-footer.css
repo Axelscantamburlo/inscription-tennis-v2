@@ -1,7 +1,7 @@
 .navigation-footer {
   position: fixed;
   bottom: 0;
-  height: 100px;
+  height: 125px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -10,21 +10,48 @@
 
 .inscription-schedules-container .navigation-footer .validate-button {
   width: 150px;
-  right: 75px;
+  right: 20px;
+  bottom: 5px;
   left: unset;
   transform: unset;
   box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
   color: white;
   background: var(--linear-gradient);
   border: none;
-  padding: 10px 15px;
+  padding: 10px;
   border-radius: 10px;
   font-size: 20px;
   cursor: pointer;
   position: absolute;
+}
+.navigation-footer .commentary-link {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  text-align: center;
+ }
+
+
+.inscription-schedules-container .navigation-footer .previous-btn {
+  right: unset;
+  left: 20px;
+}
+
+@media screen and (min-width: 800px) {
+  .navigation-footer .commentary-link {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+ .inscription-schedules-container .navigation-footer .validate-button {
+  bottom: unset;
   right: 75px;
 }
 .inscription-schedules-container .navigation-footer .previous-btn {
   right: unset;
+  bottom: unset;
+
   left: 75px;
+}
+
 }

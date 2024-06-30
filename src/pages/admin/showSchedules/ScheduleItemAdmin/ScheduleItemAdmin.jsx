@@ -65,7 +65,7 @@ export default function ScheduleItemAdmin({ schedule }) {
             {tableData.map((item, index) => {
              
               return(
-                <tr key={index} style={{ height: "50px" }}>
+                <tr key={index}  style={{ height: "50px" }}>
                 
                 <td
                style={{
@@ -80,12 +80,12 @@ export default function ScheduleItemAdmin({ schedule }) {
                 >
                   {item.name}
                 </td>
-                <td className="birthDay">
+                <td className="birthDay no-print">
                   {item.birthDay ? item.birthDay.slice(0, 4) : ""}
                 </td>
                 {item && (
                   <td
-                    className="icon"
+                    className="icon no-print"
                     onClick={() => {
                       setShowModal3(true);
                       setPlayeurClick(item);
@@ -111,7 +111,7 @@ export default function ScheduleItemAdmin({ schedule }) {
       )}
       {modal2 && (
         <InfoPlayeurModal
-          playeurClick={playeurClick.name}
+          playeurClick={playeurClick.name.toLowerCase().trim()}
           setShowModal2={setShowModal2}
         />
       )}

@@ -57,8 +57,8 @@ const PreviousHourButtons = ({
           ? "Valider"
           : "Suivant"}
       </button>
-      <NavLink to={"/emettre-un-souhait"}>
-        <p style={{ marginLeft: "300px" }}>
+      <NavLink to={"/emettre-un-souhait"} className="commentary-link" >
+        <p >
           Emettre un souhait si aucun créneau ne vous convient
         </p>
       </NavLink>
@@ -71,7 +71,7 @@ const PreviousHourButtons = ({
         </button>
       )}
 
-      {errorMessage && <span style={{marginBottom: '20px', fontSize: '20px'}} className="error-message">{errorMessage}</span>}
+      {errorMessage && <span style={{marginBottom: '0', fontSize: '20px'}} className="error-message">{errorMessage}</span>}
       {openModal && <ConfirmationModal setOpenModal={setOpenModal} />}
     </div>
   );

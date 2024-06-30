@@ -20,11 +20,9 @@ export default function InfoPlayeurModal({ playeurClick, setShowModal2 }) {
   const [activeTab, setActiveTab] = useState(0);
 
   const { usersData } = useContext(AllDataUsers);
-
   const [infoPlayeurClick, setInfoPlayeurClick] = useState([]);
-
   useEffect(() => {
-    const info = usersData.filter((user) => user.name == playeurClick);
+    const info = usersData.filter((user) => user.name == playeurClick.toLowerCase().trim());
     if (info) {
       setInfoPlayeurClick(info);
     }

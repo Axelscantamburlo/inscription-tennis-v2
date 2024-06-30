@@ -4,6 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  overflow: auto;
   background-color: var(--background-color);
   color: var(--grey-color);
   z-index: 200;

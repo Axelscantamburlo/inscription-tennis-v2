@@ -26,7 +26,8 @@ export default function ShowAllSchedules() {
         handleFilterData={handleFilterData}
         loadedData={loadedData}
       />
-      <div className="schedules-container">
+
+      <div className="schedules-container" >
         {filterData?.map((schedule, index) => (
           <React.Fragment key={index}>
             <ScheduleItemAdmin schedule={schedule} />

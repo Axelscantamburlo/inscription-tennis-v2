@@ -32,7 +32,7 @@ export default function NavBar({toggleClassName}) {
         }
       };    
   return (
-    <div className='nav-bar-container'>
+    <div className='nav-bar-container no-print'>
         <ul>
             {tabBar.map((tab, index) => {
                 const {link, style, text} = tab

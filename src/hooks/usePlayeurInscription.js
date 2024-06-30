@@ -6,7 +6,7 @@ export const usePlayeurInscription = (playeur) => {
 
   const playeurInscriptions = useMemo(() => {
     return loadedData.filter((data) =>
-      data.usersRegisted.some((user) => user.name === playeur)
+      data.usersRegisted.some((user) => user.name.toLowerCase().trim() === playeur)
     );
   }, [loadedData, playeur]); // Ajout de dépendances pour éviter les recalculs inutiles
 

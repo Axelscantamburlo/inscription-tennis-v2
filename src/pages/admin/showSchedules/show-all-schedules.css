@@ -10,9 +10,17 @@
   justify-content: center;
 }
 
+
 .show-all-schedules-container .inputs select,
 .create-schedules-container .inputs select {
   padding: 15px 20px;
+}
+.show-all-schedules-container .inputs .print-button,
+.create-schedules-container .inputs .print-button {
+  position: absolute;
+  right: 30px;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 .show-all-schedules-container .schedules-container {
@@ -44,9 +52,22 @@
   .show-all-schedules-container .schedules-container:last-child {
     margin-bottom: 20px;
   }
+  .show-all-schedules-container .inputs .print-button,
+.create-schedules-container .inputs .print-button {
+  right: 75px;
+}
 }
 @media screen and (min-width: 1600px) {
   .show-all-schedules-container .schedules-container {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+/* PRINT */
+
+@media print {
+.no-print {
+  display: none;
+}
+
 }

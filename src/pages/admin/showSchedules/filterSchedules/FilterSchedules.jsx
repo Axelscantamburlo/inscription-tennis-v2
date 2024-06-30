@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+// ICONS
+import { MdLocalPrintshop } from "react-icons/md";
+
 
 const FilterSchedules = ({ handleFilterData, loadedData }) => {
   const [sortBy, setSortBy] = useState("");
@@ -35,9 +38,9 @@ const FilterSchedules = ({ handleFilterData, loadedData }) => {
   };
 
   return (
-    <div className="inputs">
+    <div className="inputs no-print">
       <select
-        style={{ marginTop: "70px" }}
+        style={{ marginTop: "20px" }}
         value={sortBy}
         onChange={(e) => setSortBy(e.target.value)}
       >
@@ -47,6 +50,9 @@ const FilterSchedules = ({ handleFilterData, loadedData }) => {
         <option value="numberOfPlaces">Nombre de places</option>
         <option value="formule">Formule</option>
       </select>
+      <MdLocalPrintshop onClick={() => window.print()} className="print-button"/>
+
+
     </div>
   );
 };

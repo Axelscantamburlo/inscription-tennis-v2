@@ -15,11 +15,8 @@
   grid-template-columns: 95% 5%;
   align-items: center;
 }
-.show-all-users-container .header-container .icon {
-  font-size: 30px;
-  margin-right: 15px;
-  cursor: pointer;
-}
+
+/* Filter select */
 .show-all-users-container .inputs {
   display: flex;
   justify-content: center;
@@ -45,10 +42,18 @@
   padding: 15px;
   cursor: pointer;
   overflow: none;
+  position: relative;
 }
 
 .show-all-users-container .users-container .user-card h2 {
   text-transform: uppercase;
+}
+
+.show-all-users-container .users-container .user-card .bin-icon {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  font-size: 17px;
 }
 
 @media screen and (min-width: 800px) {

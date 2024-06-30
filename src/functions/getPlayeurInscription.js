@@ -27,8 +27,9 @@ export const findPriceToPay = (playerInscriptions, level) => {
     } else if (playerInscriptions.length === 2 && playedForm === "0" && playerInscriptions[1].playedForm === "0") {
       return "335/2x 1h par semaine";
     } else if (playerInscriptions.length === 2 && (playedForm === "1" || playerInscriptions[1].playedForm === "1")) {
+      console.log('errre');
       return "300/Forme jouée 2h par semaine";
-    } else {
+    } else if(playerInscriptions.length === 3){
       return "450/Forme jouée 3h par semaine";
     }
   } else if (["10", "11"].includes(l)) {
